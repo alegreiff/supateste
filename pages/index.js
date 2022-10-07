@@ -11,21 +11,23 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { supabaseClient, withPageAuth } from "@supabase/auth-helpers-nextjs";
-import Head from "next/head";
-import Image from "next/image";
-import { AuthorizationComp } from "../components/auth/Authorization";
+
 import { useUser } from "@supabase/auth-helpers-react";
 
-import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
-import MainLayout from "../components/layout/MainLayout";
 import useDatosPollero from "../storedata/pollero";
+import Swal from "sweetalert2";
 //const user = false;
 
 export default function Home() {
-  const { setUsuario, clearUsuario, partidos, setPartidos } = useDatosPollero(
-    (state) => state
-  );
+  const {
+    usuario,
+    setUsuario,
+    clearUsuario,
+    partidos,
+    setPartidos,
+    setPerfilUsuario,
+  } = useDatosPollero((state) => state);
   const { user, error, isLoading, accessToken } = useUser();
   if (user) {
     console.log(user);
@@ -55,6 +57,7 @@ export default function Home() {
         console.log(event, session);
         if (session?.user) {
           setUsuario(session?.user);
+          loadPerfil(session?.user.id);
         }
       }
     );
@@ -63,6 +66,18 @@ export default function Home() {
       authListener.unsubscribe();
     };
   }, [setUsuario]);
+
+  async function loadPerfil(userid) {
+    const { data: perfil, error } = await supabaseClient
+      .from("usuarios")
+      .select("*")
+      .eq("id", userid)
+      .single();
+
+    if (perfil) {
+      setPerfilUsuario(perfil);
+    }
+  }
 
   const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState("");
@@ -73,9 +88,57 @@ export default function Home() {
       provider: "google",
     });
   };
+
+  const checkEmail = async (email) => {
+    let { data: usuario, error } = await supabaseClient
+      .from("correosusuarios")
+      .select("id")
+      .eq("correo", email);
+    console.log(usuario, error);
+    return usuario?.length;
+  };
   const signInWithGitHub = () => {};
   const perdiMiClave = () => {};
-  const handleSignUp = () => {};
+  const handleSignUp = async () => {
+    const check = await checkEmail(email);
+    if (!check) {
+      try {
+        const { user, session, error } = await supabaseClient.auth.signUp({
+          email,
+          password,
+        });
+
+        if (error) throw error;
+        console.log("USER", user, "Session", session, "ERROR", error);
+        if (user) {
+          console.info(user.identities);
+        }
+        Swal.fire({
+          title: "Vamos bien",
+          text: `Se ha enviado un correo de verificación a ${email}. Revisa incluso en SPAM`,
+          confirmButtonText: "Sisas",
+        });
+      } catch (error) {
+        Swal.fire({
+          title: "Error",
+          text: error.message,
+        });
+      }
+    } else {
+      Swal.fire({
+        title: "Resultado",
+        text: `El correo ${email} ya está registrado`,
+        icon: "error",
+        showCancelButton: true,
+        confirmButtonText: "Me equivoqué",
+        cancelButtonText: "Ah. Entonces ingresaré",
+      }).then((result) => {
+        if (result.isDismissed) {
+          changeForm();
+        }
+      });
+    }
+  };
   const handleSignIn = async () => {
     const { user: user_signed, error } = await supabaseClient.auth.signIn({
       email,
@@ -89,7 +152,9 @@ export default function Home() {
       console.log(error);
     }
   };
-  const changeForm = () => {};
+  const changeForm = () => {
+    setIsSignUp((value) => !value);
+  };
 
   if (!user && !isLoading) {
     return (
@@ -181,7 +246,11 @@ export default function Home() {
       </Flex>
     );
   }
-  return <h2>NOU ser</h2>;
+  if (usuario?.alias) {
+    return <>Bienvenido {usuario.alias}</>;
+  } else {
+    return <>Bienvenido</>;
+  }
 }
 
 /* export const getServerSideProps = withPageAuth({

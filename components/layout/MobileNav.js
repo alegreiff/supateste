@@ -65,7 +65,7 @@ export const MobileNav = ({ onOpen, user, cerrar, ...rest }) => {
               <HStack>
                 {user?.email ? (
                   <Avatar
-                    size={"md"}
+                    size={"lg"}
                     src={`https://dsbiqexajjcyswddmxve.supabase.co/storage/v1/object/public/${user?.foto}`}
                   />
                 ) : (
@@ -85,13 +85,17 @@ export const MobileNav = ({ onOpen, user, cerrar, ...rest }) => {
                   ml="2"
                 >
                   {user?.email ? (
-                    <Text fontSize="sm">{user.email}</Text>
+                    <>
+                      <Text fontSize="sm">
+                        {user.alias} {user.favorito}{" "}
+                      </Text>
+                      <Text fontSize="xs" color="gray.600">
+                        {user.email}
+                      </Text>
+                    </>
                   ) : (
                     <Text fontSize="sm">Anónimo</Text>
                   )}
-                  <Text fontSize="xs" color="gray.600">
-                    Admin
-                  </Text>
                 </VStack>
                 <Box display={{ base: "none", md: "flex" }}>
                   <FiChevronDown />

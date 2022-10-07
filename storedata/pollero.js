@@ -6,10 +6,11 @@ const useDatosPollero = create(
     (set, get) => ({
       usuario: null,
       setUsuario: (params) => {
+        const rnd = Math.random;
         set((state) => ({
           usuario: {
             ...params,
-            foto: `polleres/${params.id}/perfil.png?base=${Math.random}`,
+            foto: `polleres/${params.id}/perfil.png?base=${rnd}`,
           },
         }));
       },
@@ -18,17 +19,21 @@ const useDatosPollero = create(
           usuario: { ...state.usuario, foto: params },
         }));
       },
+      setPerfilUsuario: (params) => {
+        set((state) => ({
+          usuario: {
+            ...state.usuario,
+            alias: params.alias,
+            hincha: params.hincha,
+            favorito: params.favorito,
+          },
+        }));
+      },
       clearUsuario: () => set({ usuario: null }),
       partidos: [],
       setPartidos: (params) => {
         set((state) => ({
           partidos: params,
-        }));
-      },
-      fotoperfil: false,
-      setFotoPerfil: () => {
-        set((state) => ({
-          fotoperfil: true,
         }));
       },
     }),

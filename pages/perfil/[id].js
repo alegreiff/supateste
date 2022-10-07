@@ -19,9 +19,7 @@ import { useEffect, useState } from "react";
 import useDatosPollero from "../../storedata/pollero";
 
 export default function PerfilUserPage({ user, equipos, favoritos }) {
-  if (!user) {
-    console.log("UNA MUJER SE HA PERDIDO");
-  }
+  console.log(favoritos);
   const [profile, setProfile] = useState(null);
   const [imagen, setImagen] = useState(null);
   const [nuevaIMG, setnuevaIMG] = useState(null);
@@ -29,7 +27,9 @@ export default function PerfilUserPage({ user, equipos, favoritos }) {
   const [upload, setUpload] = useState(true);
   const router = useRouter();
   const { id } = router.query;
-  const { setImagenPerfil } = useDatosPollero((state) => state);
+  const { setImagenPerfil, setPerfilUsuario } = useDatosPollero(
+    (state) => state
+  );
 
   useEffect(() => {
     async function getImage(userid) {
@@ -52,14 +52,15 @@ export default function PerfilUserPage({ user, equipos, favoritos }) {
       }
     }
     async function loadPerfil() {
-      const { data: profile, error } = await supabaseClient
+      const { data: perfil, error } = await supabaseClient
         .from("usuarios")
         .select("*")
         .eq("id", user.id)
         .single();
 
-      if (profile) {
-        setProfile(profile);
+      if (perfil) {
+        setProfile(perfil);
+        //setPerfilUsuario(perfil);
       }
     }
     // Only run query once user is logged in.
@@ -98,22 +99,28 @@ export default function PerfilUserPage({ user, equipos, favoritos }) {
         if (data) {
           setUpload(false);
           setRandom(Math.random);
-        }
-        console.log(data, error);
-      } else {
-        const { data, error } = await supabaseClient.storage
-          .from("polleres")
-          .update(`${user?.id}/perfil.png`, nuevaIMG, {
-            cacheControl: "3600",
-            upsert: false,
-          });
-        if (data) {
-          setRandom(Math.random);
-          console.log("imagosupdated", data?.Key);
           let imagenUp = data?.Key + "?polla=" + random;
           setImagenPerfil(imagenUp);
         }
         console.log(data, error);
+      } else {
+        if (nuevaIMG) {
+          const { data, error } = await supabaseClient.storage
+            .from("polleres")
+            .update(`${user?.id}/perfil.png`, nuevaIMG, {
+              cacheControl: "3600",
+              upsert: false,
+            });
+          if (data) {
+            setRandom(Math.random);
+
+            let imagenUp = data?.Key + "?polla=" + random;
+            setImagenPerfil(imagenUp);
+          }
+          console.log(data, error);
+        } else {
+          console.log("Sin cambios de Imaghen parse");
+        }
       }
 
       const { data, error } = await supabaseClient
@@ -127,6 +134,7 @@ export default function PerfilUserPage({ user, equipos, favoritos }) {
         .single();
       if (data) {
         setProfile(data);
+        setPerfilUsuario(data);
         //actions.resetForm();
       }
       if (error) {
@@ -146,7 +154,7 @@ export default function PerfilUserPage({ user, equipos, favoritos }) {
       onSubmit={formik.handleSubmit}
     >
       {imagen && <Image src={imagen} alt="Pollero" boxSize="nd" />}
-      <Heading>Perfil {profile?.hincha} </Heading>
+      <Heading>Perfil {profile?.alias} </Heading>
 
       <FormControl
         isInvalid={formik.errors.hinchade && formik.touched.hinchade}
