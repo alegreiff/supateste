@@ -17,9 +17,12 @@ import { useUser } from "@supabase/auth-helpers-react";
 import { useEffect, useState } from "react";
 import useDatosPollero from "../storedata/pollero";
 import Swal from "sweetalert2";
+import { Prepolleros } from "../components/polla/prepolleros";
+import { useRouter } from "next/router";
 //const user = false;
 
-export default function Home() {
+export default function Home({ usuariosDB }) {
+  const router = useRouter();
   const {
     usuario,
     setUsuario,
@@ -27,14 +30,17 @@ export default function Home() {
     partidos,
     setPartidos,
     setPerfilUsuario,
+    setPolleros,
   } = useDatosPollero((state) => state);
   const { user, error, isLoading, accessToken } = useUser();
   if (user) {
-    console.log(user);
-  } else {
-    console.log(isLoading);
+    router.push("/polla");
   }
-
+  useEffect(() => {
+    if (usuariosDB) {
+      setPolleros(usuariosDB);
+    }
+  }, []);
   useEffect(() => {
     async function cargaPartidos() {
       const { data: db_partidos } = await supabaseClient
@@ -58,6 +64,7 @@ export default function Home() {
         if (session?.user) {
           setUsuario(session?.user);
           loadPerfil(session?.user.id);
+          //router.push("/polla");
         }
       }
     );
@@ -246,12 +253,27 @@ export default function Home() {
       </Flex>
     );
   }
-  if (usuario?.alias) {
-    return <>Bienvenido {usuario.alias}</>;
-  } else {
-    return <>Bienvenido</>;
-  }
+  return <Prepolleros />;
 }
+
+export async function getServerSideProps(context) {
+  const { data: usuariosDB, error } = await supabaseClient
+    .from("usuariospolla")
+    .select("*");
+
+  return {
+    props: { usuariosDB }, // will be passed to the page component as props
+  };
+}
+
+/* export const getServerSideProps = withPageAuth({
+  redirectTo: "/",
+  async getServerSideProps(ctx) {
+    // Run queries with RLS on the server
+    const { data } = await supabaseServerClient(ctx).from("test").select("*");
+    return { props: { data } };
+  },
+}); */
 
 /* export const getServerSideProps = withPageAuth({
   redirectTo: "/foo",

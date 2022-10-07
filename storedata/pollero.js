@@ -1,16 +1,17 @@
 import create from "zustand";
 import { persist } from "zustand/middleware";
 
+const rnd = new Date().valueOf();
+
 const useDatosPollero = create(
   persist(
     (set, get) => ({
       usuario: null,
       setUsuario: (params) => {
-        const rnd = Math.random;
         set((state) => ({
           usuario: {
             ...params,
-            foto: `polleres/${params.id}/perfil.png?base=${rnd}`,
+            foto: `polleres/${params.id}/perfil.png?pic=` + rnd,
           },
         }));
       },
@@ -34,6 +35,12 @@ const useDatosPollero = create(
       setPartidos: (params) => {
         set((state) => ({
           partidos: params,
+        }));
+      },
+      polleros: [],
+      setPolleros: (params) => {
+        set((state) => ({
+          polleros: params,
         }));
       },
     }),

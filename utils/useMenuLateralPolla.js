@@ -37,7 +37,7 @@ export default function useMenuLateralPolla() {
 
   const menuE = [
     { name: "Home", icon: FiHome, ruta: "/" },
-    { name: "Trending", icon: FiTrendingUp, ruta: "/" },
+    { name: "Polla", icon: FiTrendingUp, ruta: "/polla" },
     { name: "Explore", icon: FiCompass, ruta: "/" },
     { name: "Partidos", icon: FiStar, ruta: "/partidos" },
     {
