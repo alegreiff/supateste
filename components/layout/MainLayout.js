@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 
 import { MobileNav } from "./MobileNav";
-import { MenuIzquierdo } from "./menuIzquierdo";
+import { MenuIzquierdo } from "./MenuIzquierdo";
 import useDatosPollero from "../../storedata/pollero";
 
 export default function MainLayout({ children, cerrar }) {
