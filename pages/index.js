@@ -10,11 +10,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import {
-  SupabaseClient,
-  supabaseClient,
-  withPageAuth,
-} from "@supabase/auth-helpers-nextjs";
+import { supabaseClient, withPageAuth } from "@supabase/auth-helpers-nextjs";
 import Head from "next/head";
 import Image from "next/image";
 import { AuthorizationComp } from "../components/auth/Authorization";
@@ -22,9 +18,14 @@ import { useUser } from "@supabase/auth-helpers-react";
 
 import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
+import MainLayout from "../components/layout/MainLayout";
+import useDatosPollero from "../storedata/pollero";
 //const user = false;
 
 export default function Home() {
+  const { setUsuario, clearUsuario, partidos, setPartidos } = useDatosPollero(
+    (state) => state
+  );
   const { user, error, isLoading, accessToken } = useUser();
   if (user) {
     console.log(user);
@@ -33,16 +34,35 @@ export default function Home() {
   }
 
   useEffect(() => {
+    async function cargaPartidos() {
+      const { data: db_partidos } = await supabaseClient
+        //console.log("Cargando matche's");
+        .from("partidospower")
+        .select("*");
+
+      setPartidos(db_partidos);
+      console.log("partita", db_partidos);
+    }
+
+    if (partidos.length === 0) {
+      cargaPartidos();
+    }
+  }, [setPartidos]);
+
+  useEffect(() => {
     const { data: authListener } = supabaseClient.auth.onAuthStateChange(
       (event, session) => {
         console.log(event, session);
+        if (session?.user) {
+          setUsuario(session?.user);
+        }
       }
     );
 
     return () => {
       authListener.unsubscribe();
     };
-  }, []);
+  }, [setUsuario]);
 
   const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState("");
@@ -70,11 +90,8 @@ export default function Home() {
     }
   };
   const changeForm = () => {};
-  const handleSignOut = async () => {
-    const { error } = await supabaseClient.auth.signOut();
-  };
 
-  if (!user) {
+  if (!user && !isLoading) {
     return (
       <Flex minH={"100vh"} justify={"center"} bg="gray.50">
         <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
@@ -164,11 +181,7 @@ export default function Home() {
       </Flex>
     );
   }
-  return (
-    <Box bg="tomato">
-      <Button onClick={handleSignOut}> Salir </Button>
-    </Box>
-  );
+  return <h2>NOU ser</h2>;
 }
 
 /* export const getServerSideProps = withPageAuth({
