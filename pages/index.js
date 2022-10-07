@@ -17,7 +17,7 @@ import { useUser } from "@supabase/auth-helpers-react";
 import { useEffect, useState } from "react";
 import useDatosPollero from "../storedata/pollero";
 import Swal from "sweetalert2";
-import { Prepolleros } from "../components/polla/prepolleros";
+import { Prepolleros } from "../components/polla/Prepolleros";
 import { useRouter } from "next/router";
 //const user = false;
 
