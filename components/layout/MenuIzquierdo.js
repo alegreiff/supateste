@@ -14,16 +14,25 @@ import {
   FiStar,
   FiSettings,
 } from "react-icons/fi";
+import useMenuLateralPolla from "../../utils/useMenuLateralPolla";
 
-const LinkItems = [
+/* const LinkItems = [
   { name: "Home", icon: FiHome, ruta: "/" },
   { name: "Trending", icon: FiTrendingUp, ruta: "/" },
   { name: "Explore", icon: FiCompass, ruta: "/" },
   { name: "Partidos", icon: FiStar, ruta: "/partidos" },
-  { name: "Settings", icon: FiSettings, ruta: "/" },
-];
+]; */
 
-export const MenuIzquierdo = ({ onClose, ...rest }) => {
+export const MenuIzquierdo = ({ onClose, user, ...rest }) => {
+  const [uss, menu] = useMenuLateralPolla();
+
+  /* if (user?.id) {
+    LinkItems.push({
+      name: user.email,
+      icon: FiSettings,
+      ruta: `perfil/${user.id}`,
+    });
+  } */
   return (
     <Box
       transition="3s ease"
@@ -41,7 +50,7 @@ export const MenuIzquierdo = ({ onClose, ...rest }) => {
         </Text>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
-      {LinkItems.map((link) => (
+      {menu.map((link) => (
         <NavItem key={link.name} icon={link.icon} ruta={link.ruta}>
           {link.name}
         </NavItem>

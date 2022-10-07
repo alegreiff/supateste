@@ -7,7 +7,15 @@ const useDatosPollero = create(
       usuario: null,
       setUsuario: (params) => {
         set((state) => ({
-          usuario: params,
+          usuario: {
+            ...params,
+            foto: `polleres/${params.id}/perfil.png?base=${Math.random}`,
+          },
+        }));
+      },
+      setImagenPerfil: (params) => {
+        set((state) => ({
+          usuario: { ...state.usuario, foto: params },
         }));
       },
       clearUsuario: () => set({ usuario: null }),

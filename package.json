@@ -24,7 +24,11 @@
     "zustand": "^4.1.1",
     "date-fns": "^2.29.3",
     "react-table": "^7.8.0",
-    "@chakra-ui/icons": "^2.0.10"
+    "@chakra-ui/icons": "^2.0.10",
+    "yup": "^0.32.11",
+    "formik": "^2.2.9",
+    "react-avatar-edit": "^1.2.0"
+
   },
   "devDependencies": {
     "eslint": "8.24.0",

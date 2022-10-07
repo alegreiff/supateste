@@ -25,6 +25,7 @@ export default function MainLayout({ children, cerrar }) {
     mounted && (
       <Box minH="100vh">
         <MenuIzquierdo
+          user={user}
           onClose={() => onClose}
           display={{ base: "none", md: "block" }}
         />
@@ -38,7 +39,7 @@ export default function MainLayout({ children, cerrar }) {
           size="full"
         >
           <DrawerContent>
-            <MenuIzquierdo onClose={onClose} />
+            <MenuIzquierdo user={user} onClose={onClose} />
           </DrawerContent>
         </Drawer>
         {/* mobilenav */}

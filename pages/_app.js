@@ -4,12 +4,15 @@ import { supabaseClient } from "@supabase/auth-helpers-nextjs";
 import "../styles/globals.css";
 import MainLayout from "../components/layout/MainLayout";
 import useDatosPollero from "../storedata/pollero";
+import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }) {
   const { clearUsuario } = useDatosPollero((state) => state);
+  const router = useRouter();
 
   const handleSignOut = async () => {
     const { error } = await supabaseClient.auth.signOut();
+    router.push("/");
     clearUsuario();
   };
   return (
