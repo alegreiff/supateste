@@ -43,6 +43,7 @@ const useDatosPollero = create(
           polleros: params,
         }));
       },
+      clearPolleros: () => set({ polleros: [] }),
     }),
     { name: "datospolla" }
   )

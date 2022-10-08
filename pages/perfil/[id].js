@@ -19,7 +19,6 @@ import { useEffect, useState } from "react";
 import useDatosPollero from "../../storedata/pollero";
 
 export default function PerfilUserPage({ user, equipos, favoritos }) {
-  console.log(favoritos);
   const [profile, setProfile] = useState(null);
   const [imagen, setImagen] = useState(null);
   const [nuevaIMG, setnuevaIMG] = useState(null);
@@ -38,7 +37,6 @@ export default function PerfilUserPage({ user, equipos, favoritos }) {
         .from("polleres")
         .download(ruta);
       if (data) {
-        console.log("PREVIMAGOS", data);
         //setFotoPerfil();
         const { publicURL, error } = supabaseClient.storage
           .from("polleres")
@@ -102,7 +100,7 @@ export default function PerfilUserPage({ user, equipos, favoritos }) {
           let imagenUp = data?.Key + "?polla=" + random;
           setImagenPerfil(imagenUp);
         }
-        console.log(data, error);
+        //console.log(data, error);
       } else {
         if (nuevaIMG) {
           const { data, error } = await supabaseClient.storage
@@ -117,7 +115,7 @@ export default function PerfilUserPage({ user, equipos, favoritos }) {
             let imagenUp = data?.Key + "?polla=" + random;
             setImagenPerfil(imagenUp);
           }
-          console.log(data, error);
+          //console.log(data, error);
         } else {
           console.log("Sin cambios de Imaghen parse");
         }
@@ -143,7 +141,7 @@ export default function PerfilUserPage({ user, equipos, favoritos }) {
     },
   });
 
-  console.log(equipos, favoritos);
+  //console.log(equipos, favoritos);
   return (
     <VStack
       as="form"

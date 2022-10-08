@@ -7,13 +7,14 @@ import useDatosPollero from "../storedata/pollero";
 import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }) {
-  const { clearUsuario } = useDatosPollero((state) => state);
+  const { clearUsuario, clearPolleros } = useDatosPollero((state) => state);
   const router = useRouter();
 
   const handleSignOut = async () => {
     const { error } = await supabaseClient.auth.signOut();
-    router.push("/");
     clearUsuario();
+    clearPolleros();
+    router.push("/api/auth/logout");
   };
   return (
     <ChakraProvider>

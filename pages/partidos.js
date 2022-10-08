@@ -27,6 +27,9 @@ export default function Partidos() {
     console.log("M O U N T E D");
     setMounted(true);
   }, []);
+
+  console.log(datos[0]);
+
   const losdatos = useMemo(() => datos, [datos]);
 
   const lascolumnas = useMemo(
