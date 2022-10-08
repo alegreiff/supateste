@@ -10,7 +10,11 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { supabaseClient, withPageAuth } from "@supabase/auth-helpers-nextjs";
+import {
+  supabaseClient,
+  supabaseServerClient,
+  withPageAuth,
+} from "@supabase/auth-helpers-nextjs";
 
 import { useUser } from "@supabase/auth-helpers-react";
 
@@ -37,6 +41,7 @@ export default function Home({ usuariosDB }) {
     router.push("/polla");
   }
   useEffect(() => {
+    //cargaPOLLEROS();
     if (usuariosDB) {
       setPolleros(usuariosDB);
     }
@@ -45,7 +50,7 @@ export default function Home({ usuariosDB }) {
     async function cargaPartidos() {
       const { data: db_partidos } = await supabaseClient
         //console.log("Cargando matche's");
-        .from("partidospower")
+        .from("partidospowerfull")
         .select("*");
 
       setPartidos(db_partidos);
@@ -64,6 +69,7 @@ export default function Home({ usuariosDB }) {
         if (session?.user) {
           setUsuario(session?.user);
           loadPerfil(session?.user.id);
+
           //router.push("/polla");
         }
       }
@@ -73,6 +79,16 @@ export default function Home({ usuariosDB }) {
       authListener.unsubscribe();
     };
   }, [setUsuario]);
+
+  async function cargaPOLLEROS() {
+    const { data: usuariosDB, error } = await supabaseClient
+      .from("usuariospolla")
+      .select("*");
+    console.log("MAGIS", usuariosDB, error);
+    if (usuariosDB) {
+      setPolleros(usuariosDB);
+    }
+  }
 
   async function loadPerfil(userid) {
     const { data: perfil, error } = await supabaseClient
@@ -257,9 +273,10 @@ export default function Home({ usuariosDB }) {
 }
 
 export async function getServerSideProps(context) {
-  const { data: usuariosDB, error } = await supabaseClient
+  const { data: usuariosDB, error } = await supabaseServerClient(context)
     .from("usuariospolla")
     .select("*");
+  console.log("ES LA DATA AMADA", usuariosDB, error);
 
   return {
     props: { usuariosDB }, // will be passed to the page component as props

@@ -1,9 +1,13 @@
+import { FiStar } from "react-icons/fi";
+import NextLink from "next/link";
 import {
   Avatar,
   Box,
+  Button,
   Flex,
   HStack,
   IconButton,
+  Link,
   Menu,
   MenuButton,
   MenuDivider,
@@ -17,8 +21,10 @@ import React from "react";
 
 import { FiMenu, FiBell, FiChevronDown } from "react-icons/fi";
 import { BsPersonCircle } from "react-icons/bs";
+import useMenuLateralPolla from "../../utils/useMenuLateralPolla";
 
 export const MobileNav = ({ onOpen, user, cerrar, ...rest }) => {
+  const { userMenu } = useMenuLateralPolla();
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -104,11 +110,26 @@ export const MobileNav = ({ onOpen, user, cerrar, ...rest }) => {
             </MenuButton>
             {user && (
               <MenuList>
-                <MenuItem>Profile</MenuItem>
-                <MenuItem>Settings</MenuItem>
-                <MenuItem>Billing</MenuItem>
+                {/* <MenuItem>Profile</MenuItem>
+                <MenuItem>Settings</MenuItem> */}
+
+                {user &&
+                  userMenu.map((link, i) => (
+                    <MenuItem key={i}>
+                      <NextLink href={link.ruta} passHref>
+                        <Link
+                          style={{ textDecoration: "none" }}
+                          _focus={{ boxShadow: "none" }}
+                        >
+                          {" "}
+                          {link.name}{" "}
+                        </Link>
+                      </NextLink>
+                    </MenuItem>
+                  ))}
+
                 <MenuDivider />
-                <MenuItem onClick={cerrar}>Sign out</MenuItem>
+                <MenuItem onClick={cerrar}>Cerrar sesión</MenuItem>
               </MenuList>
             )}
           </Menu>

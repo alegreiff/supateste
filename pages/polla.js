@@ -7,17 +7,28 @@ import useDatosPollero from "../storedata/pollero";
 import useIsAdmin from "../utils/useIsAdmin";
 
 export default function PollaPage() {
-  const { usuario, polleros, setPolleros } = useDatosPollero((state) => state);
+  const { usuario, polleros, setPolleros, updatePolleros } = useDatosPollero(
+    (state) => state
+  );
   const [adminpolleros, setAdminpolleros] = useState(null);
   const { isAdmin } = useIsAdmin();
 
   useEffect(() => {
-    const usuariospolla = supabaseClient
+    /* const usuariospolla = supabaseClient
       .from("usuariospolla")
       .on("*", (payload) => {
         console.log("Change received!", payload);
       })
+      .subscribe(); */
+
+    const usuariospolla = supabaseClient
+      .from("usuarios")
+      .on("*", (payload) => {
+        console.log("Change received!", payload.new);
+        updatePolleros(payload.new);
+      })
       .subscribe();
+
     /* const subscription = supabaseClient
       .from("usuariospolla")
       .on("*", (payload) => {

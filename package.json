@@ -9,26 +9,26 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.10",
     "@chakra-ui/react": "^2.3.5",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@supabase/auth-helpers-nextjs": "^0.2.9",
     "@supabase/auth-helpers-react": "^0.2.4",
     "@supabase/supabase-js": "^1.35.7",
+    "date-fns": "^2.29.3",
+    "formik": "^2.2.9",
     "framer-motion": "^6",
+    "lodash": "^4.17.21",
     "next": "12.3.1",
     "react": "18.2.0",
+    "react-avatar-edit": "^1.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
-    "sweetalert2": "^11.4.38",
-    "zustand": "^4.1.1",
-    "date-fns": "^2.29.3",
     "react-table": "^7.8.0",
-    "@chakra-ui/icons": "^2.0.10",
+    "sweetalert2": "^11.4.38",
     "yup": "^0.32.11",
-    "formik": "^2.2.9",
-    "react-avatar-edit": "^1.2.0"
-
+    "zustand": "^4.1.1"
   },
   "devDependencies": {
     "eslint": "8.24.0",

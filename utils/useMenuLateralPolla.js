@@ -35,11 +35,12 @@ export default function useMenuLateralPolla() {
   const [usuariopolla, setUsuariopolla] = useState(null);
   const { usuario } = useDatosPollero((state) => state);
 
-  const menuE = [
+  const elmenu = [
     { name: "Home", icon: FiHome, ruta: "/" },
     { name: "Polla", icon: FiTrendingUp, ruta: "/polla" },
     { name: "Explore", icon: FiCompass, ruta: "/" },
     { name: "Partidos", icon: FiStar, ruta: "/partidos" },
+    { name: "Pronos", icon: FiStar, ruta: "/polla/pronos" },
     {
       name: "Test",
       icon: FiStar,
@@ -47,10 +48,19 @@ export default function useMenuLateralPolla() {
     },
   ];
   if (usuario?.email) {
-    menuE.push({ name: "Perfil", icon: FiStar, ruta: `/perfil/${usuario.id}` });
+    elmenu.push({
+      name: "Perfil",
+      icon: FiStar,
+      ruta: `/perfil/${usuario.id}`,
+    });
   }
 
-  return [usuariopolla, menuE];
+  const userMenu = [
+    { name: "Perfil", icon: FiStar, ruta: `/perfil/${usuario?.id}` },
+    { name: "Mis pronósticos", icon: FiStar, ruta: `/polla/pronos` },
+  ];
+
+  return { usuariopolla, elmenu, userMenu };
 }
 
 /* const elementosMenu = () => {

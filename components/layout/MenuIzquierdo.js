@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   CloseButton,
   Flex,
   Text,
@@ -23,8 +24,8 @@ import useMenuLateralPolla from "../../utils/useMenuLateralPolla";
   { name: "Partidos", icon: FiStar, ruta: "/partidos" },
 ]; */
 
-export const MenuIzquierdo = ({ onClose, user, ...rest }) => {
-  const [uss, menu] = useMenuLateralPolla();
+export const MenuIzquierdo = ({ onClose, user, cerrar, ...rest }) => {
+  const { elmenu } = useMenuLateralPolla();
 
   /* if (user?.id) {
     LinkItems.push({
@@ -50,11 +51,12 @@ export const MenuIzquierdo = ({ onClose, user, ...rest }) => {
         </Text>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
-      {menu.map((link) => (
+      {elmenu.map((link) => (
         <NavItem key={link.name} icon={link.icon} ruta={link.ruta}>
           {link.name}
         </NavItem>
       ))}
+      <Button onClick={cerrar}> Cerrar sesión</Button>
     </Box>
   );
 };

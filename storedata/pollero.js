@@ -43,6 +43,14 @@ const useDatosPollero = create(
           polleros: params,
         }));
       },
+      updatePolleros: (params) => {
+        set((state) => ({
+          polleros: [
+            ...state.polleros.filter((poll) => poll.id != params.id),
+            params,
+          ],
+        }));
+      },
       clearPolleros: () => set({ polleros: [] }),
     }),
     { name: "datospolla" }
