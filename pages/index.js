@@ -276,7 +276,6 @@ export async function getServerSideProps(context) {
   const { data: usuariosDB, error } = await supabaseServerClient(context)
     .from("usuariospolla")
     .select("*");
-  console.log("ES LA DATA AMADA", usuariosDB, error);
 
   return {
     props: { usuariosDB }, // will be passed to the page component as props
