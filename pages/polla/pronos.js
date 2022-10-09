@@ -4,6 +4,15 @@ import useDatosPollero from "../../storedata/pollero";
 import usePollaSettings from "../../storedata/settings";
 import useFase from "../../hooks/useFase";
 import { useEffect, useState } from "react";
+import { GrupoProno } from "../../components/polla/pronos/GrupoProno";
+import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
+  Box,
+} from "@chakra-ui/react";
 
 export default function PronosPage({ user }) {
   const { partidos: basepartidos } = useDatosPollero((state) => state);
@@ -29,25 +38,45 @@ export default function PronosPage({ user }) {
     }
   }, []);
 
+  const partidosGrupo = (grupo) => {
+    const p = partidos.filter((p) => p.grupo === grupo);
+    return { p, grupo };
+  };
+
+  const partidosFase = (fase) => {
+    const p = partidos;
+    let grupo = fase;
+    return { p, grupo };
+  };
+
   return (
     <>
       <h2>Página de pronósticos</h2>
-      {cargaPronos &&
-        partidos.map((pt) => (
-          <div key={pt.id}>
-            {pt.eqloc} - {pt.fecha} - {pt.eqvis}
-          </div>
-        ))}
+      {fase === 1 && (
+        <>
+          <Accordion allowToggle>
+            <GrupoProno partidos={partidosGrupo("A")} />
+            <GrupoProno partidos={partidosGrupo("B")} />
+            <GrupoProno partidos={partidosGrupo("C")} />
+            <GrupoProno partidos={partidosGrupo("D")} />
+            <GrupoProno partidos={partidosGrupo("E")} />
+            <GrupoProno partidos={partidosGrupo("F")} />
+            <GrupoProno partidos={partidosGrupo("G")} />
+            <GrupoProno partidos={partidosGrupo("H")} />
+          </Accordion>
+        </>
+      )}
+      {fase !== 1 && (
+        <>
+          <Accordion defaultIndex={0}>
+            <GrupoProno partidos={partidosFase(fase)} />
+          </Accordion>
+        </>
+      )}
     </>
   );
 }
 
 export const getServerSideProps = withPageAuth({
   redirectTo: "/polla",
-  async getServerSideProps(ctx) {
-    // Access the user object
-    const { user, accessToken } = await getUser(ctx);
-
-    return { props: { email: user?.email } };
-  },
 });
