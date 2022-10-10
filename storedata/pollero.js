@@ -70,6 +70,7 @@ const useDatosPollero = create(
             ],
           }));
         },
+        clearPronos: () => set({ pronospollero: [] }),
       }),
       { name: "datospolla" }
     )

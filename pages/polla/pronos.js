@@ -18,13 +18,19 @@ import {
 } from "@chakra-ui/react";
 
 export default function PronosPage({ user, data }) {
-  const { partidos: basepartidos } = useDatosPollero((state) => state);
+  const { partidos: basepartidos, clearPronos } = useDatosPollero(
+    (state) => state
+  );
   const { fechas } = usePollaSettings((state) => state);
   const { estado, fase, cargaPronos, rondas, comodines } = useFase(fechas);
   //console.log(estado, fase, cargaPronos);
 
   //console.log(estado, fase, cargaPronos, rondas, comodines);
   const [partidos, setPartidos] = useState([]);
+
+  useEffect(() => {
+    clearPronos();
+  }, []);
 
   useEffect(() => {
     if (cargaPronos) {

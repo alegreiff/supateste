@@ -50,7 +50,19 @@ export const PosGrupoPronos = ({ equipos: eq, grupo }) => {
       }
     });
 
-    setEquipos(eqx);
+    let eq_order = eqx.map((eq) => ({
+      ...eq,
+      PTS: eq.PG * 3 + eq.PE,
+      GD: eq.GF - eq.GC,
+    }));
+    const equipos_ordenados = _.orderBy(
+      eq_order,
+      ["PTS", "GD", "GF"],
+      ["desc", "desc", "asc"]
+    );
+    //eq_order = _.sortBy(eq_order, ["PTS", "GD", "GF"], ["asc", "asc", "desc"]);
+
+    setEquipos(equipos_ordenados);
   }, [pronospollero]);
 
   return (
@@ -82,8 +94,8 @@ export const PosGrupoPronos = ({ equipos: eq, grupo }) => {
                 <Td>{eq.PE}</Td>
                 <Td>{eq.GF}</Td>
                 <Td>{eq.GC}</Td>
-                <Td>{eq.GF - eq.GC}</Td>
-                <Td>{eq.PG * 3 + eq.PE}</Td>
+                <Td>{eq.GD}</Td>
+                <Td>{eq.PTS}</Td>
               </Tr>
             ))}
         </Tbody>
