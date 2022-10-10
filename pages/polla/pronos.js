@@ -1,5 +1,8 @@
 import _ from "lodash";
-import { withPageAuth } from "@supabase/auth-helpers-nextjs";
+import {
+  supabaseServerClient,
+  withPageAuth,
+} from "@supabase/auth-helpers-nextjs";
 import useDatosPollero from "../../storedata/pollero";
 import usePollaSettings from "../../storedata/settings";
 import useFase from "../../hooks/useFase";
@@ -14,13 +17,13 @@ import {
   Box,
 } from "@chakra-ui/react";
 
-export default function PronosPage({ user }) {
+export default function PronosPage({ user, data }) {
   const { partidos: basepartidos } = useDatosPollero((state) => state);
   const { fechas } = usePollaSettings((state) => state);
   const { estado, fase, cargaPronos, rondas, comodines } = useFase(fechas);
   //console.log(estado, fase, cargaPronos);
 
-  console.log(estado, fase, cargaPronos, rondas, comodines);
+  //console.log(estado, fase, cargaPronos, rondas, comodines);
   const [partidos, setPartidos] = useState([]);
 
   useEffect(() => {
@@ -40,19 +43,19 @@ export default function PronosPage({ user }) {
 
   const partidosGrupo = (grupo) => {
     const p = partidos.filter((p) => p.grupo === grupo);
-    return { p, grupo };
+    return { p, grupo, comodines };
   };
 
   const partidosFase = (fase) => {
     const p = partidos;
     let grupo = fase;
-    return { p, grupo };
+    return { p, grupo, comodines };
   };
 
   return (
     <>
       <h2>Página de pronósticos</h2>
-      {fase === 1 && (
+      {cargaPronos && fase === 1 && (
         <>
           <Accordion allowToggle>
             <GrupoProno partidos={partidosGrupo("A")} />
@@ -66,13 +69,14 @@ export default function PronosPage({ user }) {
           </Accordion>
         </>
       )}
-      {fase !== 1 && (
+      {cargaPronos && fase !== 1 && (
         <>
           <Accordion defaultIndex={0}>
             <GrupoProno partidos={partidosFase(fase)} />
           </Accordion>
         </>
       )}
+      {!cargaPronos && <Box>Reflexión</Box>}
     </>
   );
 }

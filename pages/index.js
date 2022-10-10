@@ -35,11 +35,24 @@ export default function Home({ usuariosDB }) {
     setPartidos,
     setPerfilUsuario,
     setPolleros,
+    setEquipos,
+    equipos,
   } = useDatosPollero((state) => state);
   const { user, error, isLoading, accessToken } = useUser();
   if (user) {
     router.push("/polla");
   }
+  useEffect(() => {
+    async function cargaEquipos() {
+      const { data: equiposDB } = await supabaseClient
+        //console.log("Cargando matche's");
+        .from("posicionesequipos")
+        .select("*");
+
+      setEquipos(equiposDB);
+    }
+    if (equipos.length === 0) cargaEquipos();
+  }, []);
   useEffect(() => {
     //cargaPOLLEROS();
     if (usuariosDB) {
