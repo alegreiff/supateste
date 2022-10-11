@@ -13,7 +13,7 @@ import React, { useEffect, useState } from "react";
 import useDatosPollero from "../../../storedata/pollero";
 
 export const PosGrupoPronos = ({ equipos: eq, grupo }) => {
-  const { pronospollero } = useDatosPollero((state) => state);
+  const { pronospollero, partidos } = useDatosPollero((state) => state);
   const [equipos, setEquipos] = useState([]);
   useEffect(() => {
     let eqx = _.cloneDeep(eq);
@@ -22,8 +22,8 @@ export const PosGrupoPronos = ({ equipos: eq, grupo }) => {
     );
 
     pronosGrupo.forEach((prono) => {
-      let LOC = eqx.find((eq) => eq.id === prono.idloc);
-      let VIS = eqx.find((eq) => eq.id === prono.idvis);
+      let LOC = eqx.find((eq) => eq.id === idequipos(prono.id)[0]);
+      let VIS = eqx.find((eq) => eq.id === idequipos(prono.id)[1]);
       if (prono.loc > prono.vis) {
         LOC.PG++;
         LOC.GF += parseInt(prono.loc);
@@ -57,13 +57,18 @@ export const PosGrupoPronos = ({ equipos: eq, grupo }) => {
     }));
     const equipos_ordenados = _.orderBy(
       eq_order,
-      ["PTS", "GD", "GF"],
-      ["desc", "desc", "asc"]
+      ["PTS", "GD", "GF", "power"],
+      ["desc", "desc", "desc", "desc"]
     );
     //eq_order = _.sortBy(eq_order, ["PTS", "GD", "GF"], ["asc", "asc", "desc"]);
 
     setEquipos(equipos_ordenados);
   }, [pronospollero]);
+
+  const idequipos = (id_partido) => {
+    const partido = partidos.find((p) => p.id === id_partido);
+    return [partido.idloc, partido.idvis];
+  };
 
   return (
     <TableContainer maxWidth="600px">
@@ -87,7 +92,7 @@ export const PosGrupoPronos = ({ equipos: eq, grupo }) => {
               <Tr key={eq.id}>
                 <Td>{i + 1}</Td>
                 <Td>
-                  [ {eq.id} ] {eq.nombre}
+                  [ {eq.id} ] {eq.nombre} ({eq.power})
                 </Td>
                 <Td>{eq.PG}</Td>
                 <Td>{eq.PP}</Td>

@@ -23,6 +23,7 @@ import useDatosPollero from "../storedata/pollero";
 import Swal from "sweetalert2";
 import { Prepolleros } from "../components/polla/Prepolleros";
 import { useRouter } from "next/router";
+import usePollaSettings from "../storedata/settings";
 //const user = false;
 
 export default function Home({ usuariosDB }) {
@@ -37,11 +38,29 @@ export default function Home({ usuariosDB }) {
     setPolleros,
     setEquipos,
     equipos,
+    clearEquipos,
   } = useDatosPollero((state) => state);
+
+  const { setAllPronos } = usePollaSettings((state) => state);
   const { user, error, isLoading, accessToken } = useUser();
   if (user) {
     router.push("/polla");
   }
+
+  useEffect(() => {
+    async function cargaPronos() {
+      const { data: pronosDB, error } = await supabaseClient
+        //console.log("Cargando matche's");
+        .from("pronos")
+        .select("*");
+
+      console.log("PRONNO", pronosDB, error);
+
+      setAllPronos(pronosDB);
+    }
+    cargaPronos();
+  }, []);
+
   useEffect(() => {
     async function cargaEquipos() {
       const { data: equiposDB } = await supabaseClient
@@ -134,7 +153,10 @@ export default function Home({ usuariosDB }) {
     return usuario?.length;
   };
   const signInWithGitHub = () => {};
-  const perdiMiClave = () => {};
+  const perdiMiClave = () => {
+    localStorage.clear();
+    clearEquipos();
+  };
   const handleSignUp = async () => {
     const check = await checkEmail(email);
     if (!check) {
@@ -201,35 +223,30 @@ export default function Home({ usuariosDB }) {
               {isSignUp ? "Crea tu cuenta" : "Ingresa"}
             </Heading>
             <Text fontSize={"lg"} color={"gray.600"}>
-              to enjoy all of our cool <Link color={"blue.400"}>features</Link>{" "}
-              ✌️
+              nuestrapolla ✌️
             </Text>
           </Stack>
           <Box rounded={"lg"} bg="white" boxShadow={"lg"} p={8}>
             <Stack spacing={4} as="form">
-              <Button onClick={signInWithGoogle}>Log in with Google</Button>
+              {!isSignUp && (
+                <Button onClick={signInWithGoogle}>
+                  Ingresar con su cuenta de Gmail
+                </Button>
+              )}
               <hr />
-              <Button onClick={signInWithGitHub}>Log in with GitHub</Button>
-              <hr />
-              <Button onClick={perdiMiClave}>Bestia</Button>
+              {/* <Button onClick={signInWithGitHub}>Log in with GitHub</Button>
+              <hr /> */}
+              <Button onClick={perdiMiClave}>No tocar</Button>
               <FormControl id="email">
-                <FormLabel>Email address</FormLabel>
+                <FormLabel>Correo electrónico</FormLabel>
                 <Input
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder="Correo electrónico"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </FormControl>
-              <FormControl>
-                <FormLabel>perro</FormLabel>
-                <Input
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Here is a sample placeholder"
-                  size="sm"
-                />
-              </FormControl>
+
               <FormControl id="password">
                 <FormLabel>Contraseña</FormLabel>
                 <Input

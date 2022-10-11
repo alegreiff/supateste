@@ -8,14 +8,7 @@ import usePollaSettings from "../../storedata/settings";
 import useFase from "../../hooks/useFase";
 import { useEffect, useState } from "react";
 import { GrupoProno } from "../../components/polla/pronos/GrupoProno";
-import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  Box,
-} from "@chakra-ui/react";
+import { Accordion, Box } from "@chakra-ui/react";
 
 export default function PronosPage({ user, data }) {
   const { partidos: basepartidos, clearPronos } = useDatosPollero(
@@ -27,6 +20,13 @@ export default function PronosPage({ user, data }) {
 
   //console.log(estado, fase, cargaPronos, rondas, comodines);
   const [partidos, setPartidos] = useState([]);
+  const { allPronos } = usePollaSettings((state) => state);
+  const [pronosDB, setPronosDB] = useState([]);
+
+  useEffect(() => {
+    const userPronos = allPronos.filter((ap) => ap.user_id === user.id);
+    setPronosDB(userPronos);
+  }, []);
 
   useEffect(() => {
     clearPronos();
@@ -52,6 +52,11 @@ export default function PronosPage({ user, data }) {
     return { p, grupo, comodines };
   };
 
+  const pronosGrupo = (grupo) => {
+    const pronos = pronosDB.filter((prono) => prono.grupo === grupo);
+    return pronos;
+  };
+
   const partidosFase = (fase) => {
     const p = partidos;
     let grupo = fase;
@@ -64,14 +69,38 @@ export default function PronosPage({ user, data }) {
       {cargaPronos && fase === 1 && (
         <>
           <Accordion allowToggle>
-            <GrupoProno partidos={partidosGrupo("A")} />
-            <GrupoProno partidos={partidosGrupo("B")} />
-            <GrupoProno partidos={partidosGrupo("C")} />
-            <GrupoProno partidos={partidosGrupo("D")} />
-            <GrupoProno partidos={partidosGrupo("E")} />
-            <GrupoProno partidos={partidosGrupo("F")} />
-            <GrupoProno partidos={partidosGrupo("G")} />
-            <GrupoProno partidos={partidosGrupo("H")} />
+            <GrupoProno
+              partidos={partidosGrupo("A")}
+              pronosdb={pronosGrupo("A")}
+            />
+            <GrupoProno
+              partidos={partidosGrupo("B")}
+              pronosdb={pronosGrupo("B")}
+            />
+            <GrupoProno
+              partidos={partidosGrupo("C")}
+              pronosdb={pronosGrupo("C")}
+            />
+            <GrupoProno
+              partidos={partidosGrupo("D")}
+              pronosdb={pronosGrupo("D")}
+            />
+            <GrupoProno
+              partidos={partidosGrupo("E")}
+              pronosdb={pronosGrupo("E")}
+            />
+            <GrupoProno
+              partidos={partidosGrupo("F")}
+              pronosdb={pronosGrupo("F")}
+            />
+            <GrupoProno
+              partidos={partidosGrupo("G")}
+              pronosdb={pronosGrupo("G")}
+            />
+            <GrupoProno
+              partidos={partidosGrupo("H")}
+              pronosdb={pronosGrupo("H")}
+            />
           </Accordion>
         </>
       )}

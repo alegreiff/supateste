@@ -40,6 +40,13 @@ const usePollaSettings = create(
           fase: params,
         }));
       },
+      allPronos: [],
+      setAllPronos: (params) => {
+        set((state) => ({
+          allPronos: params,
+        }));
+      },
+      clearPronos: () => set({ allPronos: [] }),
     }),
     { name: "settingspolla" }
   )

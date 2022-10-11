@@ -50,6 +50,8 @@ const useDatosPollero = create(
             equipos: params,
           }));
         },
+
+        clearEquipos: () => set({ equipos: [] }),
         updatePolleros: (params) => {
           set((state) => ({
             polleros: [
@@ -58,6 +60,7 @@ const useDatosPollero = create(
             ],
           }));
         },
+
         clearPolleros: () => set({ polleros: [] }),
         pronospollero: [],
         addProno: (params) => {
