@@ -56,7 +56,7 @@ export const GuardarPronos = ({ grupo }) => {
           <ModalCloseButton />
           <ModalBody pb={6}>
             <p> {`este es el grupo ${grupo}`} </p>
-            <h3> {usuario.id} </h3>
+            <h3> {usuario?.id} </h3>
             {JSON.stringify(pronosUser)}
           </ModalBody>
 

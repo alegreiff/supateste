@@ -1,10 +1,16 @@
 import {
+  Box,
   Checkbox,
   FormControl,
   FormHelperText,
   FormLabel,
   HStack,
   Input,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
   Radio,
   RadioGroup,
 } from "@chakra-ui/react";
@@ -40,7 +46,7 @@ export const PartidoPron = ({ partido, pronodb }) => {
       });
 
       console.log("EN ESTE PUNTO", loc, vis);
-      if (loc === vis) console.log("ZEMPATTE", loc, vis);
+      /* if (loc === vis) console.log("ZEMPATTE", loc, vis);
       setMsg(
         `ZEMP -- PT: ${partido.id} - ${partido.idloc} ${loc} -  ${partido.idvis} ${vis} `
       );
@@ -51,7 +57,7 @@ export const PartidoPron = ({ partido, pronodb }) => {
       if (loc < vis)
         setMsg(
           `VIS -- PT: ${partido.id} - ${partido.idloc} ${loc} -  ${partido.idvis} ${vis} `
-        );
+        ); */
     } else {
       setMsg("");
     }
@@ -60,11 +66,51 @@ export const PartidoPron = ({ partido, pronodb }) => {
   return (
     <>
       <FormControl>
-        <Checkbox size="sm" colorScheme="red">
-          *
-        </Checkbox>
-        {partido.eqloc}
-        <Input
+        <HStack>
+          <Box w={150}>
+            {partido.eqloc}
+            <NumberInput
+              min={0}
+              max={20}
+              width="70px"
+              value={parseInt(loc) >= 0 ? loc : ""}
+              onChange={(e) => {
+                setLoc(e);
+              }}
+            >
+              <NumberInputField />
+              <NumberInputStepper>
+                <NumberIncrementStepper />
+                <NumberDecrementStepper />
+              </NumberInputStepper>
+            </NumberInput>
+          </Box>
+
+          <Box w={150}>
+            {partido.eqvis}
+            <NumberInput
+              min={0}
+              max={20}
+              width="70px"
+              value={parseInt(vis) >= 0 ? vis : ""}
+              onChange={(e) => {
+                setVis(e);
+              }}
+            >
+              <NumberInputField />
+              <NumberInputStepper>
+                <NumberIncrementStepper />
+                <NumberDecrementStepper />
+              </NumberInputStepper>
+            </NumberInput>
+          </Box>
+          <Box>
+            <Checkbox iconColor="green" iconSize="2rem">
+              Comodín
+            </Checkbox>
+          </Box>
+        </HStack>
+        {/* <Input
           type="number"
           width="70px"
           onChange={(e) => {
@@ -81,7 +127,7 @@ export const PartidoPron = ({ partido, pronodb }) => {
             setVis(e.target.value);
           }}
           value={vis}
-        />
+        /> */}
         <span>{msg}</span>
       </FormControl>
     </>

@@ -4,7 +4,10 @@ import {
   AccordionItem,
   AccordionPanel,
   Box,
+  Button,
+  HStack,
   SimpleGrid,
+  VStack,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import useDatosPollero from "../../../storedata/pollero";
@@ -23,12 +26,15 @@ export const GrupoProno = ({
 
   const [nombre, setNombre] = useState("");
   const [partidosPron, setPartidosPron] = useState(0);
+  const [resulPron, setResulPron] = useState(null);
 
   useEffect(() => {
     const pronosGrupo = pronospollero.filter(
-      (pronos) => pronos.grupo === grupo
-    ).length;
-    setPartidosPron(pronosGrupo);
+      (pronos) => pronos.grupo === grupo && pronos.loc >= 0 && pronos.vis >= 0
+    );
+
+    setResulPron(pronosGrupo);
+    setPartidosPron(pronosGrupo.length);
   }, [pronospollero, grupo]);
 
   useEffect(() => {
@@ -60,17 +66,25 @@ export const GrupoProno = ({
         </AccordionButton>
       </h2>
       <AccordionPanel pb={4}>
-        {partidos.map((p) => (
-          <>
-            <SimpleGrid minChildWidth="120px" spacing="10px">
+        <SimpleGrid minChildWidth="320px" spacing="40px">
+          <Box>
+            {partidos.map((p) => (
               <PartidoPron
                 key={p.id}
                 partido={p}
                 pronodb={pronoGuardado(p.id)}
               />
-            </SimpleGrid>
-          </>
-        ))}
+            ))}
+          </Box>
+          <Box bg="lavender">
+            {resulPron &&
+              resulPron.map((res) => (
+                <Button key={res.id}>
+                  [{res.id}] : {res.loc} - {res.vis}
+                </Button>
+              ))}
+          </Box>
+        </SimpleGrid>
         {partidos.length === partidosPron && <GuardarPronos grupo={grupo} />}
         {isNaN(grupo) && (
           <PosGrupoPronos equipos={equiposGrupo(grupo)} grupo={grupo} />
