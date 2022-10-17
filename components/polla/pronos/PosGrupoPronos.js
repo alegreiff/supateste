@@ -71,7 +71,7 @@ export const PosGrupoPronos = ({ equipos: eq, grupo }) => {
   };
 
   return (
-    <TableContainer maxWidth="600px">
+    <TableContainer maxWidth="700px">
       <Table size="sm">
         <Thead>
           <Tr>
@@ -89,7 +89,10 @@ export const PosGrupoPronos = ({ equipos: eq, grupo }) => {
         <Tbody>
           {equipos &&
             equipos.map((eq, i) => (
-              <Tr key={eq.id}>
+              <Tr
+                key={eq.id}
+                background={i < 2 ? "polla.clasificado" : "polla.eliminado"}
+              >
                 <Td>{i + 1}</Td>
                 <Td>
                   [ {eq.id} ] {eq.nombre} ({eq.power})

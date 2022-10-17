@@ -19,7 +19,7 @@ export const GrupoProno = ({
   partidos: { p: partidos, grupo, comodines },
   pronosdb,
 }) => {
-  console.log("PronosDBB", pronosdb);
+  //console.log("PronosDBB", pronosdb);
   const { pronospollero } = useDatosPollero((state) => state);
 
   const { equipos } = useDatosPollero((state) => state);
@@ -27,11 +27,17 @@ export const GrupoProno = ({
   const [nombre, setNombre] = useState("");
   const [partidosPron, setPartidosPron] = useState(0);
   const [resulPron, setResulPron] = useState(null);
+  const [comodinesActivos, setComodinesActivos] = useState(0);
 
+  useEffect(() => {
+    console.log("Kambio Lokka", comodinesActivos);
+  }, [comodinesActivos]);
   useEffect(() => {
     const pronosGrupo = pronospollero.filter(
       (pronos) => pronos.grupo === grupo && pronos.loc >= 0 && pronos.vis >= 0
     );
+    const storedComodines = pronosGrupo.filter((pp) => pp.com === true).length;
+    setComodinesActivos(storedComodines);
 
     setResulPron(pronosGrupo);
     setPartidosPron(pronosGrupo.length);
@@ -49,9 +55,27 @@ export const GrupoProno = ({
     return equipos.filter((eq) => eq.grupo === grupo);
   };
   const pronoGuardado = (partido) => {
-    console.log("PPPARTTIDO", partido);
+    //console.log("PPPARTTIDO", partido);
     const guardado = pronosdb.find((prono) => prono.partido === partido);
+
     return guardado;
+  };
+
+  const cuentaComodines = (estado) => {
+    if (estado) {
+      sumaComodin();
+    } else {
+      restaComodin();
+    }
+  };
+
+  const sumaComodin = () => {
+    console.log("SUMMMMMAAA");
+    setComodinesActivos(comodinesActivos + 1);
+  };
+  const restaComodin = () => {
+    console.log("REEEESTAAAA");
+    setComodinesActivos(comodinesActivos - 1);
   };
 
   return (
@@ -60,7 +84,7 @@ export const GrupoProno = ({
         <AccordionButton>
           <Box flex="1" textAlign="left">
             {nombre} * comodines {comodines} / Partidos por pronosticar =
-            {partidos.length} / {partidosPron}
+            {partidos.length} / {partidosPron} [[ {comodinesActivos} ]]
           </Box>
           <AccordionIcon />
         </AccordionButton>
@@ -73,6 +97,9 @@ export const GrupoProno = ({
                 key={p.id}
                 partido={p}
                 pronodb={pronoGuardado(p.id)}
+                cuentaComodines={cuentaComodines}
+                estadoComodines={comodinesActivos}
+                maxComodines={comodines}
               />
             ))}
           </Box>
@@ -85,7 +112,9 @@ export const GrupoProno = ({
               ))}
           </Box>
         </SimpleGrid>
-        {partidos.length === partidosPron && <GuardarPronos grupo={grupo} />}
+        {partidos.length === partidosPron && comodinesActivos === comodines && (
+          <GuardarPronos grupo={grupo} />
+        )}
         {isNaN(grupo) && (
           <PosGrupoPronos equipos={equiposGrupo(grupo)} grupo={grupo} />
         )}

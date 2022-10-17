@@ -17,20 +17,42 @@ import {
 import React, { useEffect, useState } from "react";
 import useDatosPollero from "../../../storedata/pollero";
 
-export const PartidoPron = ({ partido, pronodb }) => {
+export const PartidoPron = ({
+  partido,
+  pronodb,
+  cuentaComodines,
+  estadoComodines,
+  maxComodines,
+}) => {
   const { addProno } = useDatosPollero((state) => state);
   const [loc, setLoc] = useState(null);
   const [vis, setVis] = useState(null);
   const [msg, setMsg] = useState("");
+  const [com, setCom] = useState(false);
+  const [mod, setMod] = useState(true);
 
   useEffect(() => {
     if (pronodb) {
       const loc = parseInt(pronodb.pron_loc);
       const vis = parseInt(pronodb.pron_vis);
+      /* if (pronodb.comodin) {
+        cambiaComodinFromPronos();
+      } */
+      setCom(pronodb.comodin);
       setLoc(loc);
       setVis(vis);
     }
   }, [pronodb]);
+
+  useEffect(() => {
+    if (estadoComodines === maxComodines) {
+      console.log("CERRADO", partido.id);
+      setMod(false);
+    } else {
+      console.log("ABIERTO", partido.id);
+      setMod(true);
+    }
+  }, [estadoComodines, maxComodines, cambiaComodinFromPronos]);
 
   useEffect(() => {
     if (loc != null && vis != null && loc >= 0 && vis >= 0) {
@@ -40,12 +62,12 @@ export const PartidoPron = ({ partido, pronodb }) => {
         grupo: partido.grupo,
         loc: parseInt(loc),
         vis: parseInt(vis),
-        com: false,
+        com: com,
         //idloc: partido.idloc,
         //idvis: partido.idvis,
       });
 
-      console.log("EN ESTE PUNTO", loc, vis);
+      console.log("EN ESTE PUNTO", loc, vis, com);
       /* if (loc === vis) console.log("ZEMPATTE", loc, vis);
       setMsg(
         `ZEMP -- PT: ${partido.id} - ${partido.idloc} ${loc} -  ${partido.idvis} ${vis} `
@@ -61,12 +83,30 @@ export const PartidoPron = ({ partido, pronodb }) => {
     } else {
       setMsg("");
     }
-  }, [loc, vis]);
+  }, [loc, vis, com]);
+
+  const cambiaComodinFromPronos = () => {
+    const nuevoValor = true;
+    console.log("FROMPRONNOS", nuevoValor);
+    setCom(nuevoValor);
+    cuentaComodines(nuevoValor);
+  };
+
+  const cambiaComodin = () => {
+    const nuevoValor = !com;
+    console.log("KNValue", nuevoValor);
+    setCom(nuevoValor);
+    cuentaComodines(nuevoValor);
+  };
 
   return (
     <>
       <FormControl>
         <HStack>
+          <span>
+            {" "}
+            {partido.id} - {partido.comodin}{" "}
+          </span>
           <Box w={150}>
             {partido.eqloc}
             <NumberInput
@@ -105,9 +145,18 @@ export const PartidoPron = ({ partido, pronodb }) => {
             </NumberInput>
           </Box>
           <Box>
-            <Checkbox iconColor="green" iconSize="2rem">
+            <Checkbox
+              tabIndex="-1"
+              size="lg"
+              onChange={cambiaComodin}
+              isChecked={com}
+              //value={com}
+              disabled={!com && !mod ? true : false}
+            >
               Comodín
             </Checkbox>
+            {com ? "SI" : "NO"}
+            --- {estadoComodines} :: {maxComodines}
           </Box>
         </HStack>
         {/* <Input

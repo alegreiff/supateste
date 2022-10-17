@@ -5,6 +5,7 @@ import "../styles/globals.css";
 import MainLayout from "../components/layout/MainLayout";
 import useDatosPollero from "../storedata/pollero";
 import { useRouter } from "next/router";
+import customTheme from "../theme";
 
 function MyApp({ Component, pageProps }) {
   const { clearUsuario, clearPolleros } = useDatosPollero((state) => state);
@@ -17,7 +18,7 @@ function MyApp({ Component, pageProps }) {
     router.push("/api/auth/logout");
   };
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={customTheme}>
       <UserProvider supabaseClient={supabaseClient}>
         <MainLayout cerrar={handleSignOut}>
           <Component {...pageProps} />
