@@ -12,6 +12,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { supabaseClient } from "@supabase/auth-helpers-nextjs";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import useDatosPollero from "../../../storedata/pollero";
 import usePollaSettings from "../../../storedata/settings";
@@ -21,6 +22,7 @@ export const GuardarPronos = ({ grupo, pronosdb }) => {
   const { pronospollero, usuario } = useDatosPollero((state) => state);
   const [pronosUser, setPronosUser] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const router = useRouter();
   //const [pronosDB, setPronosDB] = useState([]);
 
   //useEffect(() => {}, []);
@@ -76,6 +78,9 @@ export const GuardarPronos = ({ grupo, pronosdb }) => {
     const { data, error } = await supabaseClient
       .from("pronos")
       .upsert(pronosUser);
+    if (data) {
+      router.push("/");
+    }
   }
 
   return (
