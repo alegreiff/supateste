@@ -8,16 +8,22 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Spacer,
   useDisclosure,
 } from "@chakra-ui/react";
 import { supabaseClient } from "@supabase/auth-helpers-nextjs";
 import React, { useEffect, useState } from "react";
 import useDatosPollero from "../../../storedata/pollero";
+import usePollaSettings from "../../../storedata/settings";
 
-export const GuardarPronos = ({ grupo }) => {
+export const GuardarPronos = ({ grupo, pronosdb }) => {
+  //const { allPronos } = usePollaSettings((state) => state);
   const { pronospollero, usuario } = useDatosPollero((state) => state);
   const [pronosUser, setPronosUser] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  //const [pronosDB, setPronosDB] = useState([]);
+
+  //useEffect(() => {}, []);
 
   useEffect(() => {
     const pronosGrupo = pronospollero.filter(
@@ -25,18 +31,45 @@ export const GuardarPronos = ({ grupo }) => {
     );
     const pronos_to_save = [];
     pronosGrupo.forEach((prono) => {
-      pronos_to_save.push({
-        partido: prono.id,
-        user_id: usuario.id,
-        pron_loc: parseInt(prono.loc),
-        pron_vis: parseInt(prono.vis),
-        comodin: prono.com,
-        grupo,
-      });
+      //console.log(comparaPronos(prono), prono.id);
+      let existencia = comparaPronos(prono);
+      console.log("SEIN", existencia);
+      if (existencia) {
+        pronos_to_save.push({
+          partido: prono.id,
+          user_id: usuario.id,
+          pron_loc: parseInt(prono.loc),
+          pron_vis: parseInt(prono.vis),
+          comodin: prono.com,
+          cambios: existencia[1] + 1,
+          grupo,
+        });
+      }
     });
 
     setPronosUser(pronos_to_save);
   }, [pronospollero, grupo]);
+
+  const comparaPronos = (prono) => {
+    console.log("PREEXISTE", pronosdb);
+    const pronoGuardado = pronosdb.find((pr) => pr.partido === prono.id);
+    console.log("O L D", pronoGuardado);
+    console.log(" N E W ", prono);
+    if (!pronoGuardado) return [true, 0];
+    if (pronoGuardado) {
+      if (
+        pronoGuardado.pron_loc === prono.loc &&
+        pronoGuardado.pron_vis === prono.vis &&
+        pronoGuardado.comodin === prono.com
+      ) {
+        console.log("NO CAMBIA", prono.id, pronoGuardado.partido);
+        return false;
+      } else {
+        console.log("SI CAMBIA", prono.id, pronoGuardado.partido);
+        return [true, pronoGuardado.cambios];
+      }
+    }
+  };
 
   async function guardaPronos() {
     //console.log(pronosUser);
@@ -47,17 +80,35 @@ export const GuardarPronos = ({ grupo }) => {
 
   return (
     <Box bg="lavenderblush">
+      {pronosdb.length}
       <Button onClick={onOpen}>Guarda grupo</Button>
 
-      <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
+      <Modal
+        closeOnOverlayClick={false}
+        isOpen={isOpen}
+        onClose={onClose}
+        size="6xl"
+      >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Create your account</ModalHeader>
+          <ModalHeader>Vamos a guardar los marcadores</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
-            <p> {`este es el grupo ${grupo}`} </p>
-            <h3> {usuario?.id} </h3>
-            {JSON.stringify(pronosUser)}
+            <p>
+              {`este es el grupo ${grupo}`} Pronósticos nuevos o cambiados :{" "}
+              {pronosUser.length}
+            </p>
+
+            {pronosUser &&
+              pronosUser.map((pron) => (
+                <div key={pron.partido}>
+                  {pron.partido} - {pron.pron_loc} - {pron.pron_vis} -{" "}
+                  {pron.comodin ? "SI" : "NO"}
+                </div>
+              ))}
+            {/* {JSON.stringify(pronosUser)} */}
+            <Spacer />
+            {/* {JSON.stringify(pronosDB)} */}
           </ModalBody>
 
           <ModalFooter>

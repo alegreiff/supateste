@@ -113,7 +113,7 @@ export const GrupoProno = ({
           </Box>
         </SimpleGrid>
         {partidos.length === partidosPron && comodinesActivos === comodines && (
-          <GuardarPronos grupo={grupo} />
+          <GuardarPronos grupo={grupo} pronosdb={pronosdb} />
         )}
         {isNaN(grupo) && (
           <PosGrupoPronos equipos={equiposGrupo(grupo)} grupo={grupo} />

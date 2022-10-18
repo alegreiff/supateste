@@ -21,34 +21,36 @@ export const PosGrupoPronos = ({ equipos: eq, grupo }) => {
       (pronos) => pronos.grupo === grupo
     );
 
-    pronosGrupo.forEach((prono) => {
-      let LOC = eqx.find((eq) => eq.id === idequipos(prono.id)[0]);
-      let VIS = eqx.find((eq) => eq.id === idequipos(prono.id)[1]);
-      if (prono.loc > prono.vis) {
-        LOC.PG++;
-        LOC.GF += parseInt(prono.loc);
-        LOC.GC += parseInt(prono.vis);
-        VIS.PP++;
-        VIS.GF += parseInt(prono.vis);
-        VIS.GC += parseInt(prono.loc);
-      }
-      if (prono.loc < prono.vis) {
-        LOC.PP++;
-        LOC.GF += parseInt(prono.loc);
-        LOC.GC += parseInt(prono.vis);
-        VIS.PG++;
-        VIS.GF += parseInt(prono.vis);
-        VIS.GC += parseInt(prono.loc);
-      }
-      if (prono.loc === prono.vis) {
-        LOC.PE++;
-        LOC.GF += parseInt(prono.loc);
-        LOC.GC += parseInt(prono.vis);
-        VIS.PE++;
-        VIS.GF += parseInt(prono.vis);
-        VIS.GC += parseInt(prono.loc);
-      }
-    });
+    if (pronosGrupo) {
+      pronosGrupo.forEach((prono) => {
+        let LOC = eqx.find((eq) => eq.id === idequipos(prono.id)[0]);
+        let VIS = eqx.find((eq) => eq.id === idequipos(prono.id)[1]);
+        if (prono.loc > prono.vis) {
+          LOC.PG++;
+          LOC.GF += parseInt(prono.loc);
+          LOC.GC += parseInt(prono.vis);
+          VIS.PP++;
+          VIS.GF += parseInt(prono.vis);
+          VIS.GC += parseInt(prono.loc);
+        }
+        if (prono.loc < prono.vis) {
+          LOC.PP++;
+          LOC.GF += parseInt(prono.loc);
+          LOC.GC += parseInt(prono.vis);
+          VIS.PG++;
+          VIS.GF += parseInt(prono.vis);
+          VIS.GC += parseInt(prono.loc);
+        }
+        if (prono.loc === prono.vis) {
+          LOC.PE++;
+          LOC.GF += parseInt(prono.loc);
+          LOC.GC += parseInt(prono.vis);
+          VIS.PE++;
+          VIS.GF += parseInt(prono.vis);
+          VIS.GC += parseInt(prono.loc);
+        }
+      });
+    }
 
     let eq_order = eqx.map((eq) => ({
       ...eq,
