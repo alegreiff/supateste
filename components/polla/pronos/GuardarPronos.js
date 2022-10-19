@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import {
   Box,
   Button,
@@ -79,7 +80,21 @@ export const GuardarPronos = ({ grupo, pronosdb }) => {
       .from("pronos")
       .upsert(pronosUser);
     if (data) {
-      router.push("/");
+      onClose();
+      Swal.fire({
+        title: "Resultado",
+        text: `${JSON.stringify(data)}`,
+        icon: "success",
+        showCancelButton: false,
+        confirmButtonText: "Cerrar",
+      }).then((result) => {
+        if (result.isDismissed) {
+          router.push("/");
+          console.log("cerradeiro");
+        }
+      });
+
+      //
     }
   }
 
