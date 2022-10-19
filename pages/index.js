@@ -26,7 +26,7 @@ import { useRouter } from "next/router";
 import usePollaSettings from "../storedata/settings";
 //const user = false;
 
-export default function Home({ usuariosDB }) {
+export default function Home({ usuariosDB, equiposDB }) {
   const router = useRouter();
   const {
     usuario,
@@ -62,20 +62,26 @@ export default function Home({ usuariosDB }) {
   }, []);
 
   useEffect(() => {
-    async function cargaEquipos() {
+    /* async function cargaEquipos() {
       const { data: equiposDB } = await supabaseClient
         //console.log("Cargando matche's");
         .from("posicionesequipos")
         .select("*");
 
       setEquipos(equiposDB);
-    }
-    if (equipos.length === 0) cargaEquipos();
+    } */
+    //if (equipos.length === 0) //cargaEquipos();
   }, []);
   useEffect(() => {
     //cargaPOLLEROS();
     if (usuariosDB) {
       setPolleros(usuariosDB);
+    }
+
+    if (equiposDB) {
+      if (equipos.length === 0) {
+        setEquipos(equiposDB);
+      }
     }
   }, []);
   useEffect(() => {
@@ -307,8 +313,12 @@ export async function getServerSideProps(context) {
     .from("usuariospolla")
     .select("*");
 
+  const { data: equiposDB } = await supabaseServerClient(context)
+    .from("posicionesequipos")
+    .select("*");
+
   return {
-    props: { usuariosDB }, // will be passed to the page component as props
+    props: { usuariosDB, equiposDB }, // will be passed to the page component as props
   };
 }
 

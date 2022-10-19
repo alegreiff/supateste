@@ -1,5 +1,6 @@
 import Swal from "sweetalert2";
 import {
+  Badge,
   Box,
   Button,
   Modal,
@@ -20,7 +21,9 @@ import usePollaSettings from "../../../storedata/settings";
 
 export const GuardarPronos = ({ grupo, pronosdb }) => {
   //const { allPronos } = usePollaSettings((state) => state);
-  const { pronospollero, usuario } = useDatosPollero((state) => state);
+  const { pronospollero, usuario, partidos } = useDatosPollero(
+    (state) => state
+  );
   const [pronosUser, setPronosUser] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const router = useRouter();
@@ -74,6 +77,18 @@ export const GuardarPronos = ({ grupo, pronosdb }) => {
     }
   };
 
+  const muestrapartido = (id, ml, mv) => {
+    const partido = partidos.filter((p) => p.id === id);
+
+    const old = pronosdb.find((pr) => pr.partido === id);
+    return (
+      <>
+        <Badge colorScheme="red"> {JSON.stringify(old)} </Badge>
+        <Badge colorScheme="green">{JSON.stringify(partido)}</Badge>
+      </>
+    );
+  };
+
   async function guardaPronos() {
     //console.log(pronosUser);
     const { data, error } = await supabaseClient
@@ -87,11 +102,9 @@ export const GuardarPronos = ({ grupo, pronosdb }) => {
         icon: "success",
         showCancelButton: false,
         confirmButtonText: "Cerrar",
-      }).then((result) => {
-        if (result.isDismissed) {
-          router.push("/");
-          console.log("cerradeiro");
-        }
+      }).then(() => {
+        router.push("/");
+        console.log("cerradeiro");
       });
 
       //
@@ -122,8 +135,7 @@ export const GuardarPronos = ({ grupo, pronosdb }) => {
             {pronosUser &&
               pronosUser.map((pron) => (
                 <div key={pron.partido}>
-                  {pron.partido} - {pron.pron_loc} - {pron.pron_vis} -{" "}
-                  {pron.comodin ? "SI" : "NO"}
+                  {muestrapartido(pron.partido, 1, 2, "new")}
                 </div>
               ))}
             {/* {JSON.stringify(pronosUser)} */}
@@ -142,3 +154,10 @@ export const GuardarPronos = ({ grupo, pronosdb }) => {
     </Box>
   );
 };
+
+/* 
+<div key={pron.partido}>
+                  {pron.partido} - {pron.pron_loc} - {pron.pron_vis} -
+                  {pron.comodin ? "SI" : "NO"}
+                </div> 
+*/
