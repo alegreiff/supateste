@@ -103,11 +103,7 @@ export const PartidoPron = ({
     <>
       <FormControl>
         <HStack>
-          <span>
-            {" "}
-            {partido.id} - {partido.comodin}{" "}
-          </span>
-          <Box w={150}>
+          <Box w={120}>
             {partido.eqloc}
             <NumberInput
               min={0}
@@ -126,7 +122,7 @@ export const PartidoPron = ({
             </NumberInput>
           </Box>
 
-          <Box w={150}>
+          <Box w={120}>
             {partido.eqvis}
             <NumberInput
               min={0}
@@ -155,8 +151,6 @@ export const PartidoPron = ({
             >
               Comodín
             </Checkbox>
-            {com ? "SI" : "NO"}
-            --- {estadoComodines} :: {maxComodines}
           </Box>
         </HStack>
         {/* <Input

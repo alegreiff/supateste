@@ -22,10 +22,18 @@ import useDatosPollero from "../storedata/pollero";
 
 export default function Partidos() {
   const [mounted, setMounted] = useState(false);
-  const { partidos: datos } = useDatosPollero((state) => state);
+  const { partidos: matches } = useDatosPollero((state) => state);
+  const [datos, setDatos] = useState(matches);
   useEffect(() => {
     console.log("M O U N T E D");
     setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (matches) {
+      const grupos = matches.filter((match) => match.id < 49);
+      setDatos(grupos);
+    }
   }, []);
 
   console.log(datos[0]);

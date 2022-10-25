@@ -22,12 +22,15 @@ const useDatosPollero = create(
           }));
         },
         setPerfilUsuario: (params) => {
+          console.log("LOS PARAMÉTRESES", params);
           set((state) => ({
             usuario: {
               ...state.usuario,
               alias: params.alias,
               hincha: params.hincha,
               favorito: params.favorito,
+              isAmigo: params.isAmigo,
+              isollero: params.isPollero,
             },
           }));
         },
@@ -74,6 +77,12 @@ const useDatosPollero = create(
           }));
         },
         clearPronos: () => set({ pronospollero: [] }),
+        pollerosamigos: [],
+        setPollerosamigos: (params) => {
+          set((state) => ({
+            pollerosamigos: params,
+          }));
+        },
       }),
       { name: "datospolla" }
     )

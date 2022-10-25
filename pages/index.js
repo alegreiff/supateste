@@ -26,7 +26,8 @@ import { useRouter } from "next/router";
 import usePollaSettings from "../storedata/settings";
 //const user = false;
 
-export default function Home({ usuariosDB, equiposDB }) {
+export default function Home({ usuariosDB, equiposDB, pollerosamigos }) {
+  console.log("lespollereèsamiès", pollerosamigos);
   const router = useRouter();
   const {
     usuario,
@@ -39,6 +40,7 @@ export default function Home({ usuariosDB, equiposDB }) {
     setEquipos,
     equipos,
     clearEquipos,
+    setPollerosamigos,
   } = useDatosPollero((state) => state);
 
   const { setAllPronos } = usePollaSettings((state) => state);
@@ -62,15 +64,9 @@ export default function Home({ usuariosDB, equiposDB }) {
   }, []);
 
   useEffect(() => {
-    /* async function cargaEquipos() {
-      const { data: equiposDB } = await supabaseClient
-        //console.log("Cargando matche's");
-        .from("posicionesequipos")
-        .select("*");
-
-      setEquipos(equiposDB);
-    } */
-    //if (equipos.length === 0) //cargaEquipos();
+    if (pollerosamigos) {
+      setPollerosamigos(pollerosamigos);
+    }
   }, []);
   useEffect(() => {
     //cargaPOLLEROS();
@@ -317,8 +313,12 @@ export async function getServerSideProps(context) {
     .from("posicionesequipos")
     .select("*");
 
+  const { data: pollerosamigos } = await supabaseServerClient(context)
+    .from("pollerosamigos")
+    .select("*");
+
   return {
-    props: { usuariosDB, equiposDB }, // will be passed to the page component as props
+    props: { usuariosDB, equiposDB, pollerosamigos }, // will be passed to the page component as props
   };
 }
 

@@ -37,6 +37,7 @@ export const MobileNav = ({ onOpen, user, cerrar, ...rest }) => {
       justifyContent={{ base: "space-between", md: "flex-end" }}
       {...rest}
     >
+      {user?.isAmigo ? "Pollero Amigo" : null}
       <IconButton
         display={{ base: "flex", md: "none" }}
         onClick={onOpen}

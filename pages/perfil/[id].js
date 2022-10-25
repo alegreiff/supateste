@@ -26,7 +26,7 @@ export default function PerfilUserPage({ user, equipos, favoritos }) {
   const [upload, setUpload] = useState(true);
   const router = useRouter();
   const { id } = router.query;
-  const { setImagenPerfil, setPerfilUsuario } = useDatosPollero(
+  const { setImagenPerfil, setPerfilUsuario, pollerosamigos } = useDatosPollero(
     (state) => state
   );
 
@@ -75,6 +75,7 @@ export default function PerfilUserPage({ user, equipos, favoritos }) {
       userId: user?.id,
       favorito: profile?.favorito ? profile?.favorito : "",
       pollerofoto: "",
+      amigo: profile?.amigo ? profile?.amigo : "",
     },
     enableReinitialize: true,
 
@@ -85,6 +86,7 @@ export default function PerfilUserPage({ user, equipos, favoritos }) {
         .max(20, "Máximo 20 caracteres"),
       hinchade: Yup.string().required("Seleccione una opción"),
       favorito: Yup.string().required("Seleccione su equipo más querido"),
+      amigo: Yup.string().required("Seleccione una opción"),
     }),
     onSubmit: async (values, actions) => {
       if (upload) {
@@ -127,6 +129,7 @@ export default function PerfilUserPage({ user, equipos, favoritos }) {
           hincha: values.hinchade,
           alias: values.polleroalias,
           favorito: values.favorito,
+          amigo: values.amigo,
         })
         .eq("id", user?.id)
         .single();
@@ -173,6 +176,26 @@ export default function PerfilUserPage({ user, equipos, favoritos }) {
         </Select>
         <FormErrorMessage>{formik.errors.hinchade}</FormErrorMessage>
       </FormControl>
+
+      <FormControl isInvalid={formik.errors.amigo && formik.touched.amigo}>
+        <FormLabel>Mi pollero amigo será...</FormLabel>
+        <Select
+          placeholder="Debo seleccionar un Pollero Amigo"
+          disabled={profile?.amigo ? true : false}
+          name="pollero"
+          value={formik.values.amigo}
+          {...formik.getFieldProps("amigo")}
+        >
+          {pollerosamigos &&
+            pollerosamigos.map((pa) => (
+              <option key={pa.id} value={pa.id}>
+                {pa.username}
+              </option>
+            ))}
+        </Select>
+        <FormErrorMessage>{formik.errors.amigo}</FormErrorMessage>
+      </FormControl>
+
       <FormControl
         isInvalid={formik.errors.favorito && formik.touched.favorito}
       >
@@ -190,11 +213,12 @@ export default function PerfilUserPage({ user, equipos, favoritos }) {
               </option>
             ))}
         </Select>
-        <FormErrorMessage>{formik.errors.hinchade}</FormErrorMessage>
+        <FormErrorMessage>{formik.errors.favorito}</FormErrorMessage>
       </FormControl>
       <FormControl
         isInvalid={formik.errors.polleroalias && formik.touched.polleroalias}
       >
+        <FormLabel>Seré conocido como...</FormLabel>
         <Input
           name="polleroalias"
           placeholder="Su nombre único e irrepetible como pollero"
