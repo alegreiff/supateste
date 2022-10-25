@@ -28,7 +28,7 @@ export default function MainLayout({ children, cerrar }) {
         <MenuIzquierdo
           cerrar={cerrar}
           user={user}
-          onClose={() => onClose}
+          onClose={onClose}
           display={{ base: "none", md: "block" }}
         />
         <Drawer
@@ -45,7 +45,12 @@ export default function MainLayout({ children, cerrar }) {
           </DrawerContent>
         </Drawer>
         {/* mobilenav */}
-        <MobileNav onOpen={onOpen} user={user} cerrar={cerrar} />
+        <MobileNav
+          onOpen={onOpen}
+          user={user}
+          cerrar={cerrar}
+          onClose={onClose}
+        />
         <Box ml={{ base: 0, md: 60 }} p="4">
           <EstadoPolla />
           {children}

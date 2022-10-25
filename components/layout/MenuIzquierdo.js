@@ -52,7 +52,12 @@ export const MenuIzquierdo = ({ onClose, user, cerrar, ...rest }) => {
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {elmenu.map((link) => (
-        <NavItem key={link.name} icon={link.icon} ruta={link.ruta}>
+        <NavItem
+          key={link.name}
+          icon={link.icon}
+          ruta={link.ruta}
+          onClick={onClose}
+        >
           {link.name}
         </NavItem>
       ))}

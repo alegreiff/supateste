@@ -37,7 +37,6 @@ export const MobileNav = ({ onOpen, user, cerrar, ...rest }) => {
       justifyContent={{ base: "space-between", md: "flex-end" }}
       {...rest}
     >
-      {user?.isAmigo ? "Pollero Amigo" : null}
       <IconButton
         display={{ base: "flex", md: "none" }}
         onClick={onOpen}
@@ -52,7 +51,7 @@ export const MobileNav = ({ onOpen, user, cerrar, ...rest }) => {
         fontFamily="monospace"
         fontWeight="bold"
       >
-        Logo
+        {user?.isAmigo ? "Pollero Amigo" : null}
       </Text>
 
       <HStack spacing={{ base: "0", md: "6" }}>
@@ -122,8 +121,7 @@ export const MobileNav = ({ onOpen, user, cerrar, ...rest }) => {
                           style={{ textDecoration: "none" }}
                           _focus={{ boxShadow: "none" }}
                         >
-                          {" "}
-                          {link.name}{" "}
+                          {link.name}
                         </Link>
                       </NextLink>
                     </MenuItem>

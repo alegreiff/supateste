@@ -154,7 +154,7 @@ export default function PerfilUserPage({ user, equipos, favoritos }) {
       w={{ base: "90%", md: 500 }}
       onSubmit={formik.handleSubmit}
     >
-      {imagen && <Image src={imagen} alt="Pollero" boxSize="nd" />}
+      {/* {imagen && <Image src={imagen} alt="Pollero" boxSize="nd" />} */}
       <Heading>Perfil {profile?.alias} </Heading>
 
       <FormControl
