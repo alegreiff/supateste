@@ -7,12 +7,14 @@ import {
   Flex,
   HStack,
   IconButton,
+  Image,
   Link,
   Menu,
   MenuButton,
   MenuDivider,
   MenuItem,
   MenuList,
+  Spacer,
   Text,
   useColorModeValue,
   VStack,
@@ -37,14 +39,22 @@ export const MobileNav = ({ onOpen, user, cerrar, ...rest }) => {
       justifyContent={{ base: "space-between", md: "flex-end" }}
       {...rest}
     >
+      <Image
+        src="/letrero.png"
+        alt="nuestra polla"
+        width={{ base: "200px", md: "300px", lg: "auto" }}
+      />
+      <Spacer />
       <IconButton
         display={{ base: "flex", md: "none" }}
+        color="white"
+        background="polla.catar"
+        _hover={{ background: "polla.catarlight" }}
         onClick={onOpen}
         variant="outline"
         aria-label="open menu"
         icon={<FiMenu />}
       />
-
       <Text
         display={{ base: "flex", md: "none" }}
         fontSize="2xl"

@@ -1,20 +1,16 @@
 import {
+  Avatar,
   Box,
   Button,
   CloseButton,
   Flex,
+  Image,
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
 import { NavItem } from "./NavItem";
-import {
-  FiHome,
-  FiTrendingUp,
-  FiCompass,
-  FiStar,
-  FiSettings,
-} from "react-icons/fi";
+
 import useMenuLateralPolla from "../../utils/useMenuLateralPolla";
 
 /* const LinkItems = [
@@ -37,7 +33,8 @@ export const MenuIzquierdo = ({ onClose, user, cerrar, ...rest }) => {
   return (
     <Box
       transition="3s ease"
-      bg={useColorModeValue("white", "gray.900")}
+      //bg={useColorModeValue("white", "gray.900")}
+      bg="polla.catar"
       borderRight="1px"
       borderRightColor={useColorModeValue("gray.200", "gray.700")}
       w={{ base: "full", md: 60 }}
@@ -46,22 +43,28 @@ export const MenuIzquierdo = ({ onClose, user, cerrar, ...rest }) => {
       {...rest}
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-          Logo
-        </Text>
+        <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold"></Text>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {elmenu.map((link) => (
         <NavItem
+          _hover={{
+            bg: "polla.catarlight",
+          }}
           key={link.name}
           icon={link.icon}
           ruta={link.ruta}
           onClick={onClose}
         >
-          {link.name}
+          <Text color="white" fontSize={22}>
+            {link.name}
+          </Text>
         </NavItem>
       ))}
-      <Button onClick={cerrar}> Cerrar sesión</Button>
+
+      {/* <Button onClick={cerrar}> Cerrar sesión</Button> */}
+
+      <Image src="/logo.png" alt="Logo" />
     </Box>
   );
 };

@@ -46,7 +46,7 @@ export default function Home({ usuariosDB, equiposDB, pollerosamigos }) {
   const { setAllPronos } = usePollaSettings((state) => state);
   const { user, error, isLoading, accessToken } = useUser();
   if (user) {
-    router.push("/polla");
+    //router.push("/polla");
   }
 
   useEffect(() => {

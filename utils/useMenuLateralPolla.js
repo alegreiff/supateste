@@ -36,7 +36,7 @@ export default function useMenuLateralPolla() {
   const { usuario } = useDatosPollero((state) => state);
 
   const elmenu = [
-    { name: "Home", icon: FiHome, ruta: "/" },
+    { name: "Inicio", icon: FiHome, ruta: "/" },
     { name: "Polla", icon: FiTrendingUp, ruta: "/polla" },
     /* { name: "Explore", icon: FiCompass, ruta: "/" }, */
     { name: "Partidos", icon: FiStar, ruta: "/partidos" },

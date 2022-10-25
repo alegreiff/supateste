@@ -14,17 +14,20 @@ export const NavItem = ({ icon, children, ruta, ...rest }) => {
           role="group"
           cursor="pointer"
           _hover={{
-            bg: "cyan.400",
-            color: "white",
+            bg: "white",
+            color: "polla.catar",
           }}
           {...rest}
         >
           {icon && (
             <Icon
+              color="white"
               mr="4"
-              fontSize="16"
+              fontSize="20"
               _groupHover={{
                 color: "white",
+                textColor: "polla.catar",
+                fontWeight: "bold",
               }}
               as={icon}
             />

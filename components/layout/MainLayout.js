@@ -5,6 +5,8 @@ import {
   Drawer,
   DrawerContent,
   useDisclosure,
+  Avatar,
+  DrawerCloseButton,
 } from "@chakra-ui/react";
 
 import { MobileNav } from "./MobileNav";
@@ -34,17 +36,20 @@ export default function MainLayout({ children, cerrar }) {
         <Drawer
           autoFocus={false}
           isOpen={isOpen}
-          placement="left"
+          placement="right"
           onClose={onClose}
+          colo
           returnFocusOnClose={false}
           onOverlayClick={onClose}
           size="full"
         >
           <DrawerContent>
             <MenuIzquierdo user={user} onClose={onClose} cerrar={cerrar} />
+            <DrawerCloseButton />
           </DrawerContent>
         </Drawer>
         {/* mobilenav */}
+
         <MobileNav
           onOpen={onOpen}
           user={user}
