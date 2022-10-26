@@ -4,6 +4,13 @@ import {
   Avatar,
   Box,
   Button,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
   Flex,
   HStack,
   IconButton,
@@ -17,15 +24,19 @@ import {
   Spacer,
   Text,
   useColorModeValue,
+  useDisclosure,
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
 
-import { FiMenu, FiBell, FiChevronDown } from "react-icons/fi";
+import { FiMenu, FiBell, FiChevronDown, FiHelpCircle } from "react-icons/fi";
 import { BsPersonCircle } from "react-icons/bs";
 import useMenuLateralPolla from "../../utils/useMenuLateralPolla";
+import { EstadoPolla } from "./EstadoPolla";
 
 export const MobileNav = ({ onOpen, user, cerrar, ...rest }) => {
+  const { isOpen: isO, onOpen: onO, onClose: onC } = useDisclosure();
+  const btnRef = React.useRef();
   const { userMenu } = useMenuLateralPolla();
   return (
     <Flex
@@ -33,17 +44,48 @@ export const MobileNav = ({ onOpen, user, cerrar, ...rest }) => {
       px={{ base: 4, md: 4 }}
       height="20"
       alignItems="center"
-      bg={useColorModeValue("white", "gray.900")}
+      //bg={useColorModeValue("white", "gray.900")}
+      bg="white"
       borderBottomWidth="1px"
       borderBottomColor={useColorModeValue("gray.200", "gray.700")}
       justifyContent={{ base: "space-between", md: "flex-end" }}
       {...rest}
     >
+      <Drawer
+        isOpen={isO}
+        placement="right"
+        onClose={onC}
+        finalFocusRef={btnRef}
+      >
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton />
+          <DrawerHeader>Estado Polla</DrawerHeader>
+
+          <DrawerBody>
+            <EstadoPolla />
+          </DrawerBody>
+
+          <DrawerFooter>ff</DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+
       <Image
         src="/letrero.png"
         alt="nuestra polla"
         width={{ base: "200px", md: "300px", lg: "auto" }}
       />
+      <Spacer />
+      {/* <Button ref={btnRef} color="polla.catar" onClick={onO}>
+        ?
+      </Button> */}
+      <IconButton
+        ref={btnRef}
+        onClick={onO}
+        size="lg"
+        icon={<FiHelpCircle />}
+      />
+
       <Spacer />
       <IconButton
         display={{ base: "flex", md: "none" }}

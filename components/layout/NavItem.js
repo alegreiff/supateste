@@ -25,8 +25,7 @@ export const NavItem = ({ icon, children, ruta, ...rest }) => {
               mr="4"
               fontSize="20"
               _groupHover={{
-                color: "white",
-                textColor: "polla.catar",
+                textColor: "white",
                 fontWeight: "bold",
               }}
               as={icon}
@@ -71,4 +70,21 @@ export const NavItem = ({ icon, children, ruta, ...rest }) => {
         {children}
       </Flex>
     </Link>
+*/
+/* 
+Diez cosas de HTML
+https://www.youtube.com/watch?v=1x0TITmM4Wc
+1. contenteditable FALSE
+2. input color FALSE
+3. etiqueta mark FALSE
+4. etiqueta meter FALSE
+5. etiqueta progress FALSE
+6. atributo spellcheck FALSE
+7. details + summary FALSE
+8. native dialog
+9. label + input 
+10. optgroup
+11. datalist
+
+
 */

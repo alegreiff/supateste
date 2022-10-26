@@ -5,6 +5,7 @@ import {
   CloseButton,
   Flex,
   Image,
+  Spacer,
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
@@ -65,6 +66,7 @@ export const MenuIzquierdo = ({ onClose, user, cerrar, ...rest }) => {
       {/* <Button onClick={cerrar}> Cerrar sesión</Button> */}
 
       <Image src="/logo.png" alt="Logo" />
+      <Spacer />
     </Box>
   );
 };

@@ -5,6 +5,7 @@ import {
   StatHelpText,
   StatLabel,
   StatNumber,
+  VStack,
 } from "@chakra-ui/react";
 import React from "react";
 import useFase from "../../hooks/useFase";
@@ -16,7 +17,7 @@ export const EstadoPolla = () => {
     useFase(fechas);
   return (
     <Box bg="lightgray" p={4} mb="4">
-      <HStack>
+      <VStack>
         <Stat>
           <StatLabel>Estado polla</StatLabel>
           <StatNumber>
@@ -31,7 +32,7 @@ export const EstadoPolla = () => {
             Rondas {rondas} : ** {comodines}
           </StatNumber>
         </Stat>
-      </HStack>
+      </VStack>
     </Box>
   );
 };
