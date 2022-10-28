@@ -24,3 +24,49 @@ a {
     background: black;
   }
 }
+.contentpolla {
+  min-height: calc(100vh - 70px);
+}
+.footerpolla {
+  height: 50px;
+}
+
+table.reglamento caption {
+  font-size: 1.8rem;
+}
+table.reglamento {
+  width: 100%;
+  font-size: 1.2rem;
+  margin: 20px auto;
+}
+
+table.reglamento tbody tr:nth-child(odd) {
+  background: #202932;
+}
+
+table.reglamento tbody tr:nth-child(even) {
+  background: #2c3844;
+}
+
+table.reglamento tbody {
+  color: white;
+}
+
+table.reglamento table, td, th {
+  border-collapse: collapse;
+}
+
+table.reglamento th, td {
+  padding: 10px;
+  border: 1px solid #777;
+  text-align: center;
+}
+
+table.reglamento td p {
+  color: black;
+  text-align: center;
+}
+
+.firstRowFirstColumn {
+  width: 400px;
+}

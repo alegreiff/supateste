@@ -44,7 +44,7 @@ export default function MainLayout({ children, cerrar }) {
           <Drawer
             autoFocus={false}
             isOpen={isOpen}
-            placement="right"
+            placement="left"
             onClose={onClose}
             colo
             returnFocusOnClose={false}
@@ -53,7 +53,6 @@ export default function MainLayout({ children, cerrar }) {
           >
             <DrawerContent>
               <MenuIzquierdo user={user} onClose={onClose} cerrar={cerrar} />
-              <DrawerCloseButton />
             </DrawerContent>
           </Drawer>
           {/* mobilenav */}

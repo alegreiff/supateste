@@ -9,6 +9,7 @@ import {
   Link,
   Stack,
   Text,
+  VStack,
 } from "@chakra-ui/react";
 import {
   supabaseClient,
@@ -24,6 +25,7 @@ import Swal from "sweetalert2";
 import { Prepolleros } from "../components/polla/Prepolleros";
 import { useRouter } from "next/router";
 import usePollaSettings from "../storedata/settings";
+import { Reglamento } from "../components/polla/Reglamento";
 //const user = false;
 
 export default function Home({ usuariosDB, equiposDB, pollerosamigos }) {
@@ -218,86 +220,89 @@ export default function Home({ usuariosDB, equiposDB, pollerosamigos }) {
 
   if (!user && !isLoading) {
     return (
-      <Flex minH={"100vh"} justify={"center"} bg="gray.50">
-        <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
-          <Stack align={"center"}>
-            <Heading fontSize={"4xl"}>
-              {isSignUp ? "Crea tu cuenta" : "Ingresa"}
-            </Heading>
-            <Text fontSize={"lg"} color={"gray.600"}>
-              nuestrapolla ✌️
-            </Text>
-          </Stack>
-          <Box rounded={"lg"} bg="white" boxShadow={"lg"} p={8}>
-            <Stack spacing={4} as="form">
-              {!isSignUp && (
-                <Button onClick={signInWithGoogle}>
-                  Ingresar con su cuenta de Gmail
-                </Button>
-              )}
-              <hr />
-              {/* <Button onClick={signInWithGitHub}>Log in with GitHub</Button>
-              <hr /> */}
-              <Button onClick={perdiMiClave}>No tocar</Button>
-              <FormControl id="email">
-                <FormLabel>Correo electrónico</FormLabel>
-                <Input
-                  type="email"
-                  placeholder="Correo electrónico"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </FormControl>
-
-              <FormControl id="password">
-                <FormLabel>Contraseña</FormLabel>
-                <Input
-                  type="password"
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Mínimo seis caracteres"
-                  autoComplete="current-password"
-                  value={password}
-                />
-              </FormControl>
-              <Stack spacing={10}>
-                <Stack
-                  direction={{ base: "column", sm: "row" }}
-                  align={"start"}
-                  justify={"space-between"}
-                ></Stack>
-                {isSignUp && (
-                  <Button
-                    bg={"blue.400"}
-                    color={"white"}
-                    _hover={{
-                      bg: "blue.500",
-                    }}
-                    onClick={handleSignUp}
-                  >
-                    Crear cuenta
-                  </Button>
-                )}
-                {!isSignUp && (
-                  <Button
-                    bg={"blue.400"}
-                    color={"white"}
-                    _hover={{
-                      bg: "blue.500",
-                    }}
-                    onClick={handleSignIn}
-                  >
-                    Ingresar
-                  </Button>
-                )}
-                <Button colorScheme="red" onClick={changeForm}>
-                  {!isSignUp
-                    ? "¿Nuevo usuario?, regístrese"
-                    : "Ya tengo cuenta. Ingresar"}
-                </Button>
-              </Stack>
+      <Flex justify={"center"} bg="gray.50">
+        <VStack width="900px">
+          <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+            <Stack align={"center"}>
+              <Heading fontSize={"4xl"}>
+                {isSignUp ? "Crea tu cuenta" : "Ingresa"}
+              </Heading>
+              <Text fontSize={"lg"} color={"gray.600"}>
+                nuestrapolla ✌️
+              </Text>
             </Stack>
-          </Box>
-        </Stack>
+            <Box rounded={"lg"} bg="white" boxShadow={"lg"} p={8}>
+              <Stack spacing={4} as="form">
+                {!isSignUp && (
+                  <Button onClick={signInWithGoogle}>
+                    Ingresar con su cuenta de Gmail
+                  </Button>
+                )}
+                <hr />
+                {/* <Button onClick={signInWithGitHub}>Log in with GitHub</Button>
+              <hr /> */}
+                <Button onClick={perdiMiClave}>No tocar</Button>
+                <FormControl id="email">
+                  <FormLabel>Correo electrónico</FormLabel>
+                  <Input
+                    type="email"
+                    placeholder="Correo electrónico"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </FormControl>
+
+                <FormControl id="password">
+                  <FormLabel>Contraseña</FormLabel>
+                  <Input
+                    type="password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Mínimo seis caracteres"
+                    autoComplete="current-password"
+                    value={password}
+                  />
+                </FormControl>
+                <Stack spacing={10}>
+                  <Stack
+                    direction={{ base: "column", sm: "row" }}
+                    align={"start"}
+                    justify={"space-between"}
+                  ></Stack>
+                  {isSignUp && (
+                    <Button
+                      bg={"blue.400"}
+                      color={"white"}
+                      _hover={{
+                        bg: "blue.500",
+                      }}
+                      onClick={handleSignUp}
+                    >
+                      Crear cuenta
+                    </Button>
+                  )}
+                  {!isSignUp && (
+                    <Button
+                      bg={"blue.400"}
+                      color={"white"}
+                      _hover={{
+                        bg: "blue.500",
+                      }}
+                      onClick={handleSignIn}
+                    >
+                      Ingresar
+                    </Button>
+                  )}
+                  <Button colorScheme="red" onClick={changeForm}>
+                    {!isSignUp
+                      ? "¿Nuevo usuario?, regístrese"
+                      : "Ya tengo cuenta. Ingresar"}
+                  </Button>
+                </Stack>
+              </Stack>
+            </Box>
+          </Stack>
+          <Reglamento />
+        </VStack>
       </Flex>
     );
   }

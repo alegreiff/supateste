@@ -7,7 +7,7 @@ const customTheme = extendTheme({
       clasificado: "#eafaf1",
       catar: "#6C1D45",
       catarlight: "#9F5078",
-      catar: "#A10D50",
+      catari: "#A10D50",
     },
   },
 });
