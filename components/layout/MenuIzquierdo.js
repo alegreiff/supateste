@@ -63,7 +63,7 @@ export const MenuIzquierdo = ({ onClose, user, cerrar, ...rest }) => {
         </NavItem>
       ))}
 
-      {/* <Button onClick={cerrar}> Cerrar sesión</Button> */}
+      <Button onClick={cerrar}> Cerrar sesión</Button>
 
       <Image src="/logo.png" alt="Logo" />
       <Spacer />

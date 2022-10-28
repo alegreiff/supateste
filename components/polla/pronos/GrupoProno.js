@@ -3,6 +3,7 @@ import {
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
+  Badge,
   Box,
   Button,
   HStack,
@@ -83,8 +84,11 @@ export const GrupoProno = ({
       <h2>
         <AccordionButton>
           <Box flex="1" textAlign="left">
-            {nombre} * comodines {comodines} / Partidos por pronosticar =
-            {partidos.length} / {partidosPron} [[ {comodinesActivos} ]]
+            <Badge ml="1" fontSize="0.8em" color="polla.catar">
+              {nombre}
+            </Badge>
+            <Badge colorScheme="purple">comodines {comodines}</Badge>
+            <Badge colorScheme="purple">partidos {partidos.length}</Badge>
           </Box>
           <AccordionIcon />
         </AccordionButton>

@@ -178,7 +178,7 @@ export default function Home({ usuariosDB, equiposDB, pollerosamigos }) {
         Swal.fire({
           title: "Vamos bien",
           text: `Se ha enviado un correo de verificación a ${email}. Revisa incluso en SPAM`,
-          confirmButtonText: "Sisas",
+          confirmButtonText: "Prometo que lo haré",
         });
       } catch (error) {
         Swal.fire({
@@ -306,7 +306,12 @@ export default function Home({ usuariosDB, equiposDB, pollerosamigos }) {
       </Flex>
     );
   }
-  return <Prepolleros />;
+  return (
+    <>
+      <Reglamento />
+      <Prepolleros />
+    </>
+  );
 }
 
 export async function getServerSideProps(context) {
