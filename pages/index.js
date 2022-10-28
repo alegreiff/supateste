@@ -218,7 +218,7 @@ export default function Home({ usuariosDB, equiposDB, pollerosamigos }) {
     setIsSignUp((value) => !value);
   };
 
-  if (!user && !isLoading) {
+  if (!user && !isLoading && 7 < 3) {
     return (
       <Flex justify={"center"} bg="gray.50">
         <VStack width="900px">
@@ -309,7 +309,7 @@ export default function Home({ usuariosDB, equiposDB, pollerosamigos }) {
   return (
     <>
       <Reglamento />
-      <Prepolleros />
+      {/* <Prepolleros /> */}
     </>
   );
 }

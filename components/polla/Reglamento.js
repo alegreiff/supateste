@@ -47,6 +47,10 @@ export const Reglamento = () => {
         "100%", // 992px upwards
       ]}
     >
+      <Heading>
+        Esperamos estar al aire con registro de polleros MUY PRONTO. Entretanto,
+        entérense...
+      </Heading>
       <Accordion allowToggle>
         <AccordionItem>
           <h2>
@@ -289,7 +293,7 @@ export const Reglamento = () => {
           </AccordionPanel>
         </AccordionItem>
 
-        <AccordionItem>
+        {/* <AccordionItem>
           <h2>
             <AccordionButton>
               <Box flex="1" textAlign="left">
@@ -331,8 +335,8 @@ export const Reglamento = () => {
               Los polleros amigos son: Luis Carlos Urrutia / Jaime de Greiff
             </Alert>
           </AccordionPanel>
-        </AccordionItem>
-        <AccordionItem>
+        </AccordionItem> */}
+        {/* <AccordionItem>
           <h2>
             <AccordionButton>
               <Box flex="1" textAlign="left">
@@ -347,8 +351,8 @@ export const Reglamento = () => {
             delectus harum dolorem beatae tenetur quas amet, temporibus ut
             magnam alias?
           </AccordionPanel>
-        </AccordionItem>
-        <AccordionItem>
+        </AccordionItem> */}
+        {/* <AccordionItem>
           <h2>
             <AccordionButton>
               <Box flex="1" textAlign="left">
@@ -363,7 +367,7 @@ export const Reglamento = () => {
             delectus harum dolorem beatae tenetur quas amet, temporibus ut
             magnam alias?
           </AccordionPanel>
-        </AccordionItem>
+        </AccordionItem> */}
         <AccordionItem>
           <h2>
             <AccordionButton>
@@ -374,8 +378,6 @@ export const Reglamento = () => {
             </AccordionButton>
           </h2>
           <AccordionPanel pb={4}>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam
-            atque.
             <table className="reglamento">
               <thead>
                 <tr>
@@ -444,10 +446,6 @@ export const Reglamento = () => {
             </AccordionButton>
           </h2>
           <AccordionPanel pb={4}>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam
-            atque sed, repudiandae, nostrum quod molestias voluptate odit aut ex
-            delectus harum dolorem beatae tenetur quas amet, temporibus ut
-            magnam alias?
             <table className="reglamento">
               <thead>
                 <tr>
