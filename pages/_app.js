@@ -6,6 +6,7 @@ import MainLayout from "../components/layout/MainLayout";
 import useDatosPollero from "../storedata/pollero";
 import { useRouter } from "next/router";
 import customTheme from "../theme";
+import Head from "next/head";
 
 function MyApp({ Component, pageProps }) {
   const { clearUsuario, clearPolleros } = useDatosPollero((state) => state);
@@ -18,13 +19,18 @@ function MyApp({ Component, pageProps }) {
     router.push("/api/auth/logout");
   };
   return (
-    <ChakraProvider theme={customTheme}>
-      <UserProvider supabaseClient={supabaseClient}>
-        <MainLayout cerrar={handleSignOut}>
-          <Component {...pageProps} />
-        </MainLayout>
-      </UserProvider>
-    </ChakraProvider>
+    <>
+      <Head>
+        <link rel="shortcut icon" href="/favicon.ico" />
+      </Head>
+      <ChakraProvider theme={customTheme}>
+        <UserProvider supabaseClient={supabaseClient}>
+          <MainLayout cerrar={handleSignOut}>
+            <Component {...pageProps} />
+          </MainLayout>
+        </UserProvider>
+      </ChakraProvider>
+    </>
   );
 }
 

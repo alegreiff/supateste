@@ -70,3 +70,14 @@ export const MenuIzquierdo = ({ onClose, user, cerrar, ...rest }) => {
     </Box>
   );
 };
+
+/* 
+Lunes
+Menos
+canto
+rengo
+lenta
+linda
+pingo
+cunde
+*/
