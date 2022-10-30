@@ -74,19 +74,19 @@ export const Reglamento = () => {
               <tbody>
                 <tr>
                   <td>1</td>
-                  <td>100.000</td>
+                  <td>$100.000</td>
                 </tr>
                 <tr>
                   <td>2</td>
-                  <td>250.000</td>
+                  <td>$250.000</td>
                 </tr>
                 <tr>
                   <td>6</td>
-                  <td>150.000</td>
+                  <td>$150.000</td>
                 </tr>
                 <tr>
                   <td>8</td>
-                  <td>200.000</td>
+                  <td>$200.000</td>
                 </tr>
               </tbody>
             </table>
@@ -95,9 +95,9 @@ export const Reglamento = () => {
               <strong>$200.000</strong> (doscientos mil devaluados pesos)
             </p>
             <p>
-              El <strong>80%</strong> del dinero recaudado por concepto de
+              El <strong>80 %</strong> del dinero recaudado por concepto de
               inscripciones conforma el botín que se repartirán los ganadores.
-              El <strong>20%</strong> restante se destinará a cubrir los gastos
+              El <strong>20 %</strong> restante se destinará a cubrir los gastos
               administrativos y de mantenimiento de la página web y la
               inscripción de los polleros amigos (los polleros amigos con 10 o
               más polleros <strong>NO PAGARÁN</strong> inscripción)
@@ -147,8 +147,8 @@ export const Reglamento = () => {
                 <tr>
                   <td></td>
                   <td>
-                    Campeón de la polla. Quién haga más puntos después de los 64
-                    partidos
+                    Campeón de la polla (quien haga más puntos tras los 64
+                    partidos)
                   </td>
                   <td>50%</td>
                   <td>{formatoNum(botin * 0.5)}</td>
@@ -156,8 +156,8 @@ export const Reglamento = () => {
                 <tr>
                   <td></td>
                   <td>
-                    Subcampeón de la polla. Segundo en obtener más puntos
-                    después de los 64 partidos
+                    Subcampeón de la polla (segundo con más puntos tras los 64
+                    partidos)
                   </td>
                   <td>20%</td>
                   <td>{formatoNum(botin * 0.2)}</td>
@@ -165,8 +165,8 @@ export const Reglamento = () => {
                 <tr>
                   <td></td>
                   <td>
-                    Tercer puesto de la polla. Tercero en obtener más puntos
-                    después de los 64 partidos
+                    Tercer puesto de la polla (tercero con más puntos tras los
+                    64 partidos)
                   </td>
                   <td>10%</td>
                   <td>{formatoNum(botin * 0.1)}</td>
@@ -174,10 +174,10 @@ export const Reglamento = () => {
                 <tr>
                   <td></td>
                   <td>
-                    Para repartir por partes iguales entre quienes obtengan el
-                    mayor puntaje del grupo de cada uno de los polleros amigos
-                    (condición: el pollero amigo deberá tener al menos 10
-                    inscritos, contando con él).
+                    El mayor puntaje del grupo de cada pollero amigo (son varios
+                    ganadores; el monto se reparte por partes iguales entre
+                    quienes tras los 64 partidos punteen los grupos con al menos
+                    10 inscritos)
                   </td>
                   <td>10%</td>
                   <td>{formatoNum(botin * 0.1)}</td>
@@ -185,15 +185,15 @@ export const Reglamento = () => {
 
                 <tr>
                   <td></td>
-                  <td>Para el pollero amigo del ganador de la polla.</td>
+                  <td>Pollero amigo del ganador de la polla.</td>
                   <td>5%</td>
                   <td>{formatoNum(botin * 0.05)}</td>
                 </tr>
                 <tr>
                   <td></td>
                   <td>
-                    Para el pollero que al terminar la fase de grupos (los
-                    primeros 48 partidos) vaya de primero.
+                    Primer puesto de la fase de grupos (quien vaya adelante tras
+                    los primeros 48 partidos)
                   </td>
                   <td>5%</td>
                   <td>{formatoNum(botin * 0.05)}</td>
@@ -214,15 +214,14 @@ export const Reglamento = () => {
           <AccordionPanel pb={4}>
             <UnorderedList>
               <ListItem>
-                La polla para Catar 2022 consiste en una sola polla que
-                contempla los 64 partidos. Los polleros deben asumir el
-                compromiso de inscribir sus pronósticos en cinco momentos,
-                porque en nuestro modelo se pronostica sobre partidos ciertos,
-                no sobre posibles llaves definidas desde antes que empiece el
-                mundial. No inscribir resultados significa perder los puntos de
-                esa fase y restar muchas posibilidades de ser uno de los
-                ganadores. Estos son los cinco momentos de inscripción de
-                pronósticos y los plazos límite para hacerlo.
+                La Polla Catar 2022 contempla los 64 partidos del Mundial. Los
+                polleros deben asumir el compromiso de inscribir sus pronósticos
+                en cinco momentos, porque en nuestro modelo se pronostica sobre
+                partidos ciertos, no sobre posibles llaves definidas desde antes
+                de que empiece el Mundial. No inscribir resultados significa
+                perder los puntos de esa fase y restar muchas posibilidades de
+                ser uno de los ganadores. Estos son los cinco momentos de
+                inscripción de pronósticos y los plazos límite para hacerlo
                 <hr />
                 <Alert status="info">
                   <AlertIcon />
@@ -258,35 +257,36 @@ export const Reglamento = () => {
                     </tr>
                     <tr>
                       <td>Octavos de final</td>
-                      <td>Diciembre 02 (5:00 pm)</td>
-                      <td>Diciembre 03 (8:00 am)</td>
+                      <td>2 de diciembre (5:00 pm)</td>
+                      <td>3 de diciembre(8:00 am)</td>
                     </tr>
                     <tr>
                       <td>Cuartos de final</td>
-                      <td>Diciembre 06 (5:00 pm)</td>
-                      <td>Diciembre 09 (8:00 am)</td>
+                      <td>6 de diciembre (5:00 pm)</td>
+                      <td>9 de diciembre(8:00 am)</td>
                     </tr>
                     <tr>
                       <td>Semifinales</td>
-                      <td>Diciembre 10 (6:00 pm)</td>
-                      <td>Diciembre 13 ( 12:00 m )</td>
+                      <td>10 de diciembre(6:00 pm)</td>
+                      <td>13 de diciembre( 12:00 m )</td>
                     </tr>
                     <tr>
                       <td>Partidos finales</td>
-                      <td>Diciembre 14 (5:00 pm)</td>
-                      <td>Diciembre 17 (8:00 am)</td>
+                      <td>14 de diciembre(5:00 pm)</td>
+                      <td>17 de diciembre(8:00 am)</td>
                     </tr>
                   </tbody>
                 </table>
                 <p>
-                  Aunque la fase de grupos tiene el 75% de los partidos del
-                  mundial, no estar en los primeros lugares cuando esta termine
-                  no significa que no se pueda remontar. A medida que el mundial
-                  avanza, la puntuación que se obtiene aumenta. Al final, los
-                  ganadores serán quienes hayan sido constantes en la
+                  Aunque la fase de grupos tiene el 75 % de los partidos, no
+                  estar en los primeros lugares cuando termine no significa que
+                  no se pueda remontar. A medida que el Mundial avanza, la
+                  puntuación que se obtiene aumenta (entre la primera y última
+                  fase, cada acierto aumenta al menos cinco veces). Al final,
+                  los ganadores serán quienes hayan sido constantes en la
                   inscripción de los pronósticos y hayan contado con más suerte.
-                  O conocimiento. ¡Ambas, pues! ¡Bienvenidos y suerte para
-                  todos!
+                  O conocimiento. ¡Ambas, pues! ¡Bienvenidos y suerte para todas
+                  las personas participantes!
                 </p>
               </ListItem>
             </UnorderedList>
@@ -381,7 +381,7 @@ export const Reglamento = () => {
             <table className="reglamento">
               <thead>
                 <tr>
-                  <th>Tpo de puntaje</th>
+                  <th>Tipo de puntaje</th>
                   <th>Caso</th>
                 </tr>
               </thead>
@@ -416,13 +416,12 @@ export const Reglamento = () => {
                 </tr>
                 <tr>
                   <td>Blanco simple</td>
-                  <td>Sin comodín, Ud. no acierta nada</td>
+                  <td>Sin comodín, Ud. no acierta nada.</td>
                 </tr>
                 <tr>
                   <td>Blanco con comodín</td>
                   <td>
-                    Con comodín, Ud. no acierta nada y ha desperdiciado un
-                    comodín.
+                    Con comodín, Ud. no acierta nada y desperdicia un comodín.
                   </td>
                 </tr>
                 <tr>
@@ -491,7 +490,7 @@ export const Reglamento = () => {
                   <td>20</td>
                 </tr>
                 <tr>
-                  <td>Bñlanco simple / Blanco con comodín / NULO</td>
+                  <td>Blanco simple / Blanco con comodín / NULO</td>
                   <td>0</td>
                   <td>0</td>
                   <td>0</td>
