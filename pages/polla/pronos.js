@@ -72,34 +72,42 @@ export default function PronosPage({ user, data }) {
             <GrupoProno
               partidos={partidosGrupo("A")}
               pronosdb={pronosGrupo("A")}
+              pronoslistos={pronosGrupo("A").length}
             />
             <GrupoProno
               partidos={partidosGrupo("B")}
               pronosdb={pronosGrupo("B")}
+              pronoslistos={pronosGrupo("B").length}
             />
             <GrupoProno
               partidos={partidosGrupo("C")}
               pronosdb={pronosGrupo("C")}
+              pronoslistos={pronosGrupo("C").length}
             />
             <GrupoProno
               partidos={partidosGrupo("D")}
               pronosdb={pronosGrupo("D")}
+              pronoslistos={pronosGrupo("D").length}
             />
             <GrupoProno
               partidos={partidosGrupo("E")}
               pronosdb={pronosGrupo("E")}
+              pronoslistos={pronosGrupo("E").length}
             />
             <GrupoProno
               partidos={partidosGrupo("F")}
               pronosdb={pronosGrupo("F")}
+              pronoslistos={pronosGrupo("F").length}
             />
             <GrupoProno
               partidos={partidosGrupo("G")}
               pronosdb={pronosGrupo("G")}
+              pronoslistos={pronosGrupo("G").length}
             />
             <GrupoProno
               partidos={partidosGrupo("H")}
               pronosdb={pronosGrupo("H")}
+              pronoslistos={pronosGrupo("H").length}
             />
           </Accordion>
         </>

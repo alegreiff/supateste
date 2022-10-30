@@ -31,6 +31,8 @@ import { Reglamento } from "../components/polla/Reglamento";
 export default function Home({ usuariosDB, equiposDB, pollerosamigos }) {
   console.log("lespollereèsamiès", pollerosamigos);
   const router = useRouter();
+  const query = router.query;
+
   const {
     usuario,
     setUsuario,
@@ -218,7 +220,7 @@ export default function Home({ usuariosDB, equiposDB, pollerosamigos }) {
     setIsSignUp((value) => !value);
   };
 
-  if (!user && !isLoading && 7 < 3) {
+  if (!user && !isLoading && query?.pollero === "test") {
     return (
       <Flex justify={"center"} bg="gray.50">
         <VStack width="900px">

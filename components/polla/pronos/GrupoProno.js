@@ -19,6 +19,7 @@ import { PosGrupoPronos } from "./PosGrupoPronos";
 export const GrupoProno = ({
   partidos: { p: partidos, grupo, comodines },
   pronosdb,
+  pronoslistos,
 }) => {
   //console.log("PronosDBB", pronosdb);
   const { pronospollero } = useDatosPollero((state) => state);
@@ -89,6 +90,15 @@ export const GrupoProno = ({
             </Badge>
             <Badge colorScheme="purple">comodines {comodines}</Badge>
             <Badge colorScheme="purple">partidos {partidos.length}</Badge>
+            <Badge
+              bg={
+                pronoslistos === partidos.length
+                  ? "polla.clasificado"
+                  : "polla.eliminado"
+              }
+            >
+              {pronoslistos === partidos.length ? "LISTO" : "PENDIENTE"}
+            </Badge>
           </Box>
           <AccordionIcon />
         </AccordionButton>
@@ -107,14 +117,14 @@ export const GrupoProno = ({
               />
             ))}
           </Box>
-          <Box bg="lavender">
+          {/* <Box bg="lavender">
             {resulPron &&
               resulPron.map((res) => (
                 <Button key={res.id}>
                   [{res.id}] : {res.loc} - {res.vis}
                 </Button>
               ))}
-          </Box>
+          </Box> */}
         </SimpleGrid>
         {partidos.length === partidosPron && comodinesActivos === comodines && (
           <GuardarPronos grupo={grupo} pronosdb={pronosdb} />

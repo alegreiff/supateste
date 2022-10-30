@@ -18,6 +18,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import useDatosPollero from "../../../storedata/pollero";
 import usePollaSettings from "../../../storedata/settings";
+import { MisPrePronos } from "../presave/MisPrePronos";
 
 export const GuardarPronos = ({ grupo, pronosdb }) => {
   //const { allPronos } = usePollaSettings((state) => state);
@@ -98,7 +99,7 @@ export const GuardarPronos = ({ grupo, pronosdb }) => {
       onClose();
       Swal.fire({
         title: "Resultado",
-        text: `${JSON.stringify(data)}`,
+        text: "Cambios guardados. Éxitos",
         icon: "success",
         showCancelButton: false,
         confirmButtonText: "Cerrar",
@@ -112,9 +113,10 @@ export const GuardarPronos = ({ grupo, pronosdb }) => {
   }
 
   return (
-    <Box bg="lavenderblush">
-      {pronosdb.length}
-      <Button onClick={onOpen}>Guarda grupo</Button>
+    <Box padding={4}>
+      <Button colorScheme="pink" size="lg" onClick={onOpen}>
+        Guarda grupo
+      </Button>
 
       <Modal
         closeOnOverlayClick={false}
@@ -128,26 +130,32 @@ export const GuardarPronos = ({ grupo, pronosdb }) => {
           <ModalCloseButton />
           <ModalBody pb={6}>
             <p>
-              {`este es el grupo ${grupo}`} Pronósticos nuevos o cambiados :{" "}
-              {pronosUser.length}
+              <strong>{`Grupo ${grupo}`}</strong>: pronósticos nuevos o
+              cambiados :{pronosUser.length}
             </p>
 
-            {pronosUser &&
+            {/* {pronosUser &&
               pronosUser.map((pron) => (
                 <div key={pron.partido}>
                   {muestrapartido(pron.partido, 1, 2, "new")}
                 </div>
-              ))}
+              ))} */}
+            <MisPrePronos
+              pronos={pronosUser}
+              partidos={partidos}
+              pronosdb={pronosdb}
+            />
             {/* {JSON.stringify(pronosUser)} */}
             <Spacer />
             {/* {JSON.stringify(pronosDB)} */}
+            {/* {JSON.stringify(partidos)} */}
           </ModalBody>
 
           <ModalFooter>
             <Button colorScheme="blue" mr={3} onClick={guardaPronos}>
-              Save
+              Estoy seguro. Guardemos.
             </Button>
-            <Button onClick={onClose}>Cancel</Button>
+            <Button onClick={onClose}>Cancelar. Me arrepentí</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

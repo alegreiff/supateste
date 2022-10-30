@@ -35,3 +35,7 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
+
+/* 
+Esta polla no está abierta a todo aquel que quiera participar; se accede por invitación de uno de los polleros amigos, quienes hacen viable el proceso. Los polleros amigos se encargan de dar a conocer la polla, avalar a quienes se registran para participar, recoger el dinero de la inscripción, enviarlo a la administración para realizar los pagos y apoyar a su grupo de polleros en cualquier duda que surja y establecer contacto con el administrador de la polla y de la página web que la soporta.
+*/

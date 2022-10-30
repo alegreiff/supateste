@@ -94,11 +94,10 @@ export const PosGrupoPronos = ({ equipos: eq, grupo }) => {
               <Tr
                 key={eq.id}
                 background={i < 2 ? "polla.clasificado" : "polla.eliminado"}
+                fontWeight={i < 2 ? "bold" : "normal"}
               >
                 <Td>{i + 1}</Td>
-                <Td>
-                  [ {eq.id} ] {eq.nombre} ({eq.power})
-                </Td>
+                <Td>{eq.nombre}</Td>
                 <Td>{eq.PG}</Td>
                 <Td>{eq.PP}</Td>
                 <Td>{eq.PE}</Td>

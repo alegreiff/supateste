@@ -1,18 +1,14 @@
 import {
+  Badge,
   Box,
   Checkbox,
   FormControl,
-  FormHelperText,
-  FormLabel,
   HStack,
-  Input,
   NumberDecrementStepper,
   NumberIncrementStepper,
   NumberInput,
   NumberInputField,
   NumberInputStepper,
-  Radio,
-  RadioGroup,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import useDatosPollero from "../../../storedata/pollero";
@@ -35,9 +31,6 @@ export const PartidoPron = ({
     if (pronodb) {
       const loc = parseInt(pronodb.pron_loc);
       const vis = parseInt(pronodb.pron_vis);
-      /* if (pronodb.comodin) {
-        cambiaComodinFromPronos();
-      } */
       setCom(pronodb.comodin);
       setLoc(loc);
       setVis(vis);
@@ -104,7 +97,7 @@ export const PartidoPron = ({
       <FormControl>
         <HStack>
           <Box w={120}>
-            {partido.eqloc}
+            <Badge>{partido.eqloc}</Badge>
             <NumberInput
               min={0}
               max={20}
@@ -123,7 +116,7 @@ export const PartidoPron = ({
           </Box>
 
           <Box w={120}>
-            {partido.eqvis}
+            <Badge>{partido.eqvis}</Badge>
             <NumberInput
               min={0}
               max={20}
