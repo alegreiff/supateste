@@ -90,9 +90,9 @@ export const Reglamento = () => {
                 />
                 <p>
                   Únicamente deberá hacer clic en{" "}
-                  <strong>Confirmar correo</strong> y será redirigod a la página
-                  y en adelante podrá ingresar con el correo y la contraseña
-                  seleccionadas.
+                  <strong>Confirmar correo</strong> y será redirigido a la
+                  página y en adelante podrá ingresar con el correo y la
+                  contraseña seleccionadas.
                 </p>
                 <Alert status="info">
                   <AlertIcon />
