@@ -221,9 +221,13 @@ export default function Home({ usuariosDB, equiposDB, pollerosamigos }) {
   };
 
   if (!user && !isLoading && query?.pollero === "test") {
+    //if (!user && !isLoading) {
     return (
       <Flex justify={"center"} bg="gray.50">
         <VStack width="900px">
+          <Text fontSize="30px" color="polla.catar">
+            No es mi polla, no es tu polla. ¡Es Nuestra Polla!
+          </Text>
           <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
             <Stack align={"center"}>
               <Heading fontSize={"4xl"}>
@@ -236,14 +240,18 @@ export default function Home({ usuariosDB, equiposDB, pollerosamigos }) {
             <Box rounded={"lg"} bg="white" boxShadow={"lg"} p={8}>
               <Stack spacing={4} as="form">
                 {!isSignUp && (
-                  <Button onClick={signInWithGoogle}>
-                    Ingresar con su cuenta de Gmail
-                  </Button>
+                  <>
+                    <FormLabel>Recomendado</FormLabel>
+                    <Button colorScheme="pink" onClick={signInWithGoogle}>
+                      Ingreso / registro con su cuenta de Gmail
+                    </Button>
+                  </>
                 )}
                 <hr />
                 {/* <Button onClick={signInWithGitHub}>Log in with GitHub</Button>
               <hr /> */}
-                <Button onClick={perdiMiClave}>No tocar</Button>
+                {/* <Button onClick={perdiMiClave}>No tocar</Button> */}
+
                 <FormControl id="email">
                   <FormLabel>Correo electrónico</FormLabel>
                   <Input
@@ -310,6 +318,17 @@ export default function Home({ usuariosDB, equiposDB, pollerosamigos }) {
   }
   return (
     <>
+      {/* {usuario?.alias ? null : (
+        <Button
+          colorScheme="pink"
+          onClick={() => {
+            router.push(`/perfil/${usuario.id}`);
+          }}
+        >
+          Importante: Complete su perfil
+        </Button>
+      )} */}
+
       <Reglamento />
       {/* <Prepolleros /> */}
     </>
@@ -351,3 +370,25 @@ export async function getServerSideProps(context) {
     return { props: { email: user?.email } };
   },
 }); */
+
+/* 
+
+SF Aguilas
+
+
+dim millos
+pereira pasto
+america junior
+
+SF
+millos
+pereira
+america
+
+Aguilas
+dim
+pasto
+america
+
+
+*/

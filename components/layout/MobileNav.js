@@ -145,7 +145,7 @@ export const MobileNav = ({ onOpen, user, cerrar, ...rest }) => {
                   {user?.email ? (
                     <>
                       <Text fontSize="sm">
-                        {user.alias} {user.favorito}{" "}
+                        {user.alias} {user.favorito}
                       </Text>
                       <Text fontSize="xs" color="gray.600">
                         {user.email}

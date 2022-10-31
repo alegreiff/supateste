@@ -131,7 +131,7 @@ export const GuardarPronos = ({ grupo, pronosdb }) => {
           <ModalBody pb={6}>
             <p>
               <strong>{`Grupo ${grupo}`}</strong>: pronósticos nuevos o
-              cambiados :{pronosUser.length}
+              cambiados: {pronosUser.length}
             </p>
 
             {/* {pronosUser &&
@@ -153,9 +153,9 @@ export const GuardarPronos = ({ grupo, pronosdb }) => {
 
           <ModalFooter>
             <Button colorScheme="blue" mr={3} onClick={guardaPronos}>
-              Estoy seguro. Guardemos.
+              Estoy seguro. Guardemos. 😃
             </Button>
-            <Button onClick={onClose}>Cancelar. Me arrepentí</Button>
+            <Button onClick={onClose}>Cancelar. Me arrepentí. 🙀</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

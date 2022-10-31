@@ -40,7 +40,7 @@ export default function useMenuLateralPolla() {
     { name: "Polla", icon: FiTrendingUp, ruta: "/polla" },
     /* { name: "Explore", icon: FiCompass, ruta: "/" }, */
     { name: "Partidos", icon: FiStar, ruta: "/partidos" },
-    { name: "Pronos", icon: FiStar, ruta: "/polla/pronos" },
+    /* { name: "Pronos", icon: FiStar, ruta: "/polla/pronos" }, */
     /* {
       name: "Test",
       icon: FiStar,
@@ -48,6 +48,14 @@ export default function useMenuLateralPolla() {
     } */
     ,
   ];
+  if (usuario?.alias) {
+    elmenu.push({
+      name: "Pronos",
+      icon: FiStar,
+      ruta: `/polla/pronos`,
+    });
+  }
+
   if (usuario?.email) {
     elmenu.push({
       name: "Perfil",

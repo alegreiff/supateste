@@ -47,11 +47,78 @@ export const Reglamento = () => {
         "100%", // 992px upwards
       ]}
     >
-      <Heading>
-        Esperamos estar al aire con registro de polleros MUY PRONTO. Entretanto,
-        entérense...
+      <Heading color="polla.catar">
+        Esperamos estar al aire con registro de polleros el martes 01 de
+        noviembre. Entretanto, entérense...
       </Heading>
       <Accordion allowToggle>
+        <AccordionItem>
+          <h2>
+            <AccordionButton>
+              <Box flex="1" textAlign="left">
+                Inscripción
+              </Box>
+              <AccordionIcon />
+            </AccordionButton>
+          </h2>
+          <AccordionPanel pb={4}>
+            Usted deberá registrarse en el sitio https://nuestrapolla.com. El
+            registro puede ser de dos maneras:
+            <OrderedList>
+              <ListItem>
+                <strong>Recomendado</strong>. Accediendo con su cuenta de Gmail
+                (personal o empresarial). Al hacer click en{" "}
+                <strong>Ingreso / registro con su cuenta de Gmail</strong> será
+                dirigido a su cuenta de Gmail para autorizar el ingreso a
+                Nuestra Polla.
+              </ListItem>
+              <ListItem>
+                Registrándose por medio de un correo electrónico y una
+                contraseña. En este caso recibirá un correo electrónico con el
+                asunto <strong>Bienvenido a Nuestra Polla</strong> para validar
+                su registro en el sitio. Búsquelo hasta en SPAM.
+                <Image
+                  padding={2}
+                  src="./tutorial/correoenviado.png"
+                  alt="Correo enviado mensaje"
+                />
+                <hr />
+                <Image
+                  padding={2}
+                  src="./tutorial/correo.png"
+                  alt="Correo enviado"
+                />
+                <p>
+                  Únicamente deberá hacer clic en{" "}
+                  <strong>Confirmar correo</strong> y será redirigod a la página
+                  y en adelante podrá ingresar con el correo y la contraseña
+                  seleccionadas.
+                </p>
+                <Alert status="info">
+                  <AlertIcon />
+                  Cualquier duda posterior podrá escribir a
+                  webmaster@nuestrapolla.com
+                </Alert>
+              </ListItem>
+            </OrderedList>
+            <p>
+              En este punto usted estará <strong>Registrado </strong> en el
+              sitio. A continuación deberá ingresar al enlace de{" "}
+              <strong>Perfil</strong>.
+            </p>
+            <p>
+              En la sección de Perfil deberá registrarse como pollero por medio
+              del siguiente formulario:
+              <Image src="./tutorial/perfil.png" alt="Perfiol Pollero" />
+            </p>
+            <Alert status="info">
+              <AlertIcon />
+              Los polleros amigos son (por ahora): Luis Carlos Urrutia / Jaime
+              de Greiff. Uno de ellos avalará su inscripción y lo contactará
+              para el pago.
+            </Alert>
+          </AccordionPanel>
+        </AccordionItem>
         <AccordionItem>
           <h2>
             <AccordionButton>
@@ -145,7 +212,7 @@ export const Reglamento = () => {
               </thead>
               <tbody>
                 <tr>
-                  <td></td>
+                  <td>1</td>
                   <td>
                     Campeón de la polla (quien haga más puntos tras los 64
                     partidos)
@@ -154,7 +221,7 @@ export const Reglamento = () => {
                   <td>{formatoNum(botin * 0.5)}</td>
                 </tr>
                 <tr>
-                  <td></td>
+                  <td>2</td>
                   <td>
                     Subcampeón de la polla (segundo con más puntos tras los 64
                     partidos)
@@ -163,7 +230,7 @@ export const Reglamento = () => {
                   <td>{formatoNum(botin * 0.2)}</td>
                 </tr>
                 <tr>
-                  <td></td>
+                  <td>3</td>
                   <td>
                     Tercer puesto de la polla (tercero con más puntos tras los
                     64 partidos)
@@ -172,7 +239,7 @@ export const Reglamento = () => {
                   <td>{formatoNum(botin * 0.1)}</td>
                 </tr>
                 <tr>
-                  <td></td>
+                  <td>4</td>
                   <td>
                     El mayor puntaje del grupo de cada pollero amigo (son varios
                     ganadores; el monto se reparte por partes iguales entre
@@ -184,13 +251,13 @@ export const Reglamento = () => {
                 </tr>
 
                 <tr>
-                  <td></td>
+                  <td>5</td>
                   <td>Pollero amigo del ganador de la polla.</td>
                   <td>5%</td>
                   <td>{formatoNum(botin * 0.05)}</td>
                 </tr>
                 <tr>
-                  <td></td>
+                  <td>6</td>
                   <td>
                     Primer puesto de la fase de grupos (quien vaya adelante tras
                     los primeros 48 partidos)
@@ -293,49 +360,6 @@ export const Reglamento = () => {
           </AccordionPanel>
         </AccordionItem>
 
-        {/* <AccordionItem>
-          <h2>
-            <AccordionButton>
-              <Box flex="1" textAlign="left">
-                Inscripción
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
-          </h2>
-          <AccordionPanel pb={4}>
-            Usted deberá registrarse en el sitio https://nuestrapolla.com. El
-            registro puede ser de dos maneras:
-            <OrderedList>
-              <ListItem>
-                Accediendo con su cuenta de Gmail (personal o empresarial)
-              </ListItem>
-              <ListItem>
-                Registrándose por medio de un correo electrónico y una
-                contraseña. En este caso recibirá un correo electrónico con el
-                asunto <strong>Bienvenido a Nuestra Polla</strong> para validar
-                su registro en el sitio. Búsquelo hasta en SPAM.
-                <Image
-                  src="./tutorial/correoenviado.png"
-                  alt="Correo enviado"
-                />
-              </ListItem>
-            </OrderedList>
-            <p>
-              En este punto usted estará <strong>Registrado </strong> en el
-              sitio. A continuación deberá ingresar al enlace de{" "}
-              <strong>Perfil</strong>.
-            </p>
-            <p>
-              En la sección de Perfil deberá registrarse como pollero por medio
-              del siguiente formulario:
-              <Image src="./tutorial/perfil.png" alt="Perfiol Pollero" />
-            </p>
-            <Alert status="info">
-              <AlertIcon />
-              Los polleros amigos son: Luis Carlos Urrutia / Jaime de Greiff
-            </Alert>
-          </AccordionPanel>
-        </AccordionItem> */}
         {/* <AccordionItem>
           <h2>
             <AccordionButton>

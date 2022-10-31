@@ -30,7 +30,7 @@ const useDatosPollero = create(
               hincha: params.hincha,
               favorito: params.favorito,
               isAmigo: params.isAmigo,
-              isollero: params.isPollero,
+              ispollero: params.isPollero,
             },
           }));
         },
