@@ -1,17 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { useTable, useSortBy } from "react-table";
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
-import {
-  Center,
-  Flex,
-  Table,
-  Tbody,
-  Td,
-  Text,
-  Th,
-  Thead,
-  Tr,
-} from "@chakra-ui/react";
+import { Center, Flex, Text, Box } from "@chakra-ui/react";
+
+import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
+import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 
 import estilos from "../styles/TablaBase.module.css";
 import { FechaSingle } from "../components/Fixture/FechaSingle";
@@ -147,12 +140,13 @@ export default function Partidos() {
 
   return (
     mounted && (
-      <Table {...getTableProps()}>
-        <Thead>
+      <Box as="table" {...getTableProps()} size="sm">
+        <Box as="thead">
           {headerGroups.map((headerGroup, ii) => (
-            <Tr {...headerGroup.getHeaderGroupProps()} key={ii}>
+            <Box as="tr" {...headerGroup.getHeaderGroupProps()} key={ii}>
               {headerGroup.headers.map((column, i2) => (
-                <Th
+                <Box
+                  as="th"
                   className={estilos.centered}
                   userSelect="none"
                   {...column.getHeaderProps(column.getSortByToggleProps())}
@@ -175,29 +169,29 @@ export default function Partidos() {
                       ""
                     )}
                   </Flex>
-                </Th>
+                </Box>
               ))}
-            </Tr>
+            </Box>
           ))}
-        </Thead>
-        <Tbody {...getTableBodyProps()}>
+        </Box>
+        <Box as="tbody" {...getTableBodyProps()}>
           {rows.map((row, i3) => {
             prepareRow(row);
             return (
-              <Tr {...row.getRowProps()} key={i3}>
+              <Box as="tr" {...row.getRowProps()} key={i3}>
                 {row.cells.map((cell, i4) => {
                   const power = cell.row.values.power;
                   return (
-                    <Td {...cell.getCellProps()} key={i4}>
+                    <Box as="td" {...cell.getCellProps()} key={i4}>
                       {cell.render("Cell")}
-                    </Td>
+                    </Box>
                   );
                 })}
-              </Tr>
+              </Box>
             );
           })}
-        </Tbody>
-      </Table>
+        </Box>
+      </Box>
     )
   );
 }

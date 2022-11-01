@@ -25,6 +25,7 @@
     "react-avatar-edit": "^1.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
+    "react-super-responsive-table": "^5.2.1",
     "react-table": "^7.8.0",
     "sweetalert2": "^11.4.38",
     "yup": "^0.32.11",

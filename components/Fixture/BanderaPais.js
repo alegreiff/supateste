@@ -17,7 +17,7 @@ export const BanderaPais = ({ bandera, nombre, tipo = "local" }) => {
         width="130px"
         justifyContent={tipo === "local" ? "flex-end" : "flex-start"}
       >
-        {tipo === "local" && <Badge fontSize="18px">{nombre}</Badge>}
+        {tipo === "local" && <Badge fontSize="0.8rem">{nombre}</Badge>}
         {!isChiqui && (
           <Image
             border={`3px solid`}
@@ -29,7 +29,7 @@ export const BanderaPais = ({ bandera, nombre, tipo = "local" }) => {
             borderRadius="full"
           />
         )}
-        {tipo === "visitante" && <Badge fontSize="18px">{nombre}</Badge>}
+        {tipo === "visitante" && <Badge fontSize="0.8rem">{nombre}</Badge>}
       </HStack>
     </>
   );

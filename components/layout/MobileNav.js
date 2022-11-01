@@ -102,9 +102,7 @@ export const MobileNav = ({ onOpen, user, cerrar, ...rest }) => {
         fontSize="2xl"
         fontFamily="monospace"
         fontWeight="bold"
-      >
-        {user?.isAmigo ? "Pollero Amigo" : null}
-      </Text>
+      ></Text>
 
       <HStack spacing={{ base: "0", md: "6" }}>
         <IconButton

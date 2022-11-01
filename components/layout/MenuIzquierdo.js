@@ -66,6 +66,10 @@ export const MenuIzquierdo = ({ onClose, user, cerrar, ...rest }) => {
       {/* <Button onClick={cerrar}> Cerrar sesión</Button> */}
 
       <Image src="/logo.png" alt="Logo" />
+      <Text padding={5} fontSize="20px" color="white">
+        {user?.isAmigo ? "Pollero Amigo" : null}
+      </Text>
+
       <Spacer />
     </Box>
   );

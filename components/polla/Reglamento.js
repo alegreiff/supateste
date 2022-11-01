@@ -22,6 +22,8 @@ import {
   UnorderedList,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
+import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
+import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 
 export const Reglamento = () => {
   const [botin, setBotin] = useState(0);
@@ -47,7 +49,10 @@ export const Reglamento = () => {
         "100%", // 992px upwards
       ]}
     >
-      <Heading color="polla.catar">
+      <Heading
+        color="polla.catar"
+        width={{ base: "80%", md: "80%", lg: "auto" }}
+      >
         Esperamos estar al aire con registro de polleros el{" "}
         <strong>JUEVES 03</strong> de noviembre. Entretanto, entérense...
       </Heading>
@@ -131,32 +136,32 @@ export const Reglamento = () => {
           <AccordionPanel pb={4}>
             <Heading as="h2">Costo de inscripción: $200.000</Heading>
             <p>La encuesta publicada arrojó el siguiente resultado: </p>
-            <table className="reglamento">
-              <thead>
-                <tr>
-                  <th>Votos</th>
-                  <th>Valor</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>$100.000</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>$250.000</td>
-                </tr>
-                <tr>
-                  <td>6</td>
-                  <td>$150.000</td>
-                </tr>
-                <tr>
-                  <td>8</td>
-                  <td>$200.000</td>
-                </tr>
-              </tbody>
-            </table>
+            <Table className="reglamento">
+              <Thead>
+                <Tr>
+                  <Th>Votos</Th>
+                  <Th>Valor</Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                <Tr>
+                  <Td>1</Td>
+                  <Td>$100.000</Td>
+                </Tr>
+                <Tr>
+                  <Td>2</Td>
+                  <Td>$250.000</Td>
+                </Tr>
+                <Tr>
+                  <Td>6</Td>
+                  <Td>$150.000</Td>
+                </Tr>
+                <Tr>
+                  <Td>8</Td>
+                  <Td>$200.000</Td>
+                </Tr>
+              </Tbody>
+            </Table>
             <p>
               En consecuencia, el valor de inscripción es de{" "}
               <strong>$200.000</strong> (doscientos mil devaluados pesos)
@@ -201,72 +206,72 @@ export const Reglamento = () => {
               </p>
             </HStack>
             <hr />
-            <table className="reglamento">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>Caso</th>
-                  <th>Porcentaje del botín</th>
-                  <th>Valor estimado</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>
+            <Table className="reglamento">
+              <Thead>
+                <Tr>
+                  <Th></Th>
+                  <Th>Caso</Th>
+                  <Th>Porcentaje del botín</Th>
+                  <Th>Valor estimado</Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                <Tr>
+                  <Td>1</Td>
+                  <Td>
                     Campeón de la polla (quien haga más puntos tras los 64
                     partidos)
-                  </td>
-                  <td>50%</td>
-                  <td>{formatoNum(botin * 0.5)}</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>
+                  </Td>
+                  <Td>50%</Td>
+                  <Td>{formatoNum(botin * 0.5)}</Td>
+                </Tr>
+                <Tr>
+                  <Td>2</Td>
+                  <Td>
                     Subcampeón de la polla (segundo con más puntos tras los 64
                     partidos)
-                  </td>
-                  <td>20%</td>
-                  <td>{formatoNum(botin * 0.2)}</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>
+                  </Td>
+                  <Td>20%</Td>
+                  <Td>{formatoNum(botin * 0.2)}</Td>
+                </Tr>
+                <Tr>
+                  <Td>3</Td>
+                  <Td>
                     Tercer puesto de la polla (tercero con más puntos tras los
                     64 partidos)
-                  </td>
-                  <td>10%</td>
-                  <td>{formatoNum(botin * 0.1)}</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>
+                  </Td>
+                  <Td>10%</Td>
+                  <Td>{formatoNum(botin * 0.1)}</Td>
+                </Tr>
+                <Tr>
+                  <Td>4</Td>
+                  <Td>
                     El mayor puntaje del grupo de cada pollero amigo (son varios
                     ganadores; el monto se reparte por partes iguales entre
                     quienes tras los 64 partidos punteen los grupos con al menos
                     10 inscritos)
-                  </td>
-                  <td>10%</td>
-                  <td>{formatoNum(botin * 0.1)}</td>
-                </tr>
+                  </Td>
+                  <Td>10%</Td>
+                  <Td>{formatoNum(botin * 0.1)}</Td>
+                </Tr>
 
-                <tr>
-                  <td>5</td>
-                  <td>Pollero amigo del ganador de la polla.</td>
-                  <td>5%</td>
-                  <td>{formatoNum(botin * 0.05)}</td>
-                </tr>
-                <tr>
-                  <td>6</td>
-                  <td>
+                <Tr>
+                  <Td>5</Td>
+                  <Td>Pollero amigo del ganador de la polla.</Td>
+                  <Td>5%</Td>
+                  <Td>{formatoNum(botin * 0.05)}</Td>
+                </Tr>
+                <Tr>
+                  <Td>6</Td>
+                  <Td>
                     Primer puesto de la fase de grupos (quien vaya adelante tras
                     los primeros 48 partidos)
-                  </td>
-                  <td>5%</td>
-                  <td>{formatoNum(botin * 0.05)}</td>
-                </tr>
-              </tbody>
-            </table>
+                  </Td>
+                  <Td>5%</Td>
+                  <Td>{formatoNum(botin * 0.05)}</Td>
+                </Tr>
+              </Tbody>
+            </Table>
           </AccordionPanel>
         </AccordionItem>
         <AccordionItem>
@@ -295,22 +300,22 @@ export const Reglamento = () => {
                   Todos los horarios corresponden a la hora estándar de
                   Colombia.
                 </Alert>
-                <table className="reglamento">
-                  <thead>
-                    <tr>
-                      <th>Fase</th>
-                      <th>Apertura</th>
-                      <th>Cierre</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Grupos</td>
-                      <td>Ahora mismo</td>
-                      <td>Noviembre 21 (9:00 am)</td>
-                    </tr>
-                    <tr>
-                      <td colSpan={3}>
+                <Table className="reglamento">
+                  <Thead>
+                    <Tr>
+                      <Th>Fase</Th>
+                      <Th>Apertura</Th>
+                      <Th>Cierre</Th>
+                    </Tr>
+                  </Thead>
+                  <Tbody>
+                    <Tr>
+                      <Td>Grupos</Td>
+                      <Td>Ahora mismo</Td>
+                      <Td>Noviembre 21 (9:00 am)</Td>
+                    </Tr>
+                    <Tr>
+                      <Td colSpan={3}>
                         <Alert status="info">
                           <AlertIcon />
                           <p>
@@ -320,30 +325,30 @@ export const Reglamento = () => {
                             final. <strong>Compromiso requerido</strong>
                           </p>
                         </Alert>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Octavos de final</td>
-                      <td>2 de diciembre (5:00 pm)</td>
-                      <td>3 de diciembre(8:00 am)</td>
-                    </tr>
-                    <tr>
-                      <td>Cuartos de final</td>
-                      <td>6 de diciembre (5:00 pm)</td>
-                      <td>9 de diciembre(8:00 am)</td>
-                    </tr>
-                    <tr>
-                      <td>Semifinales</td>
-                      <td>10 de diciembre(6:00 pm)</td>
-                      <td>13 de diciembre( 12:00 m )</td>
-                    </tr>
-                    <tr>
-                      <td>Partidos finales</td>
-                      <td>14 de diciembre(5:00 pm)</td>
-                      <td>17 de diciembre(8:00 am)</td>
-                    </tr>
-                  </tbody>
-                </table>
+                      </Td>
+                    </Tr>
+                    <Tr>
+                      <Td>Octavos de final</Td>
+                      <Td>2 de diciembre (5:00 pm)</Td>
+                      <Td>3 de diciembre(8:00 am)</Td>
+                    </Tr>
+                    <Tr>
+                      <Td>Cuartos de final</Td>
+                      <Td>6 de diciembre (5:00 pm)</Td>
+                      <Td>9 de diciembre(8:00 am)</Td>
+                    </Tr>
+                    <Tr>
+                      <Td>Semifinales</Td>
+                      <Td>10 de diciembre(6:00 pm)</Td>
+                      <Td>13 de diciembre( 12:00 m )</Td>
+                    </Tr>
+                    <Tr>
+                      <Td>Partidos finales</Td>
+                      <Td>14 de diciembre(5:00 pm)</Td>
+                      <Td>17 de diciembre(8:00 am)</Td>
+                    </Tr>
+                  </Tbody>
+                </Table>
                 <p>
                   Aunque la fase de grupos tiene el 75 % de los partidos, no
                   estar en los primeros lugares cuando termine no significa que
@@ -402,61 +407,61 @@ export const Reglamento = () => {
             </AccordionButton>
           </h2>
           <AccordionPanel pb={4}>
-            <table className="reglamento">
-              <thead>
-                <tr>
-                  <th>Tipo de puntaje</th>
-                  <th>Caso</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>GranChepazo</td>
-                  <td>
+            <Table className="reglamento">
+              <Thead>
+                <Tr>
+                  <Th>Tipo de puntaje</Th>
+                  <Th>Caso</Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                <Tr>
+                  <Td>GranChepazo</Td>
+                  <Td>
                     Con comodín, Ud. acierta de manera exacta el marcador del
                     partido.
-                  </td>
-                </tr>
-                <tr>
-                  <td>Doble</td>
-                  <td>
+                  </Td>
+                </Tr>
+                <Tr>
+                  <Td>Doble</Td>
+                  <Td>
                     Con comodín, Ud. acierta la distribución de puntos de un
                     partido.
-                  </td>
-                </tr>
-                <tr>
-                  <td>Chepazo</td>
-                  <td>
+                  </Td>
+                </Tr>
+                <Tr>
+                  <Td>Chepazo</Td>
+                  <Td>
                     Sin comodín, Ud. acierta de manera exacta el marcador del
                     partido.
-                  </td>
-                </tr>
-                <tr>
-                  <td>Simple</td>
-                  <td>
+                  </Td>
+                </Tr>
+                <Tr>
+                  <Td>Simple</Td>
+                  <Td>
                     Sin comodín, Ud. acierta la distribución de puntos de un
                     partido.
-                  </td>
-                </tr>
-                <tr>
-                  <td>Blanco simple</td>
-                  <td>Sin comodín, Ud. no acierta nada.</td>
-                </tr>
-                <tr>
-                  <td>Blanco con comodín</td>
-                  <td>
+                  </Td>
+                </Tr>
+                <Tr>
+                  <Td>Blanco simple</Td>
+                  <Td>Sin comodín, Ud. no acierta nada.</Td>
+                </Tr>
+                <Tr>
+                  <Td>Blanco con comodín</Td>
+                  <Td>
                     Con comodín, Ud. no acierta nada y desperdicia un comodín.
-                  </td>
-                </tr>
-                <tr>
-                  <td>Nulo</td>
-                  <td>
+                  </Td>
+                </Tr>
+                <Tr>
+                  <Td>Nulo</Td>
+                  <Td>
                     Ojalá no ocurra. Ud. no inscribió el pronóstico dentro del
                     plazo establecido para hacerlo.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                  </Td>
+                </Tr>
+              </Tbody>
+            </Table>
           </AccordionPanel>
         </AccordionItem>
         <AccordionItem>
@@ -469,60 +474,60 @@ export const Reglamento = () => {
             </AccordionButton>
           </h2>
           <AccordionPanel pb={4}>
-            <table className="reglamento">
-              <thead>
-                <tr>
-                  <th>Tipo de puntaje</th>
-                  <th>Grupos</th>
-                  <th>Octavos</th>
-                  <th>Cuartos</th>
-                  <th>Semifinales</th>
-                  <th>Finales</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>GranChepazo</td>
-                  <td>10</td>
-                  <td>20</td>
-                  <td>30</td>
-                  <td>40</td>
-                  <td>50</td>
-                </tr>
-                <tr>
-                  <td>Doble</td>
-                  <td>6</td>
-                  <td>12</td>
-                  <td>20</td>
-                  <td>30</td>
-                  <td>40</td>
-                </tr>
-                <tr>
-                  <td>Chepazo</td>
-                  <td>5</td>
-                  <td>10</td>
-                  <td>15</td>
-                  <td>20</td>
-                  <td>25</td>
-                </tr>
-                <tr>
-                  <td>Simple</td>
-                  <td>3</td>
-                  <td>6</td>
-                  <td>10</td>
-                  <td>15</td>
-                  <td>20</td>
-                </tr>
-                <tr>
-                  <td>Blanco simple / Blanco con comodín / NULO</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                </tr>
-              </tbody>
-            </table>
+            <Table className="reglamento">
+              <Thead>
+                <Tr>
+                  <Th>Tipo de puntaje</Th>
+                  <Th>Grupos</Th>
+                  <Th>Octavos</Th>
+                  <Th>Cuartos</Th>
+                  <Th>Semifinales</Th>
+                  <Th>Finales</Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                <Tr>
+                  <Td>GranChepazo</Td>
+                  <Td>10</Td>
+                  <Td>20</Td>
+                  <Td>30</Td>
+                  <Td>40</Td>
+                  <Td>50</Td>
+                </Tr>
+                <Tr>
+                  <Td>Doble</Td>
+                  <Td>6</Td>
+                  <Td>12</Td>
+                  <Td>20</Td>
+                  <Td>30</Td>
+                  <Td>40</Td>
+                </Tr>
+                <Tr>
+                  <Td>Chepazo</Td>
+                  <Td>5</Td>
+                  <Td>10</Td>
+                  <Td>15</Td>
+                  <Td>20</Td>
+                  <Td>25</Td>
+                </Tr>
+                <Tr>
+                  <Td>Simple</Td>
+                  <Td>3</Td>
+                  <Td>6</Td>
+                  <Td>10</Td>
+                  <Td>15</Td>
+                  <Td>20</Td>
+                </Tr>
+                <Tr>
+                  <Td>Blanco simple / Blanco con comodín / NULO</Td>
+                  <Td>0</Td>
+                  <Td>0</Td>
+                  <Td>0</Td>
+                  <Td>0</Td>
+                  <Td>0</Td>
+                </Tr>
+              </Tbody>
+            </Table>
           </AccordionPanel>
         </AccordionItem>
       </Accordion>

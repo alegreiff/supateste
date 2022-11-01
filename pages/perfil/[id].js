@@ -17,6 +17,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useEffect, useState } from "react";
 import useDatosPollero from "../../storedata/pollero";
+import Swal from "sweetalert2";
 
 export default function PerfilUserPage({ user, equipos, favoritos }) {
   const [profile, setProfile] = useState(null);
@@ -137,6 +138,16 @@ export default function PerfilUserPage({ user, equipos, favoritos }) {
         setProfile(data);
         setPerfilUsuario(data);
         //actions.resetForm();
+        Swal.fire({
+          title: "Resultado",
+          text: "Cambios guardados. Éxitos",
+          icon: "success",
+          showCancelButton: false,
+          confirmButtonText: "Cerrar",
+        }).then(() => {
+          router.push("/");
+          console.log("cerradeiro");
+        });
       }
       if (error) {
         console.log(error);

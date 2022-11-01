@@ -8,10 +8,12 @@ export const FechaSingle = ({ date }) => {
   const fecha = format(date, "MMM dd", { locale: es });
   const hora = format(date, "H':'mm a");
   return (
-    <Stack direction="row">
-      <Badge>{dia}</Badge>
-      <Badge>{fecha}</Badge>
-      <Badge fontSize="1.2rem" colorScheme="green">
+    <Stack direction="column">
+      <div>
+        <Badge fontSize="xs">{dia}</Badge>
+        <Badge fontSize="xs">{fecha}</Badge>
+      </div>
+      <Badge fontSize="1rem" colorScheme="green">
         {hora}
       </Badge>
     </Stack>
