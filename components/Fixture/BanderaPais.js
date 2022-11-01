@@ -13,10 +13,7 @@ export const BanderaPais = ({ bandera, nombre, tipo = "local" }) => {
 
   return (
     <>
-      <HStack
-        width="130px"
-        justifyContent={tipo === "local" ? "flex-end" : "flex-start"}
-      >
+      <HStack justifyContent={tipo === "local" ? "flex-end" : "flex-start"}>
         {tipo === "local" && <Badge fontSize="0.8rem">{nombre}</Badge>}
         {!isChiqui && (
           <Image

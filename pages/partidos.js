@@ -63,6 +63,7 @@ export default function Partidos() {
                   <BanderaPais
                     bandera={original.locid}
                     nombre={original.eqloc}
+                    tipo="local"
                   />
                 );
               } else {
@@ -82,6 +83,7 @@ export default function Partidos() {
                   <BanderaPais
                     bandera={original.visid}
                     nombre={original.eqvis}
+                    tipo="visitante"
                   />
                 );
               } else {
