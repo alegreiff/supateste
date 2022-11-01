@@ -48,8 +48,8 @@ export const Reglamento = () => {
       ]}
     >
       <Heading color="polla.catar">
-        Esperamos estar al aire con registro de polleros el martes 01 de
-        noviembre. Entretanto, entérense...
+        Esperamos estar al aire con registro de polleros el{" "}
+        <strong>JUEVES 03</strong> de noviembre. Entretanto, entérense...
       </Heading>
       <Accordion allowToggle>
         <AccordionItem>
