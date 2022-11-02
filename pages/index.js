@@ -316,18 +316,20 @@ export default function Home({ usuariosDB, equiposDB, pollerosamigos }) {
       </Flex>
     );
   }
+
+  if (usuario && !usuario?.alias) {
+    <Button
+      colorScheme="pink"
+      onClick={() => {
+        router.push(`/perfil/${usuario?.id}`);
+      }}
+    >
+      Importante: Complete su perfil
+    </Button>;
+  }
+
   return (
     <>
-      {/* {usuario?.alias ? null : (
-        <Button
-          colorScheme="pink"
-          onClick={() => {
-            router.push(`/perfil/${usuario.id}`);
-          }}
-        >
-          Importante: Complete su perfil
-        </Button>
-      )} */}
       <Text textAlign="center" fontSize="30px" color="polla.catar">
         No es mi polla, no es tu polla. ¡Es Nuestra Polla!
       </Text>
@@ -377,14 +379,11 @@ export async function getServerSideProps(context) {
 POLLEROS AMIGOS
 1. Jaime de Greiff
 2. Luis Carlos Urrutia
-3. Alfonso Ospina Torres  /Ricardo Ramírez
-alfonso.ospina70@gmail.com
-314-2957592
-
-4. Juan Sebastian Salazar Piedrahita
+3. Alfonso Ospina Torres  fue pollero de Ricardo Ramírez
+alfonso.ospina70@gmail.com / 3142957592
+4. Juan Sebastian Salazar Piedrahita fue pollero mío ganador de Rusia 2018
 js.salazarp@uniandes.edu.co
-
-5. Esteban Muñoz
+5. Esteban Muñoz 
 
 Luis Fernando Velasco. Preguntar
 
