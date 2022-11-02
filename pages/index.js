@@ -328,7 +328,9 @@ export default function Home({ usuariosDB, equiposDB, pollerosamigos }) {
           Importante: Complete su perfil
         </Button>
       )} */}
-
+      <Text textAlign="center" fontSize="30px" color="polla.catar">
+        No es mi polla, no es tu polla. ¡Es Nuestra Polla!
+      </Text>
       <Reglamento />
       {/* <Prepolleros /> */}
     </>
@@ -372,23 +374,19 @@ export async function getServerSideProps(context) {
 }); */
 
 /* 
+POLLEROS AMIGOS
+1. Jaime de Greiff
+2. Luis Carlos Urrutia
+3. Alfonso Ospina Torres  /Ricardo Ramírez
+alfonso.ospina70@gmail.com
+314-2957592
 
-SF Aguilas
+4. Juan Sebastian Salazar Piedrahita
+js.salazarp@uniandes.edu.co
 
+5. Esteban Muñoz
 
-dim millos
-pereira pasto
-america junior
-
-SF
-millos
-pereira
-america
-
-Aguilas
-dim
-pasto
-america
+Luis Fernando Velasco. Preguntar
 
 
 */

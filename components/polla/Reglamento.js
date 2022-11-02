@@ -38,7 +38,8 @@ export const Reglamento = () => {
   );
 
   const formatoNum = (num) => {
-    return "$" + num.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+    return "$" + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    return 1;
   };
   return (
     <Box
