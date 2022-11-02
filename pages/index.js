@@ -317,7 +317,7 @@ export default function Home({ usuariosDB, equiposDB, pollerosamigos }) {
     );
   }
 
-  if (usuario && !usuario?.alias) {
+  if (usuario && usuario.alias === null) {
     <Button
       colorScheme="pink"
       onClick={() => {
