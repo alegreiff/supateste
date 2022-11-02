@@ -317,7 +317,8 @@ export default function Home({ usuariosDB, equiposDB, pollerosamigos }) {
     );
   }
 
-  if (usuario && usuario.alias === null) {
+  if (usuario?.alias === null) {
+    console.log("Soy NNUUULLO");
     <Button
       colorScheme="pink"
       onClick={() => {
