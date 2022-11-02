@@ -318,15 +318,18 @@ export default function Home({ usuariosDB, equiposDB, pollerosamigos }) {
   }
 
   if (usuario?.alias === null) {
-    console.log("Soy NNUUULLO");
-    <Button
-      colorScheme="pink"
-      onClick={() => {
-        router.push(`/perfil/${usuario?.id}`);
-      }}
-    >
-      Importante: Complete su perfil
-    </Button>;
+    return (
+      <Button
+        size="lg"
+        colorScheme="pink"
+        onClick={() => {
+          router.push(`/perfil/${usuario?.id}`);
+        }}
+      >
+        Importante: Complete su perfil antes de poder cargar marcadores o
+        servalidado como Pollero Amigo
+      </Button>
+    );
   }
 
   return (
