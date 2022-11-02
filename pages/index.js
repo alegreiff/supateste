@@ -7,6 +7,7 @@ import {
   Heading,
   Input,
   Link,
+  Spacer,
   Stack,
   Text,
   VStack,
@@ -319,17 +320,24 @@ export default function Home({ usuariosDB, equiposDB, pollerosamigos }) {
 
   if (usuario?.alias === null) {
     return (
-      <Button
-        size="lg"
-        colorScheme="pink"
-        onClick={() => {
-          router.push(`/perfil/${usuario?.id}`);
-        }}
-      >
-        Importante: Complete su perfil antes de poder cargar marcadores o ser
-        validado como Pollero Amigo. Si usted está en proceso de ser pollero
-        amigo, seleccione como pollero amigo al POLLERO MAYOR
-      </Button>
+      <>
+        <Spacer />
+        <Button
+          size="lg"
+          colorScheme="pink"
+          onClick={() => {
+            router.push(`/perfil/${usuario?.id}`);
+          }}
+        >
+          Importante: Complete su perfil antes de poder cargar marcadores o ser
+          validado como Pollero Amigo.
+        </Button>
+        <Spacer />
+        <Box>
+          Si usted está en proceso de ser pollero amigo, seleccione como pollero
+          amigo al POLLERO MAYOR
+        </Box>
+      </>
     );
   }
 
