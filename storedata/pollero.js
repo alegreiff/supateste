@@ -22,7 +22,7 @@ const useDatosPollero = create(
           }));
         },
         setPerfilUsuario: (params) => {
-          console.log("LOS PARAMÉTRESES", params);
+          console.log("user params", params);
           set((state) => ({
             usuario: {
               ...state.usuario,

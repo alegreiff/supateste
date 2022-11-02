@@ -95,7 +95,7 @@ export const Reglamento = () => {
                   alt="Correo enviado"
                 />
                 <p>
-                  Únicamente deberá hacer clic en{" "}
+                  Únicamente deberá hacer clic en
                   <strong>Confirmar correo</strong> y será redirigido a la
                   página y en adelante podrá ingresar con el correo y la
                   contraseña seleccionadas.
