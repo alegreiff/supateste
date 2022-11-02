@@ -326,8 +326,9 @@ export default function Home({ usuariosDB, equiposDB, pollerosamigos }) {
           router.push(`/perfil/${usuario?.id}`);
         }}
       >
-        Importante: Complete su perfil antes de poder cargar marcadores o
-        servalidado como Pollero Amigo
+        Importante: Complete su perfil antes de poder cargar marcadores o ser
+        validado como Pollero Amigo. Si usted está en proceso de ser pollero
+        amigo, seleccione como pollero amigo al POLLERO MAYOR
       </Button>
     );
   }
