@@ -65,7 +65,7 @@ export default function useMenuLateralPolla() {
       ruta: `/perfil/${usuario.id}`,
     });
     elmenu.push({
-      name: "Test",
+      name: "Chat (pruebas)",
       icon: FiStar,
       ruta: `/chat`,
     });
