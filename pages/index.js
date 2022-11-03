@@ -226,7 +226,7 @@ export default function Home({ usuariosDB, equiposDB, pollerosamigos }) {
     return (
       <Flex justify={"center"} bg="gray.50">
         <VStack width="900px">
-          <Text fontSize="30px" color="polla.catar">
+          <Text padding="16" fontSize="30px" color="polla.catar">
             No es mi polla, no es tu polla. ¡Es Nuestra Polla!
           </Text>
           <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
