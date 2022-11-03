@@ -44,7 +44,7 @@ export const Reglamento = () => {
   return (
     <Box
       width={[
-        "100%", // base
+        "80%", // base
         "100%", // 480px upwards
         "100%", // 768px upwards
         "100%", // 992px upwards
