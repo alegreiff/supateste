@@ -11,6 +11,14 @@ export default function PollaPage() {
     (state) => state
   );
   const [adminpolleros, setAdminpolleros] = useState(null);
+
+  const [pollerosOk, setPollerosOk] = useState([]);
+
+  useEffect(() => {
+    const pollerosBien = polleros.filter((poll) => poll.alias != null);
+    setPollerosOk(pollerosBien);
+  }, [polleros]);
+
   const { isAdmin } = useIsAdmin();
 
   useEffect(() => {
@@ -83,8 +91,8 @@ export default function PollaPage() {
   return (
     <>
       <SimpleGrid minChildWidth="120px" spacing={10}>
-        {polleros &&
-          polleros.map((pollero) => (
+        {pollerosOk &&
+          pollerosOk.map((pollero) => (
             <Box key={pollero.id}>
               <PolleroBadge pollero={pollero} />
               {isAdmin && <AdminPollero pollero={polleroAdmin(pollero.id)} />}
