@@ -221,8 +221,8 @@ export default function Home({ usuariosDB, equiposDB, pollerosamigos }) {
     setIsSignUp((value) => !value);
   };
 
-  if (!user && !isLoading && query?.pollero === "test") {
-    //if (!user && !isLoading) {
+  //if (!user && !isLoading && query?.pollero === "test") {
+  if (!user && !isLoading) {
     return (
       <Flex justify={"center"} bg="gray.50">
         <VStack width="900px">
