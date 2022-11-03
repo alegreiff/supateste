@@ -70,3 +70,13 @@ table.reglamento td p {
 .firstRowFirstColumn {
   width: 400px;
 }
+
+
+
+.midivi {
+  background-color: crimson;
+  max-width: 510px;
+  max-height: 299px;
+  overflow-x: auto;
+  padding-bottom: 50px;
+}

@@ -40,12 +40,14 @@ export default function useMenuLateralPolla() {
     { name: "Polla", icon: FiTrendingUp, ruta: "/polla" },
     /* { name: "Explore", icon: FiCompass, ruta: "/" }, */
     { name: "Partidos", icon: FiStar, ruta: "/partidos" },
+
     /* { name: "Pronos", icon: FiStar, ruta: "/polla/pronos" }, */
     /* {
       name: "Test",
       icon: FiStar,
       ruta: "/perfil/5a47d784-6ea8-4864-9ecf-22b2f07a0e83",
     } */
+
     ,
   ];
   if (usuario?.alias) {
@@ -61,6 +63,11 @@ export default function useMenuLateralPolla() {
       name: "Perfil",
       icon: FiStar,
       ruta: `/perfil/${usuario.id}`,
+    });
+    elmenu.push({
+      name: "Test",
+      icon: FiStar,
+      ruta: `/chat`,
     });
   }
 

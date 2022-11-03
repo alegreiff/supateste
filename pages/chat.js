@@ -1,5 +1,6 @@
 import {
   Badge,
+  Box,
   Button,
   FormControl,
   FormHelperText,
@@ -15,6 +16,7 @@ export default function PollaChat() {
   const [messages, setMessages] = useState([]);
   const [mensajes, setMensajes] = useState([]);
   const message = useRef("");
+  const messagesEndRef = useRef(null);
 
   const { usuario, polleros } = useDatosPollero((state) => state);
   console.log(polleros);
@@ -22,9 +24,10 @@ export default function PollaChat() {
   useEffect(() => {
     const msgs = messages;
     msgs.map((msg) => {
-      msg.alias = polleros.find((pollero) => pollero.id === msg.user_id).alias;
+      msg.alias = polleros.find((pollero) => pollero.id === msg.user_id)?.alias;
     });
     setMensajes(msgs);
+    scrollToBottom();
   }, [messages, polleros]);
 
   useEffect(() => {
@@ -32,6 +35,7 @@ export default function PollaChat() {
       let { data: messages, error } = await supabaseClient
         .from("message")
         .select("*");
+
       setMessages(messages);
     };
 
@@ -46,7 +50,10 @@ export default function PollaChat() {
 
     getMessages();
   }, []);
-
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    console.log("escrolink");
+  };
   const sendMessage = async (event) => {
     event.preventDefault();
     const content = message.current.value;
@@ -59,16 +66,35 @@ export default function PollaChat() {
 
   return (
     <>
-      {mensajes.map((message) => (
-        <div key={message.id}>
-          (
-          <>
-            <Badge>{message.alias}</Badge>
-            {message.content}
-          </>
-          ){" "}
-        </div>
-      ))}
+      <div className="midivi">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
+          blanditiis iure nemo incidunt error perferendis commodi sed,
+          accusantium eveniet quasi dolor pariatur odit aut vero magnam qui
+          illum sint cum.Lorem ipsum dolor sit amet consectetur adipisicing
+          elit. Dicta blanditiis iure nemo incidunt error perferendis commodi
+          sed, accusantium eveniet quasi dolor pariatur odit aut vero magnam qui
+          illum sint cum.Lorem ipsum dolor sit amet consectetur adipisicing
+          elit. Dicta blanditiis iure nemo incidunt error perferendis commodi
+          sed, accusantium eveniet quasi dolor pariatur odit aut vero magnam qui
+          illum sint cum.Lorem ipsum dolor sit amet consectetur adipisicing
+          elit. Dicta blanditiis iure nemo incidunt error perferendis commodi
+          sed, accusantium eveniet quasi dolor pariatur odit aut vero magnam qui
+          illum sint cum.
+        </p>
+        {mensajes.map((message) => (
+          <div key={message.id}>
+            (
+            <>
+              <Badge>{message.alias}</Badge>
+              {message.content}
+            </>
+            ){" "}
+          </div>
+        ))}
+
+        <div ref={messagesEndRef} />
+      </div>
 
       <HStack>
         <form onSubmit={sendMessage}>
