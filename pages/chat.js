@@ -34,9 +34,11 @@ export default function PollaChat() {
     const getMessages = async () => {
       let { data: messages, error } = await supabaseClient
         .from("message")
-        .select("*");
+        .select("*")
+        .limit(20);
 
       setMessages(messages);
+      scrollToBottom();
     };
 
     const message = supabaseClient
@@ -67,21 +69,6 @@ export default function PollaChat() {
   return (
     <>
       <div className="midivi">
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
-          blanditiis iure nemo incidunt error perferendis commodi sed,
-          accusantium eveniet quasi dolor pariatur odit aut vero magnam qui
-          illum sint cum.Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Dicta blanditiis iure nemo incidunt error perferendis commodi
-          sed, accusantium eveniet quasi dolor pariatur odit aut vero magnam qui
-          illum sint cum.Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Dicta blanditiis iure nemo incidunt error perferendis commodi
-          sed, accusantium eveniet quasi dolor pariatur odit aut vero magnam qui
-          illum sint cum.Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Dicta blanditiis iure nemo incidunt error perferendis commodi
-          sed, accusantium eveniet quasi dolor pariatur odit aut vero magnam qui
-          illum sint cum.
-        </p>
         {mensajes.map((message) => (
           <div key={message.id}>
             (
