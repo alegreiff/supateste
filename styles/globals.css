@@ -74,7 +74,7 @@ table.reglamento td p {
 
 
 .midivi {
-  background-color: rgb(252, 246, 247);
+  background-color: rgba(252, 246, 247, 0.548);
   max-width: 510px;
   max-height: 299px;
   overflow-x: auto;

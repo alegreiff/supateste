@@ -9,6 +9,7 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { supabaseClient } from "@supabase/auth-helpers-nextjs";
+import { getHours, getMinutes } from "date-fns";
 import { useEffect, useRef, useState } from "react";
 import useDatosPollero from "../storedata/pollero";
 
@@ -35,9 +36,10 @@ export default function PollaChat() {
       let { data: messages, error } = await supabaseClient
         .from("message")
         .select("*")
-        .limit(20);
+        .order("id", { ascending: false })
+        .limit(10);
 
-      setMessages(messages);
+      setMessages(messages.reverse());
       scrollToBottom();
     };
 
@@ -66,14 +68,34 @@ export default function PollaChat() {
     message.current.value = "";
   };
 
+  function padTo2Digits(num) {
+    return String(num).padStart(2, "0");
+  }
+
+  const muestraFecha = (f) => {
+    const fecha = new Date(f);
+    const y =
+      padTo2Digits(fecha.getHours()) + ":" + padTo2Digits(fecha.getMinutes());
+
+    const h = getHours(fecha);
+    const m = getMinutes(fecha);
+    //return h + ":" + m;
+    return y;
+  };
   return (
     <>
       <div className="midivi">
         {mensajes.map((message) => (
           <div key={message.id}>
             <>
-              <Badge colorScheme="green">{message.alias}</Badge>
-              <Badge>9:23</Badge>
+              <Badge
+                colorScheme={
+                  message.user_id === usuario.id ? "orange" : "facebook"
+                }
+              >
+                {message.alias}
+              </Badge>
+              <Badge> {muestraFecha(message.created_at)} </Badge>
 
               <Box as="span" ml="4">
                 {message.content}
@@ -85,16 +107,16 @@ export default function PollaChat() {
         <div ref={messagesEndRef} />
       </div>
 
-      <HStack>
-        <form onSubmit={sendMessage}>
-          <FormControl>
+      <form onSubmit={sendMessage}>
+        <HStack>
+          <FormControl w="400px">
             <FormLabel>Mensaje</FormLabel>
             <Input type="text" required ref={message} />
             <FormHelperText>Corto y contundente</FormHelperText>
           </FormControl>
           <Button type="submit">Zas!</Button>
-        </form>
-      </HStack>
+        </HStack>
+      </form>
     </>
   );
 }
