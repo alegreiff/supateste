@@ -71,12 +71,14 @@ export default function PollaChat() {
       <div className="midivi">
         {mensajes.map((message) => (
           <div key={message.id}>
-            (
             <>
-              <Badge>{message.alias}</Badge>
-              {message.content}
+              <Badge colorScheme="green">{message.alias}</Badge>
+              <Badge>9:23</Badge>
+
+              <Box as="span" ml="4">
+                {message.content}
+              </Box>
             </>
-            ){" "}
           </div>
         ))}
 
