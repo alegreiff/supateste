@@ -50,13 +50,6 @@ export const Reglamento = () => {
         "100%", // 992px upwards
       ]}
     >
-      <Heading
-        color="polla.catar"
-        width={{ base: "80%", md: "80%", lg: "auto" }}
-      >
-        Esperamos estar al aire con registro de polleros el{" "}
-        <strong>JUEVES 03</strong> de noviembre. Entretanto, entérense...
-      </Heading>
       <Accordion allowToggle>
         <AccordionItem>
           <h2>
