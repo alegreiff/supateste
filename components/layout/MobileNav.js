@@ -27,17 +27,28 @@ import {
   useDisclosure,
   VStack,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { FiMenu, FiBell, FiChevronDown, FiHelpCircle } from "react-icons/fi";
 import { BsPersonCircle } from "react-icons/bs";
 import useMenuLateralPolla from "../../utils/useMenuLateralPolla";
 import { EstadoPolla } from "./EstadoPolla";
+import useDatosPollero from "../../storedata/pollero";
 
 export const MobileNav = ({ onOpen, user, cerrar, ...rest }) => {
+  const { equipos } = useDatosPollero((state) => state);
   const { isOpen: isO, onOpen: onO, onClose: onC } = useDisclosure();
   const btnRef = React.useRef();
   const { userMenu } = useMenuLateralPolla();
+  const [bandera, setBandera] = useState("");
+  useEffect(() => {
+    if (user?.favorito) {
+      const bandera = equipos.find((eq) => eq.id === user.favorito).code;
+      console.log({ bandera });
+      setBandera(bandera);
+    }
+  }, []);
+
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -142,9 +153,15 @@ export const MobileNav = ({ onOpen, user, cerrar, ...rest }) => {
                 >
                   {user?.email ? (
                     <>
-                      <Text fontSize="sm">
-                        {user.alias} {user.favorito}
-                      </Text>
+                      <Text fontSize="sm">{user.alias}</Text>
+                      <Image
+                        border={`3px solid`}
+                        src={`/banderas/${bandera.toLowerCase()}.png`}
+                        alt={user.favorito}
+                        height={22}
+                        width={22}
+                        borderRadius="full"
+                      />
                       <Text fontSize="xs" color="gray.600">
                         {user.email}
                       </Text>
