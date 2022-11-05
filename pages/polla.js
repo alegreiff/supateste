@@ -1,20 +1,35 @@
-import { Box, Button, SimpleGrid } from "@chakra-ui/react";
+import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
+  Box,
+  Button,
+  SimpleGrid,
+} from "@chakra-ui/react";
 import { supabaseClient } from "@supabase/auth-helpers-nextjs";
 import { useEffect, useState } from "react";
 import { AdminPollero } from "../components/polla/AdminPollero";
 import { PolleroBadge } from "../components/polla/PolleroBadge";
 import useDatosPollero from "../storedata/pollero";
 import useIsAdmin from "../utils/useIsAdmin";
+import _ from "lodash";
 
 export default function PollaPage() {
-  const { usuario, polleros, setPolleros, updatePolleros } = useDatosPollero(
-    (state) => state
-  );
+  const { usuario, polleros, setPolleros, updatePolleros, pollerosamigos } =
+    useDatosPollero((state) => state);
   const [adminpolleros, setAdminpolleros] = useState(null);
 
   const [pollerosOk, setPollerosOk] = useState([]);
+  const [pollerosPollos, setpollerosPollos] = useState([]);
 
   useEffect(() => {
+    const tempo = _.groupBy(polleros, "amigo");
+
+    console.log({ tempo });
+    setpollerosPollos(tempo);
+
     const pollerosBien = polleros.filter((poll) => poll.alias != null);
     setPollerosOk(pollerosBien);
   }, [polleros]);
@@ -32,7 +47,7 @@ export default function PollaPage() {
     const usuariospolla = supabaseClient
       .from("usuarios")
       .on("*", (payload) => {
-        console.log("Change received!", payload.new);
+        //console.log("Change received!", payload.new);
         updatePolleros(payload.new);
       })
       .subscribe();
@@ -51,7 +66,7 @@ export default function PollaPage() {
   useEffect(() => {
     async function saludo() {
       const { data: saludodb } = await supabaseClient.rpc("hello");
-      console.log("SALUDO", saludodb);
+      //console.log("SALUDO", saludodb);
     }
 
     async function adminLeeUsuarios() {
@@ -71,7 +86,7 @@ export default function PollaPage() {
       });
 
       if (error) console.error(error);
-      else console.log(data);
+      //else console.log(data);
     }
     //add_prono();
 
@@ -88,9 +103,57 @@ export default function PollaPage() {
     }
   };
 
+  const misPolleros = (id) => {
+    return polleros.filter((poll) => poll.amigo === id);
+  };
+
+  const nombrePollero = (nombre) => {
+    if (!nombre) {
+      return "";
+    }
+
+    var first_letter = function (x) {
+      if (x) {
+        return x[0];
+      } else {
+        return "";
+      }
+    };
+
+    return nombre.split(" ").map(first_letter).join("");
+  };
+
   return (
     <>
-      <SimpleGrid minChildWidth="120px" spacing={10}>
+      <Accordion>
+        {pollerosamigos &&
+          pollerosamigos.map((amigo) => (
+            <AccordionItem key={amigo.id}>
+              <h2>
+                <AccordionButton>
+                  <Box flex="1" textAlign="left">
+                    {nombrePollero(amigo.username)}
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel pb={4}>
+                <SimpleGrid minChildWidth="120px" spacing={10}>
+                  {misPolleros(amigo.username).map((pollero) => (
+                    <Box key={pollero.id}>
+                      <PolleroBadge pollero={pollero} />
+                      {isAdmin && (
+                        <AdminPollero pollero={polleroAdmin(pollero.id)} />
+                      )}
+                    </Box>
+                  ))}
+                </SimpleGrid>
+              </AccordionPanel>
+            </AccordionItem>
+          ))}
+      </Accordion>
+
+      {/* <SimpleGrid minChildWidth="120px" spacing={10}>
         {pollerosOk &&
           pollerosOk.map((pollero) => (
             <Box key={pollero.id}>
@@ -98,7 +161,7 @@ export default function PollaPage() {
               {isAdmin && <AdminPollero pollero={polleroAdmin(pollero.id)} />}
             </Box>
           ))}
-      </SimpleGrid>
+      </SimpleGrid> */}
     </>
   );
 }
