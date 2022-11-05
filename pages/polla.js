@@ -4,6 +4,7 @@ import {
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
+  Badge,
   Box,
   Button,
   SimpleGrid,
@@ -30,7 +31,8 @@ export default function PollaPage() {
     console.log({ tempo });
     setpollerosPollos(tempo);
 
-    const pollerosBien = polleros.filter((poll) => poll.alias != null);
+    let pollerosBien = polleros.filter((poll) => poll.alias != null);
+    pollerosBien = _.sortBy(pollerosBien, "alias");
     setPollerosOk(pollerosBien);
   }, [polleros]);
 
@@ -125,6 +127,14 @@ export default function PollaPage() {
 
   return (
     <>
+      <SimpleGrid minChildWidth="120px" spacing={10}>
+        {pollerosOk &&
+          pollerosOk.map((pollero) => (
+            <Badge colorScheme="purple" p={2} key={pollero.id}>
+              {pollero.alias}
+            </Badge>
+          ))}
+      </SimpleGrid>
       <Accordion>
         {pollerosamigos &&
           pollerosamigos.map((amigo) => (
@@ -152,16 +162,6 @@ export default function PollaPage() {
             </AccordionItem>
           ))}
       </Accordion>
-
-      {/* <SimpleGrid minChildWidth="120px" spacing={10}>
-        {pollerosOk &&
-          pollerosOk.map((pollero) => (
-            <Box key={pollero.id}>
-              <PolleroBadge pollero={pollero} />
-              {isAdmin && <AdminPollero pollero={polleroAdmin(pollero.id)} />}
-            </Box>
-          ))}
-      </SimpleGrid> */}
     </>
   );
 }
