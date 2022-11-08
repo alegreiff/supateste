@@ -35,6 +35,7 @@ import useDatosPollero from "../storedata/pollero";
 export default function useMenuLateralPolla() {
   const [usuariopolla, setUsuariopolla] = useState(null);
   const { usuario } = useDatosPollero((state) => state);
+  console.log({ usuario });
 
   const elmenu = [
     { name: "Inicio", icon: FiHome, ruta: "/" },
@@ -51,6 +52,15 @@ export default function useMenuLateralPolla() {
 
     ,
   ];
+
+  if (usuario?.isAmigo) {
+    elmenu.push({
+      name: "Mis polleros",
+      icon: FiStar,
+      ruta: `/amigos/${usuario.id}`,
+    });
+  }
+
   if (usuario?.alias) {
     elmenu.push({
       name: "Pronos",
