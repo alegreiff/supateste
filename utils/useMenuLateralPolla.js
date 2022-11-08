@@ -28,6 +28,7 @@ import {
   FiCompass,
   FiStar,
   FiSettings,
+  FiUsers,
 } from "react-icons/fi";
 import useDatosPollero from "../storedata/pollero";
 
@@ -37,7 +38,7 @@ export default function useMenuLateralPolla() {
 
   const elmenu = [
     { name: "Inicio", icon: FiHome, ruta: "/" },
-    { name: "Polla", icon: FiTrendingUp, ruta: "/polla" },
+    { name: "Polleros", icon: FiUsers, ruta: "/polleros" },
     /* { name: "Explore", icon: FiCompass, ruta: "/" }, */
     { name: "Partidos", icon: FiStar, ruta: "/partidos" },
 

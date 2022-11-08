@@ -125,5 +125,5 @@ export default function PronosPage({ user, data }) {
 }
 
 export const getServerSideProps = withPageAuth({
-  redirectTo: "/polla",
+  redirectTo: "/polleros",
 });
