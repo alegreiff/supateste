@@ -137,7 +137,7 @@ export default function PollerosAMigosAdmin() {
                     notas: e.target.value,
                   });
                 }}
-                placeholder="Here is a sample placeholder"
+                placeholder="nombre / cuándo pagó / por dónde pagó"
                 size="sm"
               />
             </FormControl>
