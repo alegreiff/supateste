@@ -1,4 +1,6 @@
 import {
+  Badge,
+  Box,
   Button,
   Checkbox,
   FormControl,
@@ -66,9 +68,18 @@ export default function PollerosAMigosAdmin() {
 
   return (
     <>
-      <h3>Polleros amigos {id}</h3>
-      <h4>EN PROCESO</h4>
-      <p>Proximamente administración de sus polleros</p>
+      <h3>Polleros amigos </h3>
+      {polleros && (
+        <Badge colorScheme="green">
+          Tengo <strong>{polleros.length}</strong> polleros
+        </Badge>
+      )}
+
+      <Box>
+        Mi deuda con Nuestra Polla será de{" "}
+        {200000 * (polleros.length > 9 ? polleros.length - 1 : polleros.length)}
+      </Box>
+
       <Table className="reglamento">
         <Thead>
           <Tr>

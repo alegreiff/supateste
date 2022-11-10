@@ -133,9 +133,11 @@ export const Reglamento = () => {
             </p>
             <Alert status="info">
               <AlertIcon />
-              Los polleros amigos son (por ahora): Luis Carlos Urrutia / Jaime
-              de Greiff. Uno de ellos avalará su inscripción y lo contactará
-              para el pago.
+              Los polleros amigos somos: Andrés Marcel Giraldo Arango / Diego
+              Urrutia / Esteban Muñoz / Jaime de Greiff / Juan Sebastián Salazar
+              Piedrahita / Luis Carlos Urrutia / Luis Fernando Velasco/ /Miller
+              Sánchez / Ricardo Ramírez Uno de ellos avalará su inscripción y lo
+              contactará para el pago.
             </Alert>
           </AccordionPanel>
         </AccordionItem>
