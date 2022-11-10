@@ -1,3 +1,4 @@
+import { FaTwitterSquare } from "react-icons/fa";
 import {
   Accordion,
   AccordionButton,
@@ -7,6 +8,8 @@ import {
   Alert,
   AlertIcon,
   Box,
+  Button,
+  Center,
   Heading,
   HStack,
   Image,
@@ -21,6 +24,7 @@ import {
   Spacer,
   UnorderedList,
 } from "@chakra-ui/react";
+import NextLink from "next/link";
 import React, { useEffect, useState } from "react";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
@@ -50,6 +54,23 @@ export const Reglamento = () => {
         "100%", // 992px upwards
       ]}
     >
+      <Box p={4}>
+        <Center>
+          <a
+            target="_blank"
+            href="https://twitter.com/nuestrapolla"
+            rel="noreferrer"
+          >
+            <Button
+              rightIcon={<FaTwitterSquare />}
+              colorScheme="blue"
+              variant="outline"
+            >
+              Actualidad de Nuestra Polla en Twitter
+            </Button>
+          </a>
+        </Center>
+      </Box>
       <Accordion allowToggle>
         <AccordionItem>
           <h2>

@@ -162,3 +162,30 @@ export default function PollerosAMigosAdmin() {
     </>
   );
 }
+/* 
+jajaja
+
+Nuestra Polla es una tradición. Yo la vengo haciendo -no miento- desde el 86
+
+Tomó fuerza en la Universidad en los 90 y ha seguido... 
+
+
+La hacemos siempre entre amigos o amigos de amigos
+
+Ya estás inscrita y soy tu pollero amigo, a mi me pagarás pero hay tiempo hasta el comienzo del mundial. Ahora lo importante es que antes del viernes 18 pongas los marcadores de la fase de grupos.
+
+En cada grupo hay 6 partidos y puedes poner COMODÍN en dos de ellos. En esos tus puntos valen doble.
+
+A medida que avanza el mundial los puntos valen más. 
+
+En este momento somos ya 45 y el premio mayor va en 3.600.000 (hay otros premios)
+
+Puntos.
+Si dices que Catar 1 - Ecuador 0 y queda 1 - 0 es un Chepazo y da 5 puntos. (Sí le pones comodín da 10 puntos)
+
+Si queda 2 - 0 (acertaste el resultado, no el marcador) es un simple y da 3 puntos ( Con cmodín daría 6)
+
+La página se va actualizando cada día con las tablas de puntuación de los polleros
+
+
+*/
