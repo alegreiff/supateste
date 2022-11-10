@@ -66,6 +66,11 @@ export default function PollerosAMigosAdmin() {
     onOpen();
   };
 
+  const formatoNum = (num) => {
+    return "$" + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    return 1;
+  };
+
   return (
     <>
       <h3>Polleros amigos </h3>
@@ -76,8 +81,16 @@ export default function PollerosAMigosAdmin() {
       )}
 
       <Box>
-        Mi deuda con Nuestra Polla será de{" "}
-        {200000 * (polleros.length > 9 ? polleros.length - 1 : polleros.length)}
+        Mi deuda con Nuestra Polla será de
+        {formatoNum(
+          200000 * (polleros.length > 9 ? polleros.length - 1 : polleros.length)
+        )}
+        <hr />
+        {polleros.length > 9
+          ? "Mi cupo es libre"
+          : `Aun me faltan ${
+              10 - polleros.length
+            } polleros para que mi cupo sea libre`}
       </Box>
 
       <Table className="reglamento">
