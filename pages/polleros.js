@@ -142,7 +142,8 @@ export default function PollaPage() {
               <h2>
                 <AccordionButton>
                   <Box flex="1" textAlign="left">
-                    {nombrePollero(amigo.username)}
+                    {nombrePollero(amigo.username)} -
+                    {misPolleros(amigo.username).length}
                   </Box>
                   <AccordionIcon />
                 </AccordionButton>
