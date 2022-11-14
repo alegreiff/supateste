@@ -7,7 +7,10 @@ import {
   Badge,
   Box,
   Button,
+  Center,
   SimpleGrid,
+  Spacer,
+  Tag,
 } from "@chakra-ui/react";
 import { supabaseClient } from "@supabase/auth-helpers-nextjs";
 import { useEffect, useState } from "react";
@@ -28,24 +31,18 @@ export default function PollaPage() {
   useEffect(() => {
     const tempo = _.groupBy(polleros, "amigo");
 
-    console.log({ tempo });
+    //console.log({ tempo });
     setpollerosPollos(tempo);
 
     let pollerosBien = polleros.filter((poll) => poll.alias != null);
     pollerosBien = _.sortBy(pollerosBien, "alias");
+    //console.log({ pollerosBien });
     setPollerosOk(pollerosBien);
   }, [polleros]);
 
   const { isAdmin } = useIsAdmin();
 
   useEffect(() => {
-    /* const usuariospolla = supabaseClient
-      .from("usuariospolla")
-      .on("*", (payload) => {
-        console.log("Change received!", payload);
-      })
-      .subscribe(); */
-
     const usuariospolla = supabaseClient
       .from("usuarios")
       .on("*", (payload) => {
@@ -53,16 +50,6 @@ export default function PollaPage() {
         updatePolleros(payload.new);
       })
       .subscribe();
-
-    /* const subscription = supabaseClient
-      .from("usuariospolla")
-      .on("*", (payload) => {
-        console.log("ALGUIEN CAMBIÓ", payload.new);
-      })
-      .subscribe();
-    return () => {
-      supabaseClient.removeSubscription(subscription);
-    }; */
   }, []);
 
   useEffect(() => {
@@ -127,11 +114,20 @@ export default function PollaPage() {
 
   return (
     <>
-      <SimpleGrid minChildWidth="120px" spacing={10}>
+      <SimpleGrid minChildWidth="150px" spacing={10}>
         {pollerosOk &&
           pollerosOk.map((pollero) => (
-            <Badge colorScheme="purple" p={2} key={pollero.id}>
-              {pollero.alias}
+            <Badge
+              colorScheme={pollero.pronos > 47 ? "green" : "purple"}
+              p={2}
+              key={pollero.id}
+            >
+              <Center>
+                {pollero.alias} <Spacer />{" "}
+                <Tag color="blackAlpha.800" size="lg">
+                  {pollero.pronos}
+                </Tag>
+              </Center>
             </Badge>
           ))}
       </SimpleGrid>

@@ -83,6 +83,12 @@ const useDatosPollero = create(
             pollerosamigos: params,
           }));
         },
+        fechaspartidos: [],
+        setFechasPartidos: (params) => {
+          set((state) => ({
+            fechaspartidos: params,
+          }));
+        },
       }),
       { name: "datospolla" }
     )

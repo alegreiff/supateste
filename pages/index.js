@@ -29,8 +29,14 @@ import usePollaSettings from "../storedata/settings";
 import { Reglamento } from "../components/polla/Reglamento";
 //const user = false;
 
-export default function Home({ usuariosDB, equiposDB, pollerosamigos }) {
-  console.log("lespollereèsamiès", pollerosamigos);
+export default function Home({
+  usuariosDB,
+  equiposDB,
+  pollerosamigos,
+  fechaspolla,
+}) {
+  //console.log("lespollereèsamiès", pollerosamigos);
+  //console.log({ fechaspolla });
   const router = useRouter();
   const query = router.query;
 
@@ -46,6 +52,7 @@ export default function Home({ usuariosDB, equiposDB, pollerosamigos }) {
     equipos,
     clearEquipos,
     setPollerosamigos,
+    setFechasPartidos,
   } = useDatosPollero((state) => state);
 
   const { setAllPronos } = usePollaSettings((state) => state);
@@ -53,6 +60,12 @@ export default function Home({ usuariosDB, equiposDB, pollerosamigos }) {
   if (user) {
     //router.push("/polla");
   }
+
+  useEffect(() => {
+    if (fechaspolla) {
+      setFechasPartidos(fechaspolla);
+    }
+  }, [fechaspolla, setFechasPartidos]);
 
   useEffect(() => {
     async function cargaPronos() {
@@ -365,8 +378,14 @@ export async function getServerSideProps(context) {
     .from("pollerosamigos")
     .select("*");
 
+  const { data: fechaspolla, error: errorfechas } = await supabaseServerClient(
+    context
+  )
+    .from("fechaspolla")
+    .select("*");
+
   return {
-    props: { usuariosDB, equiposDB, pollerosamigos }, // will be passed to the page component as props
+    props: { usuariosDB, equiposDB, pollerosamigos, fechaspolla }, // will be passed to the page component as props
   };
 }
 
