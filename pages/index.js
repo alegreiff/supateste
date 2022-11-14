@@ -109,9 +109,9 @@ export default function Home({
       console.log("partita", db_partidos);
     }
 
-    if (partidos.length === 0) {
-      cargaPartidos();
-    }
+    //if (partidos.length === 0) {
+    cargaPartidos();
+    //}
   }, [setPartidos]);
 
   useEffect(() => {
