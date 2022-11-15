@@ -3,10 +3,6 @@ import { useEffect, useState } from "react";
 import useDatosPollero from "../../../storedata/pollero";
 
 import React from "react";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Pie, Doughnut } from "react-chartjs-2";
-
-ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const data = {
   labels: ["Red"],
@@ -73,9 +69,7 @@ export const PartidoDiario = ({ partido }) => {
           {JSON.stringify(stats)}
         </Box>
 
-        <Box height={400}>
-          <Doughnut data={pie ? pie : data} />;
-        </Box>
+        <Box height={400}></Box>
       </SimpleGrid>
     </>
   );
