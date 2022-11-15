@@ -4,7 +4,7 @@ import "react-calendar/dist/Calendar.css";
 import useDatosPollero from "../../storedata/pollero";
 import usePollaSettings from "../../storedata/settings";
 import _ from "lodash";
-import { Tag } from "@chakra-ui/react";
+import { Box, Spacer, Tag } from "@chakra-ui/react";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { PartidoDiario } from "../../components/polla/diario/partido";
@@ -42,17 +42,19 @@ export default function PaginaPolla() {
     <>
       <h2>La polla diaria {JSON.stringify(value)} </h2>
 
-      {fechaspartidos &&
-        fechaspartidos.map((dia, i) => (
-          <Tag
-            key={i}
-            onClick={() => {
-              setValueDate(new Date(dia.mifecha));
-            }}
-          >
-            {format(new Date(dia.mifecha), "eee dd MMM", { locale: es })}
-          </Tag>
-        ))}
+      <Box marginBottom={5}>
+        {fechaspartidos &&
+          fechaspartidos.map((dia, i) => (
+            <Tag
+              key={i}
+              onClick={() => {
+                setValueDate(new Date(dia.mifecha));
+              }}
+            >
+              {format(new Date(dia.mifecha), "eee dd MMM", { locale: es })}
+            </Tag>
+          ))}
+      </Box>
 
       {partidosHoy &&
         partidosHoy.map((p) => (

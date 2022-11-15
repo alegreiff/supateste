@@ -89,6 +89,12 @@ const useDatosPollero = create(
             fechaspartidos: params,
           }));
         },
+        statspronos: [],
+        setStatsPronos: (params) => {
+          set((state) => ({
+            statspronos: params,
+          }));
+        },
       }),
       { name: "datospolla" }
     )

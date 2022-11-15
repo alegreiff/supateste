@@ -34,12 +34,13 @@ export default function Home({
   equiposDB,
   pollerosamigos,
   fechaspolla,
+  statspronos,
 }) {
   //console.log("lespollereèsamiès", pollerosamigos);
   //console.log({ fechaspolla });
   const router = useRouter();
   const query = router.query;
-
+  console.log({ statspronos });
   const {
     usuario,
     setUsuario,
@@ -53,6 +54,7 @@ export default function Home({
     clearEquipos,
     setPollerosamigos,
     setFechasPartidos,
+    setStatsPronos,
   } = useDatosPollero((state) => state);
 
   const { setAllPronos } = usePollaSettings((state) => state);
@@ -62,10 +64,13 @@ export default function Home({
   }
 
   useEffect(() => {
+    if (statspronos) {
+      setStatsPronos(statspronos);
+    }
     if (fechaspolla) {
       setFechasPartidos(fechaspolla);
     }
-  }, [fechaspolla, setFechasPartidos]);
+  }, [fechaspolla, setFechasPartidos, statspronos, setStatsPronos]);
 
   useEffect(() => {
     async function cargaPronos() {
@@ -384,40 +389,13 @@ export async function getServerSideProps(context) {
     .from("fechaspolla")
     .select("*");
 
+  const { data: statspronos, error: stats } = await supabaseServerClient(
+    context
+  )
+    .from("testdrama")
+    .select("*");
+
   return {
-    props: { usuariosDB, equiposDB, pollerosamigos, fechaspolla }, // will be passed to the page component as props
+    props: { usuariosDB, equiposDB, pollerosamigos, fechaspolla, statspronos }, // will be passed to the page component as props
   };
 }
-
-/* export const getServerSideProps = withPageAuth({
-  redirectTo: "/",
-  async getServerSideProps(ctx) {
-    // Run queries with RLS on the server
-    const { data } = await supabaseServerClient(ctx).from("test").select("*");
-    return { props: { data } };
-  },
-}); */
-
-/* export const getServerSideProps = withPageAuth({
-  redirectTo: "/foo",
-  async getServerSideProps(ctx) {
-    // Access the user object
-    const { user, accessToken } = await getUser(ctx);
-    return { props: { email: user?.email } };
-  },
-}); */
-
-/* 
-POLLEROS AMIGOS
-1. Jaime de Greiff
-2. Luis Carlos Urrutia
-3. Alfonso Ospina Torres  fue pollero de Ricardo Ramírez
-alfonso.ospina70@gmail.com / 3142957592
-4. Juan Sebastian Salazar Piedrahita fue pollero mío ganador de Rusia 2018
-js.salazarp@uniandes.edu.co
-5. Esteban Muñoz 
-
-Luis Fernando Velasco. Preguntar
-
-
-*/
