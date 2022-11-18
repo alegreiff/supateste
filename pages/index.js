@@ -264,7 +264,6 @@ export default function Home({
   if (!user && !isLoading) {
     return (
       <>
-        <StatusPolleros />
         <Flex justify={"center"} bg="gray.50">
           <VStack width="900px">
             <Text padding="16" fontSize="30px" color="polla.catar">
@@ -357,6 +356,7 @@ export default function Home({
             <Reglamento />
           </VStack>
         </Flex>
+        <StatusPolleros />
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>
