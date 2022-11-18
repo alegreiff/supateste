@@ -111,7 +111,7 @@ export default function PollerosAMigosAdmin() {
               <Tr key={pollero.userid}>
                 <Td>{pollero.fecha}</Td>
                 <Td>{pollero.apodo} </Td>
-                <Td>{}</Td>
+                <Td>{pollero.pron}</Td>
                 <Td>{pollero.mail}</Td>
                 <Td>{pollero.notas} </Td>
                 <Td>{pollero.pago === true ? "PAGADO" : "EN DEUDA"}</Td>
