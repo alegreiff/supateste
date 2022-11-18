@@ -11,8 +11,10 @@
   "dependencies": {
     "@chakra-ui/icons": "^2.0.10",
     "@chakra-ui/react": "^2.3.5",
+    "@david.kucsai/react-pdf-table": "^0.4.1",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@react-pdf/renderer": "^3.0.1",
     "@supabase/auth-helpers-nextjs": "^0.2.9",
     "@supabase/auth-helpers-react": "^0.2.4",
     "@supabase/supabase-js": "^1.35.7",
@@ -29,6 +31,7 @@
     "react-icons": "^4.4.0",
     "react-super-responsive-table": "^5.2.1",
     "react-table": "^7.8.0",
+    "recharts": "^2.1.16",
     "sweetalert2": "^11.4.38",
     "yup": "^0.32.11",
     "zustand": "^4.1.1"

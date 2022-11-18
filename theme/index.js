@@ -8,9 +8,10 @@ const customTheme = extendTheme({
       catar: "#6C1D45",
       catarlight: "#9F5078",
       catari: "#A10D50",
-      local: "#114df9 ",
-      visitante: "#e74c3c",
-      empate: "#1ec700",
+      local: "#A10D50",
+      visitante: "#3E7594",
+      empate: "#CEA02B",
+      prono: "#2E7A61",
     },
   },
 });

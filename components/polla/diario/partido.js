@@ -1,75 +1,267 @@
-import { Badge, Box, SimpleGrid, Spacer } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { Badge, Box, HStack, SimpleGrid, Spacer } from "@chakra-ui/react";
+import { useCallback, useEffect, useState } from "react";
 import useDatosPollero from "../../../storedata/pollero";
-
 import React from "react";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  PieChart,
+  Pie,
+  ResponsiveContainer,
+  Tooltip,
+  Legend,
+  Cell,
+  Label,
+} from "recharts";
+import { Rivales } from "./Rivales";
 
-export const data = {
-  labels: ["Red"],
-  datasets: [
-    {
-      label: "# of Votes",
-      data: [12],
-      backgroundColor: ["rgba(255, 99, 132, 0.2)"],
-      borderColor: ["rgba(255, 99, 132, 1)"],
-      borderWidth: 1,
-    },
-  ],
-};
+function CustomLabel({ viewBox, value1, value2 }) {
+  const { cx, cy } = viewBox;
+  return (
+    <svg
+      className="recharts-text recharts-label"
+      textAnchor="middle"
+      dominantBaseline="central"
+    >
+      <text x={cx} y={cy} fill="#3d405c">
+        <tspan x={cx} dy="0em" alignmentBaseline="middle" fontSize="26">
+          {value1}
+        </tspan>
+        <tspan x={cx} dy="1.8em" fontSize="14">
+          {value2}
+        </tspan>
+      </text>
+    </svg>
+  );
+}
 
-export const PartidoDiario = ({ partido }) => {
+function CustomLabelSINO({ viewBox, value1, value2 }) {
+  const { cx, cy } = viewBox;
+  return (
+    <svg
+      className="recharts-text recharts-label"
+      textAnchor="middle"
+      dominantBaseline="central"
+    >
+      <text x={cx} y={cy} fill="#2E7A61">
+        <tspan
+          x={cx}
+          dy="-2em"
+          alignmentBaseline="middle"
+          fontSize="20"
+          fontWeight="bolder"
+        >
+          SI {value1}
+        </tspan>
+      </text>
+      <text x={cx} y={cy} fill="#CA1448">
+        <tspan x={cx} dy="-1em" fontSize="20" fontWeight="bolder">
+          NO {value2}
+        </tspan>
+      </text>
+    </svg>
+  );
+}
+
+export const PartidoDiario = ({ partido, prono }) => {
   const { statspronos } = useDatosPollero((state) => state);
   const [stats, setStats] = useState(null);
   const [pie, setPie] = useState(null);
+  const [comData, setComData] = useState(null);
+  const [cdat, setCdat] = useState(null);
+  const [sicom, setSicom] = useState(null);
 
   useEffect(() => {
     const localStats = statspronos.find((stats) => stats.p === partido.id);
+    console.log({ localStats });
     setStats(localStats);
 
-    const datosPie = {
-      labels: [partido.eqloc, "Empate", partido.eqvis],
-      datasets: [
-        {
-          label: "Polleros",
-          data: [localStats.p_loc, localStats.p_emp, localStats.p_vis],
-          backgroundColor: [
-            "rgba(17,77,249, 0.2)",
-            "rgba(30,199,0, 0.2)",
-            "rgba(231,76,60, 0.2)",
-          ],
-          borderColor: [
-            "rgba(17,77,249, 1)",
-            "rgba(30,199,0, 1)",
-            "rgba(231,76,60, 1)",
-          ],
-          borderWidth: 1,
-        },
-      ],
-    };
-    setPie(datosPie);
+    const ladata = [
+      { name: partido.eqloc, value: localStats.p_loc, fill: "#A10D50" },
+      { name: "Empate", value: localStats.p_emp, fill: "#CEA02B" },
+      { name: partido.eqvis, value: localStats.p_vis, fill: "#3E7594" },
+    ];
+
+    let locName = partido.eqloc;
+    let visName = partido.eqvis;
+    const comodinesData = [
+      {
+        name: "Comodines",
+        SI: localStats.com,
+        NO: localStats.pronostotales - localStats.com,
+        [locName]: localStats.comloc,
+        [visName]: localStats.comvis,
+        Empate: localStats.comemp,
+      },
+    ];
+    console.log({ comodinesData });
+
+    const losdatos = [
+      { name: partido.eqloc, value: localStats.comloc, fill: "#A10D50" },
+      { name: "Empate", value: localStats.comemp, fill: "#CEA02B" },
+      { name: partido.eqvis, value: localStats.comvis, fill: "#3E7594" },
+    ];
+
+    const losdatosdos = [
+      { name: "SI", value: localStats.com, fill: "#2E7A61" },
+      {
+        name: "NO",
+        value: localStats.pronostotales - localStats.com,
+        fill: "#CA1448",
+      },
+    ];
+
+    setSicom(losdatosdos);
+    setCdat(losdatos);
+    setPie(ladata);
+    setComData(comodinesData);
   }, []);
+
+  const renderLabel = useCallback((piePiece) => {
+    return piePiece.name + " ";
+  }, []);
+
+  const RADIAN = Math.PI / 180;
+  const renderCustomizedLabel = ({
+    cx,
+    cy,
+    midAngle,
+    innerRadius,
+    outerRadius,
+    percent,
+    index,
+  }) => {
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+    return (
+      <text
+        x={x}
+        y={y}
+        fill="white"
+        fontWeight="bolder"
+        fontSize="17"
+        textAnchor={x > cx ? "start" : "end"}
+        dominantBaseline="central"
+      >
+        {`${(percent * 100).toFixed(0)}%`}
+      </text>
+    );
+  };
 
   return (
     <>
       <SimpleGrid columns={[1, null, 2]} spacing="40px">
+        <Rivales partido={partido} prono={prono} />
+
         <Box>
-          <Badge fontSize="2xl" color="polla.local">
-            {" "}
-            {partido.eqloc}{" "}
-          </Badge>
-          <Badge variant="outline" color="polla.empate" m="2">
-            vs
-          </Badge>
-          <Badge fontSize="2xl" color="polla.visitante">
-            {" "}
-            {partido.eqvis}{" "}
-          </Badge>
-        </Box>
-        <Box bg="tomato" height="80px">
-          {JSON.stringify(stats)}
+          <ResponsiveContainer width="100%" height={300}>
+            <PieChart>
+              <Pie
+                data={pie}
+                dataKey="value"
+                cx={120}
+                cy={150}
+                //labelLine={false}
+                //label={renderCustomizedLabel}
+                outerRadius={100}
+                innerRadius={0}
+                legendType="circle"
+                label
+              >
+                {pie?.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    stroke="#ABB9C9"
+                    strokeWidth={4}
+                    strokeOpacity={0.5}
+                  />
+                ))}
+              </Pie>
+              <Tooltip />
+              <Legend align="left" />
+
+              <Pie
+                data={cdat}
+                cx={370}
+                cy={80}
+                //startAngle={180}
+                //endAngle={0}
+                innerRadius={60}
+                outerRadius={80}
+                dataKey="value"
+                legendType="none"
+              >
+                <Label
+                  width={30}
+                  position="center"
+                  content={
+                    <CustomLabel value1={stats?.com} value2={"Comodines"} />
+                  }
+                ></Label>
+              </Pie>
+              <Pie
+                data={sicom}
+                cx={420}
+                cy={300}
+                //startAngle={180}
+                //endAngle={0}
+                innerRadius={65}
+                outerRadius={80}
+                paddingAngle={10}
+                dataKey="value"
+                startAngle={180}
+                endAngle={0}
+                legendType="none"
+              >
+                <Label
+                  width={30}
+                  position="center"
+                  content={
+                    <CustomLabelSINO
+                      value1={stats?.com}
+                      value2={stats?.pronostotales - stats?.com}
+                    />
+                  }
+                ></Label>
+              </Pie>
+            </PieChart>
+          </ResponsiveContainer>
         </Box>
 
-        <Box height={400}></Box>
+        {/* <ResponsiveContainer width="100%" height={250}>
+          <BarChart
+            width={200}
+            height={300}
+            data={comData}
+            margin={{
+              top: 0,
+              right: 0,
+              left: 0,
+              bottom: 0,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="SI" stackId="sn" fill="#2E7A61" />
+            <Bar dataKey="NO" stackId="sn" fill="#CA1448" />
+
+            <Bar dataKey={partido.eqloc} stackId="si" fill="#A10D50" />
+            <Bar dataKey={partido.eqvis} stackId="si" fill="#3E7594" />
+            <Bar dataKey="Empate" stackId="si" fill="#CEA02B" />
+          </BarChart>
+        </ResponsiveContainer> */}
+
+        <Box bg="tomato" height="20">
+          {JSON.stringify(stats)}
+        </Box>
       </SimpleGrid>
     </>
   );

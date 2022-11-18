@@ -44,6 +44,10 @@ export default function useMenuLateralPolla() {
     /* { name: "Explore", icon: FiCompass, ruta: "/" }, */
     { name: "Partidos", icon: FiStar, ruta: "/partidos" },
 
+    /* PDF TEMPORAL */
+    //{ name: "Test PDF", icon: FiStar, ruta: "/pdf" },
+    /* FIN PDF Temporal */
+
     //{ name: "Po ya", icon: FiStar, ruta: "/polla/polla" },
 
     /* { name: "Pronos", icon: FiStar, ruta: "/polla/pronos" }, */

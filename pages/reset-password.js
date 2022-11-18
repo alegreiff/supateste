@@ -49,4 +49,6 @@ export default function Reset() {
 
 /*
 https://dsbiqexajjcyswddmxve.supabase.co/auth/v1/verify?token=02afb3be4bea732fbbd583d4fa2a1aa836c36ce695fe531744716a36&type=recovery&redirect_to=http://localhost:3000/reset-password
+
+	
 */

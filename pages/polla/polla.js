@@ -12,7 +12,9 @@ import { PartidoDiario } from "../../components/polla/diario/partido";
 export default function PaginaPolla() {
   const [value, setValueDate] = useState(new Date());
   const { fechas } = usePollaSettings((state) => state);
-  const { fechaspartidos, partidos } = useDatosPollero((state) => state);
+  const { fechaspartidos, partidos, pronospollero } = useDatosPollero(
+    (state) => state
+  );
   const [partidosHoy, setPartidosHoy] = useState(null);
 
   //console.log({ partidos });
@@ -21,13 +23,14 @@ export default function PaginaPolla() {
     setPartidosHoy(null);
     const dia = value.getDate();
     const mes = value.getMonth() + 1;
-    const partidosDia = partidos.filter(
+    let partidosDia = partidos.filter(
       (match) =>
         new Date(match.fecha).getDate() === dia &&
         new Date(match.fecha).getMonth() + 1 === mes &&
         match.idloc &&
         match.idvis
     );
+    partidosDia = _.orderBy(partidosDia, ["fecha"], "asc");
     console.log(partidosDia);
     setPartidosHoy(partidosDia);
   }, [value, partidos]);
@@ -37,6 +40,12 @@ export default function PaginaPolla() {
       setValueDate(new Date(fechas.HOY));
     }
   }, []);
+
+  const miProno = (p) => {
+    if (!pronospollero) return null;
+    const prono = pronospollero.find((prono) => prono.id === p);
+    return prono;
+  };
 
   return (
     <>
@@ -58,7 +67,11 @@ export default function PaginaPolla() {
 
       {partidosHoy &&
         partidosHoy.map((p) => (
-          <PartidoDiario key={p.id} partido={p}></PartidoDiario>
+          <PartidoDiario
+            key={p.id}
+            prono={miProno(p.id)}
+            partido={p}
+          ></PartidoDiario>
         ))}
     </>
   );

@@ -329,7 +329,7 @@ export const Reglamento = () => {
                     <Tr>
                       <Td>Grupos</Td>
                       <Td>Ahora mismo</Td>
-                      <Td>Noviembre 21 (9:00 am)</Td>
+                      <Td>Sábado - noviembre 19 (6:00 pm)</Td>
                     </Tr>
                     <Tr>
                       <Td colSpan={3}>
