@@ -35,6 +35,7 @@ import { Prepolleros } from "../components/polla/Prepolleros";
 import { useRouter } from "next/router";
 import usePollaSettings from "../storedata/settings";
 import { Reglamento } from "../components/polla/Reglamento";
+import { StatusPolleros } from "../components/estatus/StatusPolleros";
 //const user = false;
 
 export default function Home({
@@ -263,6 +264,7 @@ export default function Home({
   if (!user && !isLoading) {
     return (
       <>
+        <StatusPolleros />
         <Flex justify={"center"} bg="gray.50">
           <VStack width="900px">
             <Text padding="16" fontSize="30px" color="polla.catar">
@@ -417,6 +419,7 @@ export default function Home({
 
   return (
     <>
+      <StatusPolleros />
       <Text textAlign="center" fontSize="30px" color="polla.catar">
         No es mi polla, no es tu polla. ¡Es Nuestra Polla!
       </Text>
