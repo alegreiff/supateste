@@ -8,6 +8,7 @@ import {
   Box,
   Button,
   Center,
+  Icon,
   SimpleGrid,
   Spacer,
   Tag,
@@ -20,6 +21,7 @@ import useDatosPollero from "../storedata/pollero";
 import useIsAdmin from "../utils/useIsAdmin";
 import _ from "lodash";
 
+import { GrMoney } from "react-icons/gr";
 export default function PollaPage() {
   const { usuario, polleros, setPolleros, updatePolleros, pollerosamigos } =
     useDatosPollero((state) => state);
@@ -139,6 +141,7 @@ export default function PollaPage() {
                 <Tag color="blackAlpha.800" size="lg">
                   {pollero.pronos}
                 </Tag>
+                {pollero.isPagado ? <Icon as={GrMoney} w={6} h={6} /> : ""}
               </Center>
             </Badge>
           ))}
