@@ -206,8 +206,8 @@ export const PartidoDiario = ({ partido, prono }) => {
               </Pie>
               <Pie
                 data={sicom}
-                cx={150}
-                cy={300}
+                cx={120}
+                cy={280}
                 //startAngle={180}
                 //endAngle={0}
                 innerRadius={65}
