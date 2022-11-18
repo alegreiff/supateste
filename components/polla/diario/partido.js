@@ -158,13 +158,20 @@ export const PartidoDiario = ({ partido, prono }) => {
       <SimpleGrid columns={[1, null, 2]} spacing="40px">
         <Rivales partido={partido} prono={prono} />
 
-        <Box>
+        <Box
+          style={{
+            backgroundImage: 'url("/logoback.png")',
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "25%",
+            backgroundPosition: "top right",
+          }}
+        >
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
                 data={pie}
                 dataKey="value"
-                cx={120}
+                cx={140}
                 cy={100}
                 //labelLine={false}
                 //label={renderCustomizedLabel}
@@ -187,7 +194,7 @@ export const PartidoDiario = ({ partido, prono }) => {
 
               <Pie
                 data={cdat}
-                cx={270}
+                cx={320}
                 cy={180}
                 //startAngle={180}
                 //endAngle={0}

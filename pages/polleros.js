@@ -35,6 +35,12 @@ export default function PollaPage() {
     setpollerosPollos(tempo);
 
     let pollerosBien = polleros.filter((poll) => poll.alias != null);
+    pollerosBien = pollerosBien.map((item) => {
+      return {
+        ...item,
+        alias: item.alias.toUpperCase(),
+      };
+    });
     pollerosBien = _.sortBy(pollerosBien, "alias");
     //console.log({ pollerosBien });
     setPollerosOk(pollerosBien);
@@ -114,11 +120,17 @@ export default function PollaPage() {
 
   return (
     <>
-      <SimpleGrid minChildWidth="150px" spacing={10}>
+      <SimpleGrid minChildWidth="180px" spacing={10}>
         {pollerosOk &&
           pollerosOk.map((pollero) => (
             <Badge
-              colorScheme={pollero.pronos > 47 ? "green" : "purple"}
+              colorScheme={
+                pollero.pronos > 47
+                  ? "green"
+                  : pollero.pronos > 0
+                  ? "blue"
+                  : "red"
+              }
               p={2}
               key={pollero.id}
             >
