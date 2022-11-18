@@ -43,7 +43,7 @@ export default function PollerosAMigosAdmin() {
     let { data, error } = await supabaseClient.rpc("mispolleros", {
       pollero: id,
     });
-
+    console.log({ data });
     if (error) console.error("ERRATA", error);
     else setPolleros(data);
   }
@@ -98,6 +98,7 @@ export default function PollerosAMigosAdmin() {
           <Tr>
             <Th>Fecha</Th>
             <Th>Alias</Th>
+            <Th>###</Th>
             <Th>Correo</Th>
             <Th>Notas</Th>
             <Th>$$</Th>
@@ -110,6 +111,7 @@ export default function PollerosAMigosAdmin() {
               <Tr key={pollero.userid}>
                 <Td>{pollero.fecha}</Td>
                 <Td>{pollero.apodo} </Td>
+                <Td>{}</Td>
                 <Td>{pollero.mail}</Td>
                 <Td>{pollero.notas} </Td>
                 <Td>{pollero.pago === true ? "PAGADO" : "EN DEUDA"}</Td>
