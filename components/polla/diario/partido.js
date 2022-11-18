@@ -165,10 +165,10 @@ export const PartidoDiario = ({ partido, prono }) => {
                 data={pie}
                 dataKey="value"
                 cx={120}
-                cy={150}
+                cy={100}
                 //labelLine={false}
                 //label={renderCustomizedLabel}
-                outerRadius={100}
+                outerRadius={70}
                 innerRadius={0}
                 legendType="circle"
                 label
@@ -183,16 +183,16 @@ export const PartidoDiario = ({ partido, prono }) => {
                 ))}
               </Pie>
               <Tooltip />
-              <Legend align="left" />
+              <Legend align="left" verticalAlign="top" />
 
               <Pie
                 data={cdat}
-                cx={370}
-                cy={80}
+                cx={270}
+                cy={180}
                 //startAngle={180}
                 //endAngle={0}
-                innerRadius={60}
-                outerRadius={80}
+                innerRadius={50}
+                outerRadius={70}
                 dataKey="value"
                 legendType="none"
               >
@@ -206,7 +206,7 @@ export const PartidoDiario = ({ partido, prono }) => {
               </Pie>
               <Pie
                 data={sicom}
-                cx={420}
+                cx={150}
                 cy={300}
                 //startAngle={180}
                 //endAngle={0}
