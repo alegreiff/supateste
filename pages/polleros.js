@@ -43,7 +43,12 @@ export default function PollaPage() {
         alias: item.alias.toUpperCase(),
       };
     });
-    pollerosBien = _.sortBy(pollerosBien, "alias");
+    //pollerosBien = _.sortBy(pollerosBien, "pronos");
+    pollerosBien = _.sortBy(
+      pollerosBien,
+      ["isPagado", "pronos", "alias"],
+      ["asc", "asc", "desc"]
+    );
     //console.log({ pollerosBien });
     setPollerosOk(pollerosBien);
   }, [polleros]);
@@ -122,7 +127,7 @@ export default function PollaPage() {
 
   return (
     <>
-      <SimpleGrid minChildWidth="180px" spacing={10}>
+      <SimpleGrid minChildWidth="200px" spacing={3}>
         {pollerosOk &&
           pollerosOk.map((pollero) => (
             <Badge
@@ -138,10 +143,14 @@ export default function PollaPage() {
             >
               <Center>
                 {pollero.alias} <Spacer />{" "}
+                {pollero.isPagado ? (
+                  <Icon ml={2} mr={2} as={GrMoney} w={6} h={6} />
+                ) : (
+                  ""
+                )}
                 <Tag color="blackAlpha.800" size="lg">
                   {pollero.pronos}
                 </Tag>
-                {pollero.isPagado ? <Icon as={GrMoney} w={6} h={6} /> : ""}
               </Center>
             </Badge>
           ))}
@@ -179,5 +188,5 @@ export default function PollaPage() {
 }
 
 /*
-
+32 han pagado
 */
