@@ -66,7 +66,8 @@ function CustomLabelSINO({ viewBox, value1, value2 }) {
   );
 }
 
-export const PartidoDiario = ({ partido, prono }) => {
+export const PartidoDiario = ({ partido, prono, statsmatch }) => {
+  console.log({ statsmatch });
   const { statspronos } = useDatosPollero((state) => state);
   const [stats, setStats] = useState(null);
   const [pie, setPie] = useState(null);
@@ -156,7 +157,7 @@ export const PartidoDiario = ({ partido, prono }) => {
   return (
     <>
       <SimpleGrid columns={[1, null, 2]} spacing="40px">
-        <Rivales partido={partido} prono={prono} />
+        <Rivales partido={partido} prono={prono} statsmatch={statsmatch} />
 
         <Box
           style={{
@@ -171,7 +172,7 @@ export const PartidoDiario = ({ partido, prono }) => {
               <Pie
                 data={pie}
                 dataKey="value"
-                cx={140}
+                cx={120}
                 cy={100}
                 //labelLine={false}
                 //label={renderCustomizedLabel}
@@ -194,7 +195,7 @@ export const PartidoDiario = ({ partido, prono }) => {
 
               <Pie
                 data={cdat}
-                cx={320}
+                cx={300}
                 cy={180}
                 //startAngle={180}
                 //endAngle={0}

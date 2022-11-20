@@ -8,8 +8,9 @@ import { Box, Spacer, Tag } from "@chakra-ui/react";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { PartidoDiario } from "../../components/polla/diario/partido";
+import { supabaseServerClient } from "@supabase/auth-helpers-nextjs";
 
-export default function PaginaPolla() {
+export default function PaginaPolla({ puntosporpartido }) {
   const [value, setValueDate] = useState(new Date());
   const { fechas, allPronos } = usePollaSettings((state) => state);
   const { fechaspartidos, partidos, pronospollero, usuario } = useDatosPollero(
@@ -18,7 +19,7 @@ export default function PaginaPolla() {
   const [partidosHoy, setPartidosHoy] = useState(null);
   const [pronosPollero, setPronosPollero] = useState([]);
 
-  //console.log({ partidos });
+  console.log("PPS", puntosporpartido);
 
   useEffect(() => {
     if (usuario) {
@@ -56,6 +57,16 @@ export default function PaginaPolla() {
     console.log({ prono });
     return prono;
   };
+  const partidostats = (p) => {
+    if (!puntosporpartido) return null;
+    const stats = puntosporpartido.find((match) => match.partido === p);
+
+    if (stats) {
+      return stats;
+    } else {
+      return null;
+    }
+  };
 
   return (
     <>
@@ -83,6 +94,7 @@ export default function PaginaPolla() {
             key={p.id}
             prono={miProno(p.id)}
             partido={p}
+            statsmatch={partidostats(p.id)}
           ></PartidoDiario>
         ))}
     </>
@@ -93,3 +105,15 @@ export default function PaginaPolla() {
     Function: ({activeStartDate, date, view }) => date.getDay() === 0
 
 */
+
+export async function getServerSideProps(context) {
+  const { data: puntosporpartido, error } = await supabaseServerClient(context)
+    .from("puntosporpartido")
+    .select("*");
+
+  return {
+    props: {
+      puntosporpartido,
+    },
+  };
+}
