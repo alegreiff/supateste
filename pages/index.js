@@ -432,7 +432,7 @@ export default function Home({
 
   return (
     <>
-      <Polleropuntos />
+      {/* <Polleropuntos /> */}
 
       <Box p={5}>
         <Button colorScheme="pink">
