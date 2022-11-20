@@ -58,15 +58,10 @@ export default function useFase(fechas) {
   return {
     fecha: fechas.HOY,
     estado: retorno[0],
-    /* fase: retorno[1],
-    cargaPronos: retorno[2], */
-    fase: 1,
-    cargaPronos: true,
-    comodines: 2,
-    rondas: [1, 2, 3],
-    //rondas: retorno[3],
-
-    /* comodines: retorno[4] ? retorno[4] : null, */
+    fase: retorno[1],
+    cargaPronos: retorno[2],
+    rondas: retorno[3],
+    comodines: retorno[4] ? retorno[4] : null,
   };
 }
 
