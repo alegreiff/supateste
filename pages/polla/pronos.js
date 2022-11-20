@@ -16,12 +16,14 @@ export default function PronosPage({ user, data }) {
   );
   const { fechas } = usePollaSettings((state) => state);
   const { estado, fase, cargaPronos, rondas, comodines } = useFase(fechas);
-  //console.log(estado, fase, cargaPronos);
+  console.log(estado, fase, cargaPronos);
 
   //console.log(estado, fase, cargaPronos, rondas, comodines);
   const [partidos, setPartidos] = useState([]);
   const { allPronos } = usePollaSettings((state) => state);
   const [pronosDB, setPronosDB] = useState([]);
+
+  const [temporal, setTemporal] = useState(true);
 
   useEffect(() => {
     const userPronos = allPronos.filter((ap) => ap.user_id === user.id);
@@ -66,7 +68,8 @@ export default function PronosPage({ user, data }) {
   return (
     <>
       <h2>Página de pronósticos</h2>
-      {cargaPronos && fase === 1 && (
+      {/* {cargaPronos && fase === 1 && ( */}
+      {temporal && (
         <>
           <Accordion allowToggle>
             <GrupoProno

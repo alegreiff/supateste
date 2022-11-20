@@ -39,6 +39,8 @@ export default function useMenuLateralPolla() {
 
   const elmenu = [
     { name: "Inicio", icon: FiHome, ruta: "/" },
+    { name: "Polla", icon: FiStar, ruta: "/polla/polla" },
+    { name: "MI Polla", icon: FiStar, ruta: "/polla/mipolla" },
     { name: "Polleros", icon: FiUsers, ruta: "/polleros" },
 
     /* { name: "Explore", icon: FiCompass, ruta: "/" }, */
@@ -47,8 +49,6 @@ export default function useMenuLateralPolla() {
     /* PDF TEMPORAL */
     //{ name: "Test PDF", icon: FiStar, ruta: "/pdf" },
     /* FIN PDF Temporal */
-
-    //{ name: "Po ya", icon: FiStar, ruta: "/polla/polla" },
 
     /* { name: "Pronos", icon: FiStar, ruta: "/polla/pronos" }, */
     /* {
