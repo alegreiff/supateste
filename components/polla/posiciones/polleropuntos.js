@@ -41,7 +41,7 @@ export const Polleropuntos = () => {
 
   useEffect(() => {
     if (posiciones) {
-      const mispuntos = posiciones.find((pos) => pos.userid === usuario.id);
+      const mispuntos = posiciones.find((pos) => pos.userid === usuario?.id);
       setMipos(mispuntos);
     }
   }, [posiciones, usuario]);
