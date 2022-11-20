@@ -4,6 +4,7 @@ import usePollaSettings from "../../storedata/settings";
 import _ from "lodash";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import { Box } from "@chakra-ui/react";
+import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 
 export default function MiPolla() {
   const { partidos: matches, usuario } = useDatosPollero((state) => state);
