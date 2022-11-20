@@ -36,6 +36,7 @@ import { useRouter } from "next/router";
 import usePollaSettings from "../storedata/settings";
 import { Reglamento } from "../components/polla/Reglamento";
 import { StatusPolleros } from "../components/estatus/StatusPolleros";
+import { Polleropuntos } from "../components/polla/posiciones/polleropuntos";
 //const user = false;
 
 export default function Home({
@@ -44,9 +45,10 @@ export default function Home({
   pollerosamigos,
   fechaspolla,
   statspronos,
+  tablapos,
 }) {
   //console.log("lespollereèsamiès", pollerosamigos);
-  //console.log({ fechaspolla });
+  console.log({ tablapos });
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const router = useRouter();
@@ -68,7 +70,7 @@ export default function Home({
     setStatsPronos,
   } = useDatosPollero((state) => state);
 
-  const { setAllPronos } = usePollaSettings((state) => state);
+  const { setAllPronos, setPosiciones } = usePollaSettings((state) => state);
   const { user, error, isLoading, accessToken } = useUser();
   if (user) {
     //router.push("/polla");
@@ -81,7 +83,17 @@ export default function Home({
     if (fechaspolla) {
       setFechasPartidos(fechaspolla);
     }
-  }, [fechaspolla, setFechasPartidos, statspronos, setStatsPronos]);
+    if (tablapos) {
+      setPosiciones(tablapos);
+    }
+  }, [
+    fechaspolla,
+    setFechasPartidos,
+    statspronos,
+    setStatsPronos,
+    setPosiciones,
+    tablapos,
+  ]);
 
   useEffect(() => {
     async function cargaPronos() {
@@ -419,6 +431,7 @@ export default function Home({
 
   return (
     <>
+      <Polleropuntos />
       <StatusPolleros />
       <Text textAlign="center" fontSize="30px" color="polla.catar">
         No es mi polla, no es tu polla. ¡Es Nuestra Polla!
@@ -454,7 +467,18 @@ export async function getServerSideProps(context) {
     .from("testdrama")
     .select("*");
 
+  const { data: tablapos, errorPos } = await supabaseServerClient(context)
+    .from("posicionespollerostest")
+    .select("*");
+
   return {
-    props: { usuariosDB, equiposDB, pollerosamigos, fechaspolla, statspronos }, // will be passed to the page component as props
+    props: {
+      usuariosDB,
+      equiposDB,
+      pollerosamigos,
+      fechaspolla,
+      statspronos,
+      tablapos,
+    }, // will be passed to the page component as props
   };
 }

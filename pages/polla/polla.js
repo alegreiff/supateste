@@ -11,13 +11,21 @@ import { PartidoDiario } from "../../components/polla/diario/partido";
 
 export default function PaginaPolla() {
   const [value, setValueDate] = useState(new Date());
-  const { fechas } = usePollaSettings((state) => state);
-  const { fechaspartidos, partidos, pronospollero } = useDatosPollero(
+  const { fechas, allPronos } = usePollaSettings((state) => state);
+  const { fechaspartidos, partidos, pronospollero, usuario } = useDatosPollero(
     (state) => state
   );
   const [partidosHoy, setPartidosHoy] = useState(null);
+  const [pronosPollero, setPronosPollero] = useState([]);
 
   //console.log({ partidos });
+
+  useEffect(() => {
+    if (usuario) {
+      const userPronos = allPronos.filter((ap) => ap.user_id === usuario.id);
+      setPronosPollero(userPronos);
+    }
+  }, []);
 
   useEffect(() => {
     setPartidosHoy(null);
@@ -42,8 +50,10 @@ export default function PaginaPolla() {
   }, []);
 
   const miProno = (p) => {
-    if (!pronospollero) return null;
-    const prono = pronospollero.find((prono) => prono.id === p);
+    console.log({ pronosPollero });
+    if (!pronosPollero) return null;
+    const prono = pronosPollero.find((prono) => prono.partido === p);
+    console.log({ prono });
     return prono;
   };
 

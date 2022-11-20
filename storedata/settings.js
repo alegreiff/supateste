@@ -47,6 +47,14 @@ const usePollaSettings = create(
         }));
       },
       clearPronos: () => set({ allPronos: [] }),
+
+      posiciones: [],
+      setPosiciones: (params) => {
+        set((state) => ({
+          posiciones: params,
+        }));
+      },
+      clearPosiciones: () => set({ posiciones: [] }),
     }),
     { name: "settingspolla" }
   )

@@ -1,4 +1,12 @@
-import { Avatar, Badge, Box, Center, Tag, VStack } from "@chakra-ui/react";
+import {
+  Avatar,
+  Badge,
+  Box,
+  Center,
+  Spacer,
+  Tag,
+  VStack,
+} from "@chakra-ui/react";
 import React from "react";
 import { MdStars } from "react-icons/md";
 import { FechaSingle } from "../../Fixture/FechaSingle";
@@ -11,7 +19,8 @@ export const Rivales = ({ partido, prono }) => {
           <FechaSingle date={partido.fecha} />
         </Box>
         <Center>
-          {prono?.com ? (
+          <Badge> {prono?.partido} </Badge>
+          {prono?.comodin ? (
             <MdStars size={72} w={8} h={8} color="#6C1D45" />
           ) : null}
           <VStack>
@@ -19,8 +28,13 @@ export const Rivales = ({ partido, prono }) => {
               {partido.eqloc}
             </Badge>
             <Badge fontSize="4xl" color="polla.local">
-              {prono?.loc}
+              {prono?.pron_loc}
             </Badge>
+            {partido?.procesado ? (
+              <Badge fontSize="5xl">{partido.mlocal}</Badge>
+            ) : (
+              ""
+            )}
           </VStack>
 
           <Badge variant="outline" color="polla.empate" m="2">
@@ -32,72 +46,35 @@ export const Rivales = ({ partido, prono }) => {
               {partido.eqvis}
             </Badge>
             <Badge fontSize="4xl" color="polla.visitante">
-              {prono?.vis}
+              {prono?.pron_vis}
             </Badge>
+            {partido?.procesado ? (
+              <Badge fontSize="5xl">{partido.mvisit}</Badge>
+            ) : (
+              ""
+            )}
           </VStack>
         </Center>
+        {partido?.procesado ? (
+          <Center p={2} bg="orange">
+            <Badge m={2} fontSize="1.4em">
+              {" "}
+              {prono?.resultado}{" "}
+            </Badge>
+            <Badge m={2} fontSize="2em">
+              {" "}
+              {prono?.puntos}{" "}
+            </Badge>
+          </Center>
+        ) : (
+          ""
+        )}
       </Box>
     </>
   );
 };
 
 /* 
-<SimpleGrid columns={[1, null, 2]} spacing="40px">
-        <Box>
-          <Rivales partido={partido} prono={prono} />
-          <HStack>
-            <ResponsiveContainer width="100%" height={400}>
-              <PieChart>
-                <Pie
-                  data={pie}
-                  dataKey="value"
-                  cx={200}
-                  cy={200}
-                  labelLine={false}
-                  label={renderCustomizedLabel}
-                  outerRadius={120}
-                />
-                <Tooltip />
-                <Legend
-                  layout="horizontal"
-                  verticalAlign="bottom"
-                  align="left"
-                />
-              </PieChart>
-            </ResponsiveContainer>
 
-            <ResponsiveContainer width="100%" height={250}>
-              <BarChart
-                width={200}
-                height={300}
-                data={comData}
-                margin={{
-                  top: 0,
-                  right: 0,
-                  left: 0,
-                  bottom: 0,
-                }}
-              >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="SI" stackId="sn" fill="#2E7A61" />
-                <Bar dataKey="NO" stackId="sn" fill="#CA1448" />
-
-                <Bar dataKey="LOC" stackId="si" fill="#A10D50" />
-                <Bar dataKey="VIS" stackId="si" fill="#3E7594" />
-                <Bar dataKey="EMP" stackId="si" fill="#CEA02B" />
-              </BarChart>
-            </ResponsiveContainer>
-          </HStack>
-        </Box>
-        <Box bg="tomato" height="20">
-          {JSON.stringify(stats)}
-        </Box>
-
-        
-      </SimpleGrid>
-
+{"id":145,"created_at":"2022-11-09T22:14:35.186806+00:00","user_id":"53f46d4f-a142-4428-96fe-cc62a549d89d","partido":1,"pron_loc":2,"pron_vis":0,"comodin":false,"grupo":"A","cambios":1,"procesado":true,"resultado":"simple","puntos":3}
 */

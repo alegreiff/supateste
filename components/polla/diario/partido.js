@@ -266,9 +266,10 @@ export const PartidoDiario = ({ partido, prono }) => {
           </BarChart>
         </ResponsiveContainer> */}
 
-        <Box bg="tomato" height="20">
+        {/* <Box bg="tomato" height="20">
           {JSON.stringify(stats)}
-        </Box>
+        </Box> */}
+        <Box>{JSON.stringify(partido)}</Box>
       </SimpleGrid>
     </>
   );
