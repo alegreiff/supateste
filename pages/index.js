@@ -296,7 +296,7 @@ export default function Home({
                     <>
                       <FormLabel>Recomendado</FormLabel>
                       <Button colorScheme="pink" onClick={signInWithGoogle}>
-                        Ingreso / registro con su cuenta de Gmail
+                        Ingreso con su cuenta de Gmail
                       </Button>
                     </>
                   )}
@@ -355,11 +355,11 @@ export default function Home({
                         Ingresar
                       </Button>
                     )}
-                    <Button colorScheme="red" onClick={changeForm}>
+                    {/* <Button colorScheme="red" onClick={changeForm}>
                       {!isSignUp
                         ? "¿Nuevo usuario?, regístrese"
                         : "Ya tengo cuenta. Ingresar"}
-                    </Button>
+                    </Button> */}
                     <Button onClick={onOpen}>Perdí mi contraseña</Button>
                   </Stack>
                 </Stack>
