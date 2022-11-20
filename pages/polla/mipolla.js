@@ -33,7 +33,7 @@ export default function MiPolla() {
   return (
     <>
       <h2>Mi POLLA</h2>
-      {partidosGrupos ? (
+      {partidosGrupos && misPronos ? (
         <Box width={800}>
           <Table className="mipollatable">
             <Thead>
@@ -53,15 +53,15 @@ export default function MiPolla() {
                 <Tr
                   key={p.id}
                   style={{
-                    backgroundColor: pron(p.id).comodin ? "#eafaf1" : "white",
+                    backgroundColor: pron(p.id)?.comodin ? "#eafaf1" : "white",
                   }}
                 >
                   <Td>{p.id}</Td>
                   <Td>{p.eqloc}</Td>
-                  <Td> {pron(p.id).pron_loc} </Td>
+                  <Td> {pron(p.id)?.pron_loc} </Td>
                   <Td>{p.eqvis}</Td>
-                  <Td> {pron(p.id).pron_vis} </Td>
-                  {pron(p.id).procesado ? (
+                  <Td> {pron(p.id)?.pron_vis} </Td>
+                  {pron(p.id)?.procesado ? (
                     <>
                       <Td>
                         {" "}
