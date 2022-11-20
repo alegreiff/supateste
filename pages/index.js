@@ -6,6 +6,7 @@ import {
   FormHelperText,
   FormLabel,
   Heading,
+  Icon,
   Input,
   Link,
   Modal,
@@ -432,6 +433,15 @@ export default function Home({
   return (
     <>
       <Polleropuntos />
+
+      <Box p={5}>
+        <Button colorScheme="pink">
+          <Link href="https://www.nuestrapolla.com/pollafasegrupos" isExternal>
+            PDF transparencia. Fase de grupos
+          </Link>
+        </Button>
+      </Box>
+
       <StatusPolleros />
       <Text textAlign="center" fontSize="30px" color="polla.catar">
         No es mi polla, no es tu polla. ¡Es Nuestra Polla!

@@ -27,6 +27,8 @@ export const ModeloPDF = ({ dattos }) => {
       <Document>
         <Page size="A4" style={styles.page}>
           <View style={styles.section}>
+            <Text>fecha</Text>
+
             <Table data={dattos}>
               <TableHeader>
                 <TableCell>Pollero</TableCell>

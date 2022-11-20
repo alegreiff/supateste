@@ -39,7 +39,7 @@ export default function useMenuLateralPolla() {
 
   const elmenu = [
     { name: "Inicio", icon: FiHome, ruta: "/" },
-    //{ name: "Polla", icon: FiStar, ruta: "/polla/polla" },
+    { name: "Polla", icon: FiStar, ruta: "/polla/polla" },
     { name: "Mi Polla", icon: FiStar, ruta: "/polla/mipolla" },
     { name: "Polleros", icon: FiUsers, ruta: "/polleros" },
 

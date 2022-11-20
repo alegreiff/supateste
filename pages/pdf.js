@@ -25,9 +25,9 @@ export default function PagePdf() {
       {pronn ? (
         <PDFDownloadLink
           document={<ModeloPDF dattos={pronn} />}
-          fileName="morla.pdf"
+          fileName="pollafasegrupos.pdf"
         >
-          <Button> Descargámerickol </Button>
+          <Button> Descargar </Button>
         </PDFDownloadLink>
       ) : (
         "null"
@@ -38,3 +38,7 @@ export default function PagePdf() {
     </>
   );
 }
+
+/* 
+Es cargar los 6960datos y generar celda a celda el PDF. Lo hace 
+*/

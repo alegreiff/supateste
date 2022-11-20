@@ -269,7 +269,7 @@ export const PartidoDiario = ({ partido, prono }) => {
         {/* <Box bg="tomato" height="20">
           {JSON.stringify(stats)}
         </Box> */}
-        <Box>{JSON.stringify(partido)}</Box>
+        {/* <Box>{JSON.stringify(partido)}</Box> */}
       </SimpleGrid>
     </>
   );
