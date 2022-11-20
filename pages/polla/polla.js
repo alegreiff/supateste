@@ -90,12 +90,16 @@ export default function PaginaPolla({ puntosporpartido }) {
 
       {partidosHoy &&
         partidosHoy.map((p) => (
-          <PartidoDiario
-            key={p.id}
-            prono={miProno(p.id)}
-            partido={p}
-            statsmatch={partidostats(p.id)}
-          ></PartidoDiario>
+          <>
+            <PartidoDiario
+              key={p.id}
+              prono={miProno(p.id)}
+              partido={p}
+              statsmatch={partidostats(p.id)}
+            ></PartidoDiario>
+
+            <Box h={20} />
+          </>
         ))}
     </>
   );

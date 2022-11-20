@@ -156,7 +156,7 @@ export const PartidoDiario = ({ partido, prono, statsmatch }) => {
 
   return (
     <>
-      <SimpleGrid columns={[1, null, 2]} spacing="40px">
+      <SimpleGrid columns={[1, null, 2]} spacing="20px">
         <Rivales partido={partido} prono={prono} statsmatch={statsmatch} />
 
         <Box

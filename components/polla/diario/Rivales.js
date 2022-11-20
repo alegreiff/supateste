@@ -176,7 +176,7 @@ export const Rivales = ({ partido, prono, statsmatch: stats }) => {
               <Center>
                 <HStack>
                   <VStack>
-                    <Badge>Puntos otorgados</Badge>
+                    <Badge>Puntos entregados</Badge>
                     <ImNeutral size={50} w={8} h={8} color="purple" />
                     <Tag
                       size="lg"
@@ -188,7 +188,7 @@ export const Rivales = ({ partido, prono, statsmatch: stats }) => {
                     </Tag>
                   </VStack>
                   <VStack>
-                    <Badge>Polleros con puntos</Badge>
+                    <Badge>Con puntos</Badge>
                     <ImHappy size={50} w={8} h={8} color="purple" />
                     <Tag
                       size="lg"
@@ -200,7 +200,7 @@ export const Rivales = ({ partido, prono, statsmatch: stats }) => {
                     </Tag>
                   </VStack>
                   <VStack>
-                    <Badge>Polleros en blanco</Badge>
+                    <Badge>En blanco</Badge>
                     <ImAngry size={50} w={8} h={8} color="purple" />
                     <Tag
                       fontSize={32}
