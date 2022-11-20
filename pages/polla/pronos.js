@@ -65,7 +65,8 @@ export default function PronosPage({ user, data }) {
 
   return (
     <>
-      <h2>Página de pronósticos</h2>
+      Descanso
+      {/* <h2>Página de pronósticos</h2>
       {cargaPronos && fase === 1 && (
         <>
           <Accordion allowToggle>
@@ -119,7 +120,7 @@ export default function PronosPage({ user, data }) {
           </Accordion>
         </>
       )}
-      {!cargaPronos && <Box>Reflexión</Box>}
+      {!cargaPronos && <Box>Reflexión</Box>} */}
     </>
   );
 }
