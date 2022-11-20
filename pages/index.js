@@ -436,7 +436,10 @@ export default function Home({
 
       <Box p={5}>
         <Button colorScheme="pink">
-          <Link href="https://www.nuestrapolla.com/pollafasegrupos" isExternal>
+          <Link
+            href="https://www.nuestrapolla.com/pollafasegrupos.pdf"
+            isExternal
+          >
             PDF transparencia. Fase de grupos
           </Link>
         </Button>
