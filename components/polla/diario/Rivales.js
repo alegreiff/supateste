@@ -176,8 +176,8 @@ export const Rivales = ({ partido, prono, statsmatch: stats }) => {
               <Center>
                 <HStack>
                   <VStack>
-                    <Badge>Puntos entregados</Badge>
                     <ImNeutral size={50} w={8} h={8} color="purple" />
+
                     <Tag
                       size="lg"
                       fontSize={32}
@@ -186,10 +186,11 @@ export const Rivales = ({ partido, prono, statsmatch: stats }) => {
                     >
                       {stats.puntos}
                     </Tag>
+                    <Tag>Puntos</Tag>
                   </VStack>
                   <VStack>
-                    <Badge>Con puntos</Badge>
                     <ImHappy size={50} w={8} h={8} color="purple" />
+
                     <Tag
                       size="lg"
                       fontSize={32}
@@ -198,10 +199,11 @@ export const Rivales = ({ partido, prono, statsmatch: stats }) => {
                     >
                       {stats.conpuntos}
                     </Tag>
+                    <Tag>Suman</Tag>
                   </VStack>
                   <VStack>
-                    <Badge>En blanco</Badge>
                     <ImAngry size={50} w={8} h={8} color="purple" />
+
                     <Tag
                       fontSize={32}
                       size="lg"
@@ -210,10 +212,11 @@ export const Rivales = ({ partido, prono, statsmatch: stats }) => {
                     >
                       {stats.blancos}
                     </Tag>
+                    <Tag>No suman</Tag>
                   </VStack>
                   <VStack>
-                    <Badge>Comodines perdidos</Badge>
                     <ImCrying size={50} w={8} h={8} color="purple" />
+
                     <Tag
                       fontSize={32}
                       size="lg"
@@ -222,6 +225,7 @@ export const Rivales = ({ partido, prono, statsmatch: stats }) => {
                     >
                       {stats.bkc}
                     </Tag>
+                    <Tag>Comodines perdidos</Tag>
                   </VStack>
                 </HStack>
               </Center>

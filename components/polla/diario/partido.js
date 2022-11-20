@@ -195,7 +195,7 @@ export const PartidoDiario = ({ partido, prono, statsmatch }) => {
 
               <Pie
                 data={cdat}
-                cx={300}
+                cx={270}
                 cy={180}
                 //startAngle={180}
                 //endAngle={0}
