@@ -59,12 +59,14 @@ export default function PaginaPolla() {
 
   return (
     <>
-      <h2>La polla diaria {JSON.stringify(value)} </h2>
+      <h2>La polla diaria </h2>
 
       <Box marginBottom={5}>
         {fechaspartidos &&
           fechaspartidos.map((dia, i) => (
             <Tag
+              m={2}
+              p={2}
               key={i}
               onClick={() => {
                 setValueDate(new Date(dia.mifecha));
