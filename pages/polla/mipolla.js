@@ -34,15 +34,18 @@ export default function MiPolla() {
     <>
       <h2>Mi POLLA</h2>
       {partidosGrupos ? (
-        <Box width={600}>
-          <Table>
+        <Box width={800}>
+          <Table className="mipollatable">
             <Thead>
               <Tr>
                 <Th>Partido</Th>
                 <Th>Local</Th>
-                <Th></Th>
+                <Th>Pron. Loc</Th>
                 <Th>Visitante</Th>
-                <Th></Th>
+                <Th>Pron. Vis</Th>
+                <Th>Marcador</Th>
+                <Th>Premio</Th>
+                <Th>Puntos</Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -58,6 +61,18 @@ export default function MiPolla() {
                   <Td> {pron(p.id).pron_loc} </Td>
                   <Td>{p.eqvis}</Td>
                   <Td> {pron(p.id).pron_vis} </Td>
+                  {pron(p.id).procesado ? (
+                    <>
+                      <Td>
+                        {" "}
+                        {p.mlocal} - {p.mvisit}{" "}
+                      </Td>
+                      <Td> {pron(p.id).resultado} </Td>
+                      <Td> {pron(p.id).puntos} </Td>
+                    </>
+                  ) : (
+                    ""
+                  )}
                 </Tr>
               ))}
             </Tbody>

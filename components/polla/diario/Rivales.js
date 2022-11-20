@@ -19,7 +19,9 @@ export const Rivales = ({ partido, prono }) => {
           <FechaSingle date={partido.fecha} />
         </Box>
         <Center>
-          <Badge> {prono?.partido} </Badge>
+          <Badge>
+            {partido.id} {prono?.partido}{" "}
+          </Badge>
           {prono?.comodin ? (
             <MdStars size={72} w={8} h={8} color="#6C1D45" />
           ) : null}
