@@ -104,6 +104,11 @@ export default function useMenuLateralPolla() {
       ruta: `/perfil/${usuario.id}`,
     }); */
     elmenu.push({
+      name: "Polla diaria",
+      icon: FiStar,
+      ruta: `/polla/polla`,
+    });
+    elmenu.push({
       name: "Chat",
       icon: FiStar,
       ruta: `/chat`,
