@@ -39,9 +39,9 @@ export default function useMenuLateralPolla() {
 
   const elmenu = [
     { name: "Inicio", icon: FiHome, ruta: "/" },
-    { name: "Polla", icon: FiStar, ruta: "/polla/polla" },
-    { name: "Mi Polla", icon: FiStar, ruta: "/polla/mipolla" },
-    { name: "Polleros", icon: FiUsers, ruta: "/polleros" },
+    //{ name: "Polla", icon: FiStar, ruta: "/polla/polla" },
+    //{ name: "Mi Polla", icon: FiStar, ruta: "/polla/mipolla" },
+    //{ name: "Polleros", icon: FiUsers, ruta: "/polleros" },
 
     /* { name: "Explore", icon: FiCompass, ruta: "/" }, */
     { name: "Partidos", icon: FiStar, ruta: "/partidos" },
@@ -69,6 +69,11 @@ export default function useMenuLateralPolla() {
   }
 
   if (usuario?.alias) {
+    elmenu.push({
+      name: "Polla",
+      icon: FiStar,
+      ruta: `/polla/polla`,
+    });
     elmenu.push({
       name: "Pronos",
       icon: FiStar,

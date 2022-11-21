@@ -7,6 +7,7 @@ import {
   CloseButton,
   Flex,
   Image,
+  Link,
   Menu,
   MenuButton,
   MenuItem,
@@ -21,6 +22,7 @@ import { NavItem } from "./NavItem";
 import useMenuLateralPolla from "../../utils/useMenuLateralPolla";
 import Countdown from "react-countdown";
 import { ChevronDownIcon } from "@chakra-ui/icons";
+import NextLink from "next/link";
 
 export const MenuIzquierdo = ({ onClose, user, cerrar, ...rest }) => {
   const { elmenu } = useMenuLateralPolla();
@@ -49,18 +51,28 @@ export const MenuIzquierdo = ({ onClose, user, cerrar, ...rest }) => {
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
 
-      {/* <Menu>
-        <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-          Actions
-        </MenuButton>
-        <MenuList>
-          <MenuItem>Download</MenuItem>
-          <MenuItem>Create a Copy</MenuItem>
-          <MenuItem>Mark as Draft</MenuItem>
-          <MenuItem>Delete</MenuItem>
-          <MenuItem>Attend a Workshop</MenuItem>
-        </MenuList>
-      </Menu> */}
+      {user ? (
+        <Menu>
+          <MenuButton ml={10} as={Button} rightIcon={<ChevronDownIcon />}>
+            Pollero
+          </MenuButton>
+          <MenuList>
+            <MenuItem>Posiciones</MenuItem>
+            <MenuItem>
+              <NextLink href="/polleros" passHref>
+                <Link>Polleros</Link>
+              </NextLink>
+            </MenuItem>
+            <MenuItem>
+              <NextLink href="/polla/mipolla" passHref>
+                <Link>Mi polla</Link>
+              </NextLink>
+            </MenuItem>
+          </MenuList>
+        </Menu>
+      ) : (
+        ""
+      )}
 
       {elmenu.map((link) => (
         <NavItem
