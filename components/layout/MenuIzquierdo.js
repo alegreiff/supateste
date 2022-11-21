@@ -25,7 +25,7 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import NextLink from "next/link";
 
 export const MenuIzquierdo = ({ onClose, user, cerrar, ...rest }) => {
-  const { elmenu } = useMenuLateralPolla();
+  const { elmenu, menuPollero } = useMenuLateralPolla();
 
   /* if (user?.id) {
     LinkItems.push({
@@ -57,17 +57,13 @@ export const MenuIzquierdo = ({ onClose, user, cerrar, ...rest }) => {
             Pollero
           </MenuButton>
           <MenuList>
-            <MenuItem>Posiciones</MenuItem>
-            <MenuItem>
-              <NextLink href="/polleros" passHref>
-                <Link>Polleros</Link>
-              </NextLink>
-            </MenuItem>
-            <MenuItem>
-              <NextLink href="/polla/mipolla" passHref>
-                <Link>Mi polla</Link>
-              </NextLink>
-            </MenuItem>
+            {menuPollero.map((link) => (
+              <MenuItem key={link.name} onClick={onClose}>
+                <NextLink href={link.ruta} passHref>
+                  <Link>{link.name}</Link>
+                </NextLink>
+              </MenuItem>
+            ))}
           </MenuList>
         </Menu>
       ) : (

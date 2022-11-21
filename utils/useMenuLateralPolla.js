@@ -37,6 +37,30 @@ export default function useMenuLateralPolla() {
   const { usuario } = useDatosPollero((state) => state);
   console.log({ usuario });
 
+  const menuPollero = [];
+  if (usuario?.alias) {
+    menuPollero.push({
+      name: "Polla diaria",
+      icon: FiStar,
+      ruta: `/polla/polla`,
+    });
+    /* menuPollero.push({
+      name: "Pronos",
+      icon: FiStar,
+      ruta: `/polla/pronos`,
+    }); */
+    menuPollero.push({
+      name: "Mi Polla",
+      icon: FiStar,
+      ruta: `/polla/mipolla`,
+    });
+    menuPollero.push({
+      name: "Polleros",
+      icon: FiStar,
+      ruta: `/polleros`,
+    });
+  }
+
   const elmenu = [
     { name: "Inicio", icon: FiHome, ruta: "/" },
     //{ name: "Polla", icon: FiStar, ruta: "/polla/polla" },
@@ -68,25 +92,12 @@ export default function useMenuLateralPolla() {
     });
   }
 
-  if (usuario?.alias) {
-    elmenu.push({
-      name: "Polla",
-      icon: FiStar,
-      ruta: `/polla/polla`,
-    });
-    elmenu.push({
-      name: "Pronos",
-      icon: FiStar,
-      ruta: `/polla/pronos`,
-    });
-  }
-
   if (usuario?.email) {
-    elmenu.push({
+    /* elmenu.push({
       name: "Perfil",
       icon: FiStar,
       ruta: `/perfil/${usuario.id}`,
-    });
+    }); */
     elmenu.push({
       name: "Chat (pruebas)",
       icon: FiStar,
@@ -99,7 +110,7 @@ export default function useMenuLateralPolla() {
     { name: "Mis pronósticos", icon: FiStar, ruta: `/polla/pronos` },
   ];
 
-  return { usuariopolla, elmenu, userMenu };
+  return { usuariopolla, elmenu, userMenu, menuPollero };
 }
 
 /* const elementosMenu = () => {
