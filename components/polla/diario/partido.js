@@ -172,7 +172,7 @@ export const PartidoDiario = ({ partido, prono, statsmatch }) => {
               <Pie
                 data={pie}
                 dataKey="value"
-                cx={120}
+                cx={140}
                 cy={100}
                 //labelLine={false}
                 //label={renderCustomizedLabel}

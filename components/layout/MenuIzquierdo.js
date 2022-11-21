@@ -93,7 +93,7 @@ export const MenuIzquierdo = ({ onClose, user, cerrar, ...rest }) => {
       </Text>
       <Center>
         <Badge fontSize="2xl">
-          <Countdown date={new Date("2022-11-20 09:00:00")} />
+          <Countdown date={new Date("2022-12-02 17:00:00")} />
         </Badge>
       </Center>
 
