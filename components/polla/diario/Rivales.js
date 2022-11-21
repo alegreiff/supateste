@@ -75,10 +75,11 @@ export default class CustomizedLabel extends React.Component {
     const { x, y, fill, value } = this.props;
     return (
       <text
-        x={x + 50}
-        y={y}
+        x={x + 5}
+        y={y - 5}
         dy={-4}
         fontSize="25"
+        fontWeight="bolder"
         fill={fill}
         textAnchor="bottom"
       >
@@ -93,10 +94,10 @@ export const Rivales = ({ partido, prono, statsmatch: stats }) => {
   useEffect(() => {
     if (stats) {
       const dataPlayed = [
-        { name: "GranChepazos", uv: stats.gch, color: "#3F3B6C" },
-        { name: "Dobles", uv: stats.dbl, color: "#624F82" },
-        { name: "Chepazos", uv: stats.ch, color: "#9F73AB" },
-        { name: "Simples", uv: stats.sim, color: "#A3C7D6" },
+        { name: "GranChp", uv: stats.gch, color: "#3F3B6C" },
+        { name: "Doble", uv: stats.dbl, color: "#624F82" },
+        { name: "Chepazo", uv: stats.ch, color: "#9F73AB" },
+        { name: "Simple", uv: stats.sim, color: "#A3C7D6" },
       ];
       setDatosJugado(dataPlayed);
     }
