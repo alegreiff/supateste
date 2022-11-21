@@ -43,7 +43,7 @@ export default function PaginaPosiciones() {
       {posiciones ? (
         <>
           <TableContainer>
-            <Table variant="striped" colorScheme="cyan">
+            <Table variant="striped" colorScheme="purple" size="lg">
               <Thead>
                 <Tr>
                   <Th>Pos</Th>
