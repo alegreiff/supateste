@@ -49,7 +49,7 @@ export const MenuIzquierdo = ({ onClose, user, cerrar, ...rest }) => {
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
 
-      <Menu>
+      {/* <Menu>
         <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
           Actions
         </MenuButton>
@@ -60,7 +60,7 @@ export const MenuIzquierdo = ({ onClose, user, cerrar, ...rest }) => {
           <MenuItem>Delete</MenuItem>
           <MenuItem>Attend a Workshop</MenuItem>
         </MenuList>
-      </Menu>
+      </Menu> */}
 
       {elmenu.map((link) => (
         <NavItem
