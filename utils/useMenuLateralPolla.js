@@ -44,6 +44,11 @@ export default function useMenuLateralPolla() {
       icon: FiStar,
       ruta: `/polla/polla`,
     });
+    menuPollero.push({
+      name: "Posiciones",
+      icon: FiStar,
+      ruta: `/polla/posiciones`,
+    });
     /* menuPollero.push({
       name: "Pronos",
       icon: FiStar,
@@ -99,7 +104,7 @@ export default function useMenuLateralPolla() {
       ruta: `/perfil/${usuario.id}`,
     }); */
     elmenu.push({
-      name: "Chat (pruebas)",
+      name: "Chat",
       icon: FiStar,
       ruta: `/chat`,
     });

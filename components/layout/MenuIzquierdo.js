@@ -51,6 +51,21 @@ export const MenuIzquierdo = ({ onClose, user, cerrar, ...rest }) => {
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
 
+      {elmenu.map((link) => (
+        <NavItem
+          _hover={{
+            bg: "polla.catarlight",
+          }}
+          key={link.name}
+          icon={link.icon}
+          ruta={link.ruta}
+          onClick={onClose}
+        >
+          <Text color="white" fontSize={22}>
+            {link.name}
+          </Text>
+        </NavItem>
+      ))}
       {user ? (
         <Menu>
           <MenuButton ml={10} as={Button} rightIcon={<ChevronDownIcon />}>
@@ -70,25 +85,9 @@ export const MenuIzquierdo = ({ onClose, user, cerrar, ...rest }) => {
         ""
       )}
 
-      {elmenu.map((link) => (
-        <NavItem
-          _hover={{
-            bg: "polla.catarlight",
-          }}
-          key={link.name}
-          icon={link.icon}
-          ruta={link.ruta}
-          onClick={onClose}
-        >
-          <Text color="white" fontSize={22}>
-            {link.name}
-          </Text>
-        </NavItem>
-      ))}
-
       {/* <Button onClick={cerrar}> Cerrar sesión</Button> */}
 
-      <Image src="/logo.png" alt="Logo" />
+      <Image mt={10} src="/logo.png" alt="Logo" />
       <Text padding={5} fontSize="20px" color="white">
         {user?.isAmigo ? "Pollero Amigo" : null}
       </Text>
