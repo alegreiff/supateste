@@ -7,6 +7,10 @@ import {
   CloseButton,
   Flex,
   Image,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   Spacer,
   Text,
   useColorModeValue,
@@ -16,6 +20,7 @@ import { NavItem } from "./NavItem";
 
 import useMenuLateralPolla from "../../utils/useMenuLateralPolla";
 import Countdown from "react-countdown";
+import { ChevronDownIcon } from "@chakra-ui/icons";
 
 export const MenuIzquierdo = ({ onClose, user, cerrar, ...rest }) => {
   const { elmenu } = useMenuLateralPolla();
@@ -43,6 +48,20 @@ export const MenuIzquierdo = ({ onClose, user, cerrar, ...rest }) => {
         <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold"></Text>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
+
+      <Menu>
+        <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+          Actions
+        </MenuButton>
+        <MenuList>
+          <MenuItem>Download</MenuItem>
+          <MenuItem>Create a Copy</MenuItem>
+          <MenuItem>Mark as Draft</MenuItem>
+          <MenuItem>Delete</MenuItem>
+          <MenuItem>Attend a Workshop</MenuItem>
+        </MenuList>
+      </Menu>
+
       {elmenu.map((link) => (
         <NavItem
           _hover={{
