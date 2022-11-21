@@ -17,13 +17,6 @@ import { NavItem } from "./NavItem";
 import useMenuLateralPolla from "../../utils/useMenuLateralPolla";
 import Countdown from "react-countdown";
 
-/* const LinkItems = [
-  { name: "Home", icon: FiHome, ruta: "/" },
-  { name: "Trending", icon: FiTrendingUp, ruta: "/" },
-  { name: "Explore", icon: FiCompass, ruta: "/" },
-  { name: "Partidos", icon: FiStar, ruta: "/partidos" },
-]; */
-
 export const MenuIzquierdo = ({ onClose, user, cerrar, ...rest }) => {
   const { elmenu } = useMenuLateralPolla();
 

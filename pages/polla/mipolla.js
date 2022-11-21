@@ -35,7 +35,7 @@ export default function MiPolla() {
     <>
       <h2>Mi POLLA</h2>
       {partidosGrupos && misPronos ? (
-        <Box width={800}>
+        <Box>
           <Table className="mipollatable">
             <Thead>
               <Tr>
