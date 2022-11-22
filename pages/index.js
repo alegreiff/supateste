@@ -74,8 +74,9 @@ export default function Home({
   const { setAllPronos, setPosiciones } = usePollaSettings((state) => state);
   const { user, error, isLoading, accessToken } = useUser();
 
-  localStorage.clear();
-  console.log("LSC");
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
 
   if (user) {
     //router.push("/polla");
