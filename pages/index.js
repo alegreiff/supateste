@@ -76,11 +76,9 @@ export default function Home({
 
   useEffect(() => {
     //localStorage.clear();
-    document.cookie.split(";").forEach((c) => {
-      document.cookie = c
-        .replace(/^ +/, "")
-        .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
-    });
+    console.log("CIAU");
+    localStorage.clear();
+    router.push("/api/auth/logout");
   }, []);
 
   if (user) {
