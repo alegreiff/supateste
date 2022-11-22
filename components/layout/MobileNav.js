@@ -34,6 +34,7 @@ import { BsPersonCircle } from "react-icons/bs";
 import useMenuLateralPolla from "../../utils/useMenuLateralPolla";
 import { EstadoPolla } from "./EstadoPolla";
 import useDatosPollero from "../../storedata/pollero";
+import { useRouter } from "next/router";
 
 export const MobileNav = ({ onOpen, user, cerrar, ...rest }) => {
   const { equipos } = useDatosPollero((state) => state);
@@ -41,6 +42,7 @@ export const MobileNav = ({ onOpen, user, cerrar, ...rest }) => {
   const btnRef = React.useRef();
   const { userMenu } = useMenuLateralPolla();
   const [bandera, setBandera] = useState("");
+  const router = useRouter();
   useEffect(() => {
     if (user?.favorito) {
       const bandera = equipos.find((eq) => eq.id === user.favorito).code;
@@ -49,6 +51,11 @@ export const MobileNav = ({ onOpen, user, cerrar, ...rest }) => {
     }
   }, []);
 
+  const localStorageClear = () => {
+    localStorage.clear();
+    cerrar();
+    router.push("/");
+  };
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -175,6 +182,7 @@ export const MobileNav = ({ onOpen, user, cerrar, ...rest }) => {
                 </Box>
               </HStack>
             </MenuButton>
+            <MenuItem onClick={localStorageClear}>X</MenuItem>
             {user && (
               <MenuList>
                 {/* <MenuItem>Profile</MenuItem>
@@ -195,6 +203,7 @@ export const MobileNav = ({ onOpen, user, cerrar, ...rest }) => {
                   ))}
 
                 <MenuDivider />
+
                 <MenuItem onClick={cerrar}>Cerrar sesión</MenuItem>
               </MenuList>
             )}

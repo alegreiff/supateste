@@ -39,16 +39,16 @@ export default function useMenuLateralPolla() {
 
   const menuPollero = [];
   if (usuario?.alias) {
-    menuPollero.push({
+    /* menuPollero.push({
       name: "Polla diaria",
       icon: FiStar,
       ruta: `/polla/polla`,
-    });
-    menuPollero.push({
+    }); */
+    /* menuPollero.push({
       name: "Posiciones",
       icon: FiStar,
       ruta: `/polla/posiciones`,
-    });
+    }); */
     /* menuPollero.push({
       name: "Pronos",
       icon: FiStar,
@@ -68,6 +68,7 @@ export default function useMenuLateralPolla() {
 
   const elmenu = [
     { name: "Inicio", icon: FiHome, ruta: "/" },
+    { name: "Posiciones", icon: FiHome, ruta: "/polla/posiciones" },
     //{ name: "Polla", icon: FiStar, ruta: "/polla/polla" },
     //{ name: "Mi Polla", icon: FiStar, ruta: "/polla/mipolla" },
     //{ name: "Polleros", icon: FiUsers, ruta: "/polleros" },

@@ -172,7 +172,7 @@ export const PartidoDiario = ({ partido, prono, statsmatch }) => {
               <Pie
                 data={pie}
                 dataKey="value"
-                cx={140}
+                cx={130}
                 cy={100}
                 //labelLine={false}
                 //label={renderCustomizedLabel}
@@ -195,8 +195,8 @@ export const PartidoDiario = ({ partido, prono, statsmatch }) => {
 
               <Pie
                 data={cdat}
-                cx={270}
-                cy={180}
+                cx={250}
+                cy={200}
                 //startAngle={180}
                 //endAngle={0}
                 innerRadius={50}
