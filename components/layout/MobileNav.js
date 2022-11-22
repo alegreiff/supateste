@@ -43,6 +43,12 @@ export const MobileNav = ({ onOpen, user, cerrar, ...rest }) => {
   const { userMenu } = useMenuLateralPolla();
   const [bandera, setBandera] = useState("");
   const router = useRouter();
+  const limpiaPolla = () => {
+    localStorage.clear();
+    console.log("CIAU");
+    localStorage.clear();
+    router.push("/api/auth/logout");
+  };
   useEffect(() => {
     if (user?.favorito) {
       const bandera = equipos.find((eq) => eq.id === user.favorito).code;
@@ -124,6 +130,7 @@ export const MobileNav = ({ onOpen, user, cerrar, ...rest }) => {
 
       <HStack spacing={{ base: "0", md: "6" }}>
         <IconButton
+          onClick={limpiaPolla}
           size="lg"
           variant="ghost"
           aria-label="open menu"
