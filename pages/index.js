@@ -76,9 +76,9 @@ export default function Home({
 
   useEffect(() => {
     //localStorage.clear();
-    console.log("CIAU");
+    /* console.log("CIAU");
     localStorage.clear();
-    router.push("/api/auth/logout");
+    router.push("/api/auth/logout"); */
   }, []);
 
   if (user) {
