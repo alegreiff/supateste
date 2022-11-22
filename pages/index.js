@@ -75,7 +75,7 @@ export default function Home({
   const { user, error, isLoading, accessToken } = useUser();
 
   useEffect(() => {
-    localStorage.clear();
+    //localStorage.clear();
   }, []);
 
   if (user) {
