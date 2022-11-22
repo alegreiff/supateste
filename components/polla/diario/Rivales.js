@@ -1,74 +1,29 @@
 import {
-  Avatar,
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
   Badge,
   Box,
   Center,
   HStack,
-  Spacer,
+  Table,
+  TableCaption,
   Tag,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
   VStack,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { MdStars } from "react-icons/md";
-import {
-  ImHappy,
-  ImAngry2,
-  ImCool,
-  ImAngry,
-  ImTable,
-  ImCrying,
-  ImNeutral,
-} from "react-icons/im";
+import { ImHappy, ImAngry, ImCrying, ImNeutral } from "react-icons/im";
 import { FechaSingle } from "../../Fixture/FechaSingle";
-import {
-  Bar,
-  BarChart,
-  Cell,
-  Label,
-  Legend,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
-
-const data = [
-  {
-    name: "Page A",
-    uv: 4000,
-
-    color: "#015677",
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-
-    color: "#015677",
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-
-    color: "#015677",
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-
-    color: "#015677",
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    color: "#015677",
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-
-    color: "#015677",
-  },
-];
+import { Bar, BarChart, Cell, ResponsiveContainer, XAxis } from "recharts";
+import { supabaseClient } from "@supabase/auth-helpers-nextjs";
 
 export default class CustomizedLabel extends React.Component {
   render() {
@@ -91,6 +46,22 @@ export default class CustomizedLabel extends React.Component {
 
 export const Rivales = ({ partido, prono, statsmatch: stats }) => {
   const [datosJugado, setDatosJugado] = useState(null);
+  const [marcadores, setMarcadores] = useState(null);
+  useEffect(() => {
+    async function resultadosPensados(pt) {
+      const { data, error } = await supabaseClient.rpc(
+        "pollamarcadorespartido",
+        {
+          pt,
+        }
+      );
+
+      if (error) console.error(error);
+      else setMarcadores(data);
+    }
+    resultadosPensados(partido.id);
+  }, [partido]);
+
   useEffect(() => {
     if (stats) {
       const dataPlayed = [
@@ -102,20 +73,11 @@ export const Rivales = ({ partido, prono, statsmatch: stats }) => {
       setDatosJugado(dataPlayed);
     }
   }, []);
-  /* "gch":13,
-"dbl":23,
-"ch":7,
-"sim":46,
-"bkc":16,
-"bks":40,
-
-*/
-
   return (
     <>
       <Box>
         <Box width={150} padding={1}>
-          <FechaSingle date={partido.fecha} />
+          <FechaSingle date={partido.fecha} /> <Tag> {partido.id} </Tag>
         </Box>
         <Center>
           {/* <Badge>{prono?.partido}</Badge> */}
@@ -253,7 +215,67 @@ export const Rivales = ({ partido, prono, statsmatch: stats }) => {
             </Box>
           </>
         ) : (
-          ""
+          <>
+            <Accordion allowToggle>
+              <AccordionItem>
+                <AccordionButton>
+                  <Box flex="1" textAlign="left">
+                    Marcadores
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+                <AccordionPanel pb={4}>
+                  {marcadores ? (
+                    <Table variant="simple" size="sm" width={400}>
+                      <Thead>
+                        <Tr>
+                          <Th>Polleros</Th>
+                          <Th isNumeric>Con comodín</Th>
+                          <Th isNumeric>Sin comodín</Th>
+                          <Th>Marcador</Th>
+                        </Tr>
+                      </Thead>
+                      <Tbody>
+                        {marcadores.map((score, i) => (
+                          <Tr
+                            key={i}
+                            bg={
+                              score.score ===
+                              prono?.pron_loc + " - " + prono?.pron_vis
+                                ? "polla.clasificado"
+                                : ""
+                            }
+                          >
+                            <Td>{score.personas}</Td>
+                            <Td>{score.conc}</Td>
+                            <Td isNumeric>{score.sinc}</Td>
+                            <Td>{score.score}</Td>
+                          </Tr>
+                        ))}
+                      </Tbody>
+                    </Table>
+                  ) : (
+                    ""
+                  )}
+                </AccordionPanel>
+              </AccordionItem>
+
+              {/* <AccordionItem>
+                <AccordionButton>
+                  <Box flex="1" textAlign="left">
+                    Section 2 title
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+                <AccordionPanel pb={4}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat.
+                </AccordionPanel>
+              </AccordionItem> */}
+            </Accordion>
+          </>
         )}
       </Box>
     </>
