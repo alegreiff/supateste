@@ -182,7 +182,7 @@ export const MobileNav = ({ onOpen, user, cerrar, ...rest }) => {
                 </Box>
               </HStack>
             </MenuButton>
-            <MenuItem onClick={localStorageClear}>X</MenuItem>
+
             {user && (
               <MenuList>
                 {/* <MenuItem>Profile</MenuItem>

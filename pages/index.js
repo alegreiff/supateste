@@ -73,6 +73,10 @@ export default function Home({
 
   const { setAllPronos, setPosiciones } = usePollaSettings((state) => state);
   const { user, error, isLoading, accessToken } = useUser();
+
+  localStorage.clear();
+  console.log("LSC");
+
   if (user) {
     //router.push("/polla");
   }
