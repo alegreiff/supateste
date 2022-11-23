@@ -98,7 +98,7 @@ export default function PaginaPolla({ puntosporpartido }) {
               statsmatch={partidostats(p.id)}
             ></PartidoDiario>
 
-            <Box h={20} />
+            <Box m={5} h={2} bg="polla.catar" />
           </>
         ))}
     </>

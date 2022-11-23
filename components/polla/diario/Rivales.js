@@ -20,7 +20,15 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { MdStars } from "react-icons/md";
-import { ImHappy, ImAngry, ImCrying, ImNeutral } from "react-icons/im";
+import {
+  ImHappy,
+  ImAngry,
+  ImCrying,
+  ImNeutral,
+  ImManWoman,
+  ImStarFull,
+  ImStarEmpty,
+} from "react-icons/im";
 import { FechaSingle } from "../../Fixture/FechaSingle";
 import { Bar, BarChart, Cell, ResponsiveContainer, XAxis } from "recharts";
 import { supabaseClient } from "@supabase/auth-helpers-nextjs";
@@ -47,6 +55,7 @@ export default class CustomizedLabel extends React.Component {
 export const Rivales = ({ partido, prono, statsmatch: stats }) => {
   const [datosJugado, setDatosJugado] = useState(null);
   const [marcadores, setMarcadores] = useState(null);
+  const [lideres, setLideres] = useState(null);
   useEffect(() => {
     async function resultadosPensados(pt) {
       const { data, error } = await supabaseClient.rpc(
@@ -59,7 +68,17 @@ export const Rivales = ({ partido, prono, statsmatch: stats }) => {
       if (error) console.error(error);
       else setMarcadores(data);
     }
+
+    async function lideresMarcadoresPensados(pt) {
+      const { data, error } = await supabaseClient.rpc("pollapartidopronos", {
+        pt,
+      });
+
+      if (error) console.error(error);
+      else setLideres(data);
+    }
     resultadosPensados(partido.id);
+    lideresMarcadoresPensados(partido.id);
   }, [partido]);
 
   useEffect(() => {
@@ -229,9 +248,11 @@ export const Rivales = ({ partido, prono, statsmatch: stats }) => {
                     <Table variant="simple" size="sm" width={400}>
                       <Thead>
                         <Tr>
-                          <Th>Polleros</Th>
-                          <Th isNumeric>Con comodín</Th>
-                          <Th isNumeric>Sin comodín</Th>
+                          <Th>
+                            <ImManWoman size={18} />
+                          </Th>
+                          <Th isNumeric>Com +</Th>
+                          <Th isNumeric>Com -</Th>
                           <Th>Marcador</Th>
                         </Tr>
                       </Thead>
@@ -246,8 +267,8 @@ export const Rivales = ({ partido, prono, statsmatch: stats }) => {
                                 : ""
                             }
                           >
-                            <Td>{score.personas}</Td>
-                            <Td>{score.conc}</Td>
+                            <Td isNumeric>{score.personas}</Td>
+                            <Td isNumeric>{score.conc}</Td>
                             <Td isNumeric>{score.sinc}</Td>
                             <Td>{score.score}</Td>
                           </Tr>
@@ -260,20 +281,44 @@ export const Rivales = ({ partido, prono, statsmatch: stats }) => {
                 </AccordionPanel>
               </AccordionItem>
 
-              {/* <AccordionItem>
+              <AccordionItem>
                 <AccordionButton>
                   <Box flex="1" textAlign="left">
-                    Section 2 title
+                    Polleros
                   </Box>
                   <AccordionIcon />
                 </AccordionButton>
                 <AccordionPanel pb={4}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
+                  <Box className="multipronos">
+                    {lideres ? (
+                      <Table variant="simple" size="sm" width={400}>
+                        <Thead>
+                          <Tr>
+                            <Th>pos</Th>
+                            <Th>Pollero</Th>
+                            <Th>Pts</Th>
+                            <Th>Marcador</Th>
+                            <Th>Com</Th>
+                          </Tr>
+                        </Thead>
+                        <Tbody>
+                          {lideres.map((score, i) => (
+                            <Tr key={i}>
+                              <Td isNumeric>{score.p}</Td>
+                              <Td>{score.nom}</Td>
+                              <Td isNumeric>{score.pun}</Td>
+                              <Td>{score.score}</Td>
+                              <Td>{score.c ? "SI" : ""}</Td>
+                            </Tr>
+                          ))}
+                        </Tbody>
+                      </Table>
+                    ) : (
+                      ""
+                    )}
+                  </Box>
                 </AccordionPanel>
-              </AccordionItem> */}
+              </AccordionItem>
             </Accordion>
           </>
         )}

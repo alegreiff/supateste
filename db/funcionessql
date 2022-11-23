@@ -1,3 +1,23 @@
+CREATE OR REPLACE FUNCTION pollapartidopronos(pt integer)
+RETURNS TABLE (p int, nom text, pun integer, score text, c boolean)
+LANGUAGE plpgsql
+AS $$ 
+BEGIN
+RETURN QUERY SELECT 
+pp.pos::integer, pp.alias::text, pp.pts::integer, 
+concat(p.pron_loc, ' - ',p.pron_vis)::text as marcador,
+p.comodin
+from posicionespollerostest pp
+LEFT JOIN pronos p ON p.user_id = pp.userid
+WHERE p.partido = pt
+ORDER BY pp.pos
+
+END;
+$$
+
+
+
+
 CREATE OR REPLACE FUNCTION pollamarcadorespartido(pt integer)
 RETURNS TABLE( personas integer, conc integer, sinc integer, score text )
 LANGUAGE plpgsql
