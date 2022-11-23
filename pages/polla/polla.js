@@ -70,12 +70,18 @@ export default function PaginaPolla({ puntosporpartido }) {
 
   return (
     <>
-      <h2>La polla diaria </h2>
-
+      <h2>La polla diaria </h2> {JSON.stringify(value)}
       <Box marginBottom={5}>
         {fechaspartidos &&
           fechaspartidos.map((dia, i) => (
             <Tag
+              colorScheme={
+                format(new Date(fechas.HOY), "eeeddMMM") ===
+                format(new Date(dia.mifecha), "eeeddMMM")
+                  ? "pink"
+                  : "facebook"
+              }
+              style={{ cursor: "pointer" }}
               m={2}
               p={2}
               key={i}
@@ -87,7 +93,6 @@ export default function PaginaPolla({ puntosporpartido }) {
             </Tag>
           ))}
       </Box>
-
       {partidosHoy &&
         partidosHoy.map((p) => (
           <>
