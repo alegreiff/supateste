@@ -27,7 +27,6 @@ import {
   ImNeutral,
   ImManWoman,
   ImStarFull,
-  ImStarEmpty,
 } from "react-icons/im";
 import { FechaSingle } from "../../Fixture/FechaSingle";
 import { Bar, BarChart, Cell, ResponsiveContainer, XAxis } from "recharts";
@@ -289,26 +288,26 @@ export const Rivales = ({ partido, prono, statsmatch: stats }) => {
                   <AccordionIcon />
                 </AccordionButton>
                 <AccordionPanel pb={4}>
-                  <Box className="multipronos">
+                  <Box className="multipronos" p={0} m={0}>
                     {lideres ? (
-                      <Table variant="simple" size="sm" width={400}>
+                      <Table variant="simple" size="sm" width={250}>
                         <Thead>
                           <Tr>
-                            <Th>pos</Th>
                             <Th>Pollero</Th>
                             <Th>Pts</Th>
                             <Th>Marcador</Th>
-                            <Th>Com</Th>
                           </Tr>
                         </Thead>
                         <Tbody>
                           {lideres.map((score, i) => (
                             <Tr key={i}>
-                              <Td isNumeric>{score.p}</Td>
-                              <Td>{score.nom}</Td>
+                              <Td>
+                                <strong>{score.p}</strong> {score.nom}
+                              </Td>
                               <Td isNumeric>{score.pun}</Td>
-                              <Td>{score.score}</Td>
-                              <Td>{score.c ? "SI" : ""}</Td>
+                              <Td>
+                                {score.score} {score.c ? " ★ " : ""}
+                              </Td>
                             </Tr>
                           ))}
                         </Tbody>
