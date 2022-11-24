@@ -253,7 +253,7 @@ export const Rivales = ({ partido, prono, statsmatch: stats }) => {
           </>
         ) : (
           <>
-            <Button onClick={qps1}>QPS1</Button>
+            {/* <Button onClick={qps1}>QPS1</Button> */}
             <Accordion allowToggle>
               <AccordionItem>
                 <AccordionButton>
