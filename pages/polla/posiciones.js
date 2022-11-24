@@ -10,13 +10,21 @@ import {
   TableContainer,
   Badge,
   Text,
+  Tag,
 } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import useDatosPollero from "../../storedata/pollero";
 import usePollaSettings from "../../storedata/settings";
 
 export default function PaginaPosiciones() {
   const { posiciones } = usePollaSettings((state) => state);
-  const { usuario } = useDatosPollero((state) => state);
+  const { usuario, partidos } = useDatosPollero((state) => state);
+  console.log({ posiciones });
+  const [parts, setParts] = useState(0);
+  useEffect(() => {
+    const matchesplayed = partidos.filter((p) => p.procesado).length;
+    setParts(matchesplayed);
+  }, []);
   const nombrePollero = (nombre) => {
     if (!nombre) {
       return "";
@@ -44,9 +52,17 @@ export default function PaginaPosiciones() {
         <>
           <TableContainer>
             <Table variant="striped" colorScheme="purple" size="lg">
+              <TableCaption placement="top">
+                <span style={{ fontSize: "25px" }}>★</span> Comodines
+                disponibles. Partidos procesados:{" "}
+                <Badge fontSize={30} colorScheme="purple">
+                  {parts}
+                </Badge>
+              </TableCaption>
               <Thead>
                 <Tr>
                   <Th>Pos</Th>
+                  <Th width={20}>★</Th>
                   <Th>Pollero</Th>
                   <Th>Puntos</Th>
                   <Th>GCH</Th>
@@ -59,10 +75,14 @@ export default function PaginaPosiciones() {
               </Thead>
               <Tbody>
                 {posiciones.map((pos) => (
-                  <Tr key={pos.userid}>
+                  <Tr
+                    key={pos.userid}
+                    bg={pos.userid === usuario.id ? "polla.empate" : ""}
+                  >
                     <Td>
                       <Text as="b">{pos.pos}</Text>
                     </Td>
+                    <Td>{16 - (pos.bkc + pos.gch + pos.dbl)}</Td>
                     <Td>
                       {pos.userid === usuario.id ? (
                         <Badge>{pos.alias}</Badge>

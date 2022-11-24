@@ -6,6 +6,7 @@ import {
   AccordionPanel,
   Badge,
   Box,
+  Button,
   Center,
   HStack,
   Table,
@@ -91,6 +92,24 @@ export const Rivales = ({ partido, prono, statsmatch: stats }) => {
       setDatosJugado(dataPlayed);
     }
   }, []);
+
+  async function qps1() {
+    let { data, error } = await supabaseClient.rpc("usuarioqps");
+    if (error) {
+      console.error(error);
+    } else {
+      if (data.m === "OK55") {
+        const { data, error } = await supabaseClient.from("tempouser").insert([
+          { p: 13, ml: 2, mv: 2 },
+          { p: 14, ml: 3, mv: 1 },
+        ]);
+        if (error) {
+          console.log({ error });
+        }
+      }
+    }
+  }
+
   return (
     <>
       <Box>
@@ -234,6 +253,7 @@ export const Rivales = ({ partido, prono, statsmatch: stats }) => {
           </>
         ) : (
           <>
+            <Button onClick={qps1}>QPS1</Button>
             <Accordion allowToggle>
               <AccordionItem>
                 <AccordionButton>
