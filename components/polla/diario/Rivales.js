@@ -17,6 +17,7 @@ import {
   Th,
   Thead,
   Tr,
+  useDisclosure,
   VStack,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
@@ -32,6 +33,7 @@ import {
 import { FechaSingle } from "../../Fixture/FechaSingle";
 import { Bar, BarChart, Cell, ResponsiveContainer, XAxis } from "recharts";
 import { supabaseClient } from "@supabase/auth-helpers-nextjs";
+import { QuePasariaSi } from "./qps";
 
 export default class CustomizedLabel extends React.Component {
   render() {
@@ -53,6 +55,7 @@ export default class CustomizedLabel extends React.Component {
 }
 
 export const Rivales = ({ partido, prono, statsmatch: stats }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [datosJugado, setDatosJugado] = useState(null);
   const [marcadores, setMarcadores] = useState(null);
   const [lideres, setLideres] = useState(null);
@@ -94,20 +97,15 @@ export const Rivales = ({ partido, prono, statsmatch: stats }) => {
   }, []);
 
   async function qps1() {
-    let { data, error } = await supabaseClient.rpc("usuarioqps");
-    if (error) {
-      console.error(error);
-    } else {
-      if (data.m === "OK55") {
-        const { data, error } = await supabaseClient.from("tempouser").insert([
-          { p: 13, ml: 2, mv: 2 },
-          { p: 14, ml: 3, mv: 1 },
-        ]);
-        if (error) {
-          console.log({ error });
-        }
-      }
-    }
+    //select * from pruebafuncionx(array[row(14,1,0),row(15,2,0),row(16,3,1)]::qpsprono[]);
+    let arr = [{ ppp: 16, mmll: 2, mmvv: 0 }];
+
+    let { data, error } = await supabaseClient.rpc("pruebafuncionx", {
+      arr,
+    });
+
+    if (error) console.error(error);
+    else console.log(data);
   }
 
   return (
@@ -254,6 +252,18 @@ export const Rivales = ({ partido, prono, statsmatch: stats }) => {
         ) : (
           <>
             {/* <Button onClick={qps1}>QPS1</Button> */}
+            <Button size="xs" onClick={onOpen}></Button>
+            {lideres ? (
+              <QuePasariaSi
+                isOpen={isOpen}
+                onOpen={onOpen}
+                onClose={onClose}
+                posOld={lideres}
+              />
+            ) : (
+              "No qps"
+            )}
+
             <Accordion allowToggle>
               <AccordionItem>
                 <AccordionButton>
