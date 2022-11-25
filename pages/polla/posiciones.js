@@ -29,6 +29,11 @@ import {
   Divider,
   ButtonGroup,
   HStack,
+  Tabs,
+  TabList,
+  Tab,
+  TabPanels,
+  TabPanel,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import useDatosPollero from "../../storedata/pollero";
@@ -98,167 +103,185 @@ export default function PaginaPosiciones() {
 
   return (
     <>
-      {posiciones ? (
-        <>
-          <TableContainer>
-            <Table variant="striped" colorScheme="purple" size="lg">
-              <TableCaption placement="top">
-                <span style={{ fontSize: "25px" }}>★</span> Comodines
-                disponibles. Partidos procesados:{" "}
-                <Badge fontSize={30} colorScheme="purple">
-                  {parts}
-                </Badge>
-              </TableCaption>
-              <Thead>
-                <Tr>
-                  <Th>Pos</Th>
-                  <Th width={20}>★</Th>
-                  <Th>Pollero</Th>
-                  <Th>Puntos</Th>
-                  <Th>GCH</Th>
-                  <Th>DBL</Th>
-                  <Th>CH</Th>
-                  <Th>SIM</Th>
-                  <Th>♾️</Th>
-                  <Th fontSize={30}>👪</Th>
-                </Tr>
-              </Thead>
-              <Tbody>
-                {posiciones.map((pos) => (
-                  <Tr
-                    key={pos.userid}
-                    //bg={pos.userid === usuario.id ? "yellow" : ""}
-                    //bg={pos.userid === usuario.id ? "yellow" : ""}
-                    style={{
-                      backgroundColor:
-                        pos.userid === usuario.id ? "red !important" : "",
-                    }}
-                  >
-                    <Td>
-                      <Text as="b">{pos.pos}</Text>
-                    </Td>
-                    <Td>{16 - (pos.bkc + pos.gch + pos.dbl)}</Td>
-                    <Td>
-                      <Button
-                        onClick={() => {
-                          openDetalles(pos);
-                        }}
-                        size="xs"
-                        mr={2}
-                        bg="transparent"
-                      >
-                        <Avatar
-                          size="xs"
-                          bg={
-                            pos.pos < 11
-                              ? "gold"
-                              : pos.pos < 50
-                              ? "red.300"
-                              : pos.pos > 135
-                              ? "green.300"
-                              : "gray.300"
-                          }
-                        ></Avatar>
-                      </Button>
-                      {pos.userid === usuario.id ? (
-                        <Badge p={2} fontSize={25}>
-                          {pos.alias}
-                        </Badge>
+      <Tabs>
+        <TabList>
+          <Tab>Posiciones Nuestra Polla</Tab>
+          <Tab>Mundial</Tab>
+          <Tab>Estadísticas</Tab>
+        </TabList>
+
+        <TabPanels>
+          <TabPanel>
+            {posiciones ? (
+              <>
+                <TableContainer>
+                  <Table variant="striped" colorScheme="purple" size="lg">
+                    <TableCaption placement="top">
+                      <span style={{ fontSize: "25px" }}>★</span> Comodines
+                      disponibles. Partidos procesados:{" "}
+                      <Badge fontSize={30} colorScheme="purple">
+                        {parts}
+                      </Badge>
+                    </TableCaption>
+                    <Thead>
+                      <Tr>
+                        <Th>Pos</Th>
+                        <Th width={20}>★</Th>
+                        <Th>Pollero</Th>
+                        <Th>Puntos</Th>
+                        <Th>GCH</Th>
+                        <Th>DBL</Th>
+                        <Th>CH</Th>
+                        <Th>SIM</Th>
+                        <Th>♾️</Th>
+                        <Th fontSize={30}>👪</Th>
+                      </Tr>
+                    </Thead>
+                    <Tbody>
+                      {posiciones.map((pos) => (
+                        <Tr
+                          key={pos.userid}
+                          //bg={pos.userid === usuario.id ? "yellow" : ""}
+                          //bg={pos.userid === usuario.id ? "yellow" : ""}
+                          style={{
+                            backgroundColor:
+                              pos.userid === usuario.id ? "red !important" : "",
+                          }}
+                        >
+                          <Td>
+                            <Text as="b">{pos.pos}</Text>
+                          </Td>
+                          <Td>{16 - (pos.bkc + pos.gch + pos.dbl)}</Td>
+                          <Td>
+                            <Button
+                              onClick={() => {
+                                openDetalles(pos);
+                              }}
+                              size="xs"
+                              mr={2}
+                              bg="transparent"
+                            >
+                              <Avatar
+                                size="xs"
+                                bg={
+                                  pos.pos < 11
+                                    ? "gold"
+                                    : pos.pos < 50
+                                    ? "red.300"
+                                    : pos.pos > 135
+                                    ? "green.300"
+                                    : "gray.300"
+                                }
+                              ></Avatar>
+                            </Button>
+                            {pos.userid === usuario.id ? (
+                              <Badge p={2} fontSize={25}>
+                                {pos.alias}
+                              </Badge>
+                            ) : (
+                              pos.alias
+                            )}
+                          </Td>
+                          <Td>
+                            <Text as="b">{pos.pts}</Text>
+                          </Td>
+                          <Td>{pos.gch}</Td>
+                          <Td>{pos.dbl}</Td>
+                          <Td>{pos.ch}</Td>
+                          <Td>{pos.sim}</Td>
+                          <Td>{pos.blanco}</Td>
+                          <Td>{nombrePollero(pos.amigo)}</Td>
+                        </Tr>
+                      ))}
+                    </Tbody>
+                    <Tfoot>
+                      <Tr>
+                        <Th>Pos</Th>
+                        <Th width={20}>★</Th>
+                        <Th>Pollero</Th>
+                        <Th>Puntos</Th>
+                        <Th>GCH</Th>
+                        <Th>DBL</Th>
+                        <Th>CH</Th>
+                        <Th>SIM</Th>
+                        <Th>♾️</Th>
+                        <Th fontSize={30}>👪</Th>
+                      </Tr>
+                    </Tfoot>
+                  </Table>
+                </TableContainer>
+                <Modal isOpen={isOpen} onClose={closeDetalles}>
+                  <ModalOverlay />
+                  <ModalContent>
+                    <ModalHeader>{curPoll ? curPoll.alias : ""} </ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                      {curPoll ? (
+                        <Card maxW="sm">
+                          <CardBody>
+                            <Box
+                              style={{
+                                backgroundImage: 'url("/logo.png")',
+                                backgroundRepeat: "no-repeat",
+                                backgroundSize: "35%",
+                                backgroundPosition: "top right",
+                              }}
+                            >
+                              <HStack>
+                                <Avatar
+                                  margin="1"
+                                  size="2xl"
+                                  src={`https://dsbiqexajjcyswddmxve.supabase.co/storage/v1/object/public/polleres/${curPoll?.userid}/perfil.png`}
+                                />
+                                <Image
+                                  border={`3px solid`}
+                                  src={`/banderas/${curPoll.code.toLowerCase()}.png`}
+                                  alt={curPoll.nombre}
+                                  height={120}
+                                  width={120}
+                                  borderRadius="50%"
+                                />
+                              </HStack>
+
+                              {/* <Badge m={5} p={5} fontSize={21}>
+                      {curPoll.nombre}
+                    </Badge> */}
+                            </Box>
+
+                            <Stack mt="6" spacing="3">
+                              <Polleropuntos pollero={curPoll.userid} />
+                              <Tag>Hincha de: {curPoll.hincha}</Tag>
+                              <Tag>Su pollero: {curPoll.amigo}</Tag>
+                            </Stack>
+                          </CardBody>
+                          <Divider />
+                          <CardFooter></CardFooter>
+                        </Card>
                       ) : (
-                        pos.alias
+                        ""
                       )}
-                    </Td>
-                    <Td>
-                      <Text as="b">{pos.pts}</Text>
-                    </Td>
-                    <Td>{pos.gch}</Td>
-                    <Td>{pos.dbl}</Td>
-                    <Td>{pos.ch}</Td>
-                    <Td>{pos.sim}</Td>
-                    <Td>{pos.blanco}</Td>
-                    <Td>{nombrePollero(pos.amigo)}</Td>
-                  </Tr>
-                ))}
-              </Tbody>
-              <Tfoot>
-                <Tr>
-                  <Th>Pos</Th>
-                  <Th width={20}>★</Th>
-                  <Th>Pollero</Th>
-                  <Th>Puntos</Th>
-                  <Th>GCH</Th>
-                  <Th>DBL</Th>
-                  <Th>CH</Th>
-                  <Th>SIM</Th>
-                  <Th>♾️</Th>
-                  <Th fontSize={30}>👪</Th>
-                </Tr>
-              </Tfoot>
-            </Table>
-          </TableContainer>
-          <Modal isOpen={isOpen} onClose={closeDetalles}>
-            <ModalOverlay />
-            <ModalContent>
-              <ModalHeader>{curPoll ? curPoll.alias : ""} </ModalHeader>
-              <ModalCloseButton />
-              <ModalBody>
-                {curPoll ? (
-                  <Card maxW="sm">
-                    <CardBody>
-                      <Box
-                        style={{
-                          backgroundImage: 'url("/logo.png")',
-                          backgroundRepeat: "no-repeat",
-                          backgroundSize: "35%",
-                          backgroundPosition: "top right",
-                        }}
-                      >
-                        <HStack>
-                          <Avatar
-                            margin="1"
-                            size="2xl"
-                            src={`https://dsbiqexajjcyswddmxve.supabase.co/storage/v1/object/public/polleres/${curPoll?.userid}/perfil.png`}
-                          />
-                          <Image
-                            border={`3px solid`}
-                            src={`/banderas/${curPoll.code.toLowerCase()}.png`}
-                            alt={curPoll.nombre}
-                            height={120}
-                            width={120}
-                            borderRadius="50%"
-                          />
-                        </HStack>
+                    </ModalBody>
 
-                        {/* <Badge m={5} p={5} fontSize={21}>
-                          {curPoll.nombre}
-                        </Badge> */}
-                      </Box>
-
-                      <Stack mt="6" spacing="3">
-                        <Polleropuntos pollero={curPoll.userid} />
-                        <Tag>Hincha de: {curPoll.hincha}</Tag>
-                        <Tag>Su pollero: {curPoll.amigo}</Tag>
-                      </Stack>
-                    </CardBody>
-                    <Divider />
-                    <CardFooter></CardFooter>
-                  </Card>
-                ) : (
-                  ""
-                )}
-              </ModalBody>
-
-              <ModalFooter>
-                <Button colorScheme="blue" mr={3} onClick={closeDetalles}>
-                  Cerrar
-                </Button>
-              </ModalFooter>
-            </ModalContent>
-          </Modal>
-        </>
-      ) : (
-        ""
-      )}
+                    <ModalFooter>
+                      <Button colorScheme="blue" mr={3} onClick={closeDetalles}>
+                        Cerrar
+                      </Button>
+                    </ModalFooter>
+                  </ModalContent>
+                </Modal>
+              </>
+            ) : (
+              ""
+            )}
+          </TabPanel>
+          <TabPanel>
+            <p>En camino</p>
+          </TabPanel>
+          <TabPanel>
+            <p>En camino</p>
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
     </>
   );
 }

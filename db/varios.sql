@@ -1,3 +1,6 @@
+
+
+
 /*select * from fixture 
 where fecha > ('2022-11-26 11:00')
 and fecha < ('2022-11-26 17:00')
