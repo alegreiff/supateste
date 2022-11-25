@@ -168,14 +168,18 @@ export const MobileNav = ({ onOpen, user, cerrar, ...rest }) => {
                   {user?.email ? (
                     <>
                       <Text fontSize="sm">{user.alias}</Text>
-                      <Image
-                        border={`3px solid`}
-                        src={`/banderas/${bandera.toLowerCase()}.png`}
-                        alt={user.favorito}
-                        height={22}
-                        width={22}
-                        borderRadius="full"
-                      />
+                      {bandera ? (
+                        <Image
+                          border={`3px solid`}
+                          src={`/banderas/${bandera.toLowerCase()}.png`}
+                          alt={user.favorito}
+                          height={22}
+                          width={22}
+                          borderRadius="full"
+                        />
+                      ) : (
+                        "NB"
+                      )}
                       <Text fontSize="xs" color="gray.600">
                         {user.email}
                       </Text>

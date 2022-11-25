@@ -160,8 +160,11 @@ export const QuePasariaSiDiario = ({
   const nombreEquipos = (partido) => {
     if (partdia) {
       const equipos = partdia.find((p) => p.id === partido);
-      console.log(equipos);
-      return [equipos.eqloc, equipos.eqvis];
+      if (equipos) {
+        return [equipos.eqloc, equipos.eqvis];
+      } else {
+        return ["Cúcuta", "Envigado"];
+      }
     } else {
       return ["Cúcuta", "Envigado"];
     }
