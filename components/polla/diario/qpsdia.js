@@ -177,7 +177,7 @@ export const QuePasariaSiDiario = ({
             <Button onClick={ressetPos}>Tabla real</Button>
 
             <Box>
-              {setQpsDiario.length > 0 ? (
+              {qpsDiario.length > 0 ? (
                 <form>
                   <>
                     {qpsDiario.map((q, i) => (
@@ -229,7 +229,7 @@ export const QuePasariaSiDiario = ({
                   </>
                 </form>
               ) : (
-                ""
+                "Ya fue"
               )}
             </Box>
             <Box height="40vh" className="multipronos" p={0} m={0}>
