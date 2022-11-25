@@ -72,15 +72,15 @@ export default function PaginaPolla({ puntosporpartido }) {
 
   return (
     <>
-      <h2>La polla diaria </h2> {JSON.stringify(value)}
+      <h2>La polla diaria </h2> {/* {JSON.stringify(value)} */}
       <Box marginBottom={5}>
         {fechaspartidos &&
           fechaspartidos.map((dia, i) => (
             <Tag
               colorScheme={
-                format(new Date(fechas.HOY), "eeeddMMM") ===
-                format(new Date(dia.dia), "eeeddMMM")
-                  ? "pink"
+                format(addDays(new Date(fechas.HOY), -1), "eeeddMMM") ===
+                format(addDays(new Date(dia.dia), 0), "eeeddMMM")
+                  ? "red"
                   : "facebook"
               }
               style={{ cursor: "pointer" }}
