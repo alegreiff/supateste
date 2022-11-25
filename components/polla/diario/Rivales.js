@@ -252,13 +252,18 @@ export const Rivales = ({ partido, prono, statsmatch: stats }) => {
         ) : (
           <>
             {/* <Button onClick={qps1}>QPS1</Button> */}
-            <Button size="xs" onClick={onOpen}></Button>
+
+            <Button size="xs" colorScheme="pink" onClick={onOpen}>
+              QPS
+            </Button>
             {lideres ? (
               <QuePasariaSi
                 isOpen={isOpen}
                 onOpen={onOpen}
                 onClose={onClose}
                 posOld={lideres}
+                partido={partido}
+                prono={prono}
               />
             ) : (
               "No qps"

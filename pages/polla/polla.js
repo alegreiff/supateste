@@ -4,15 +4,17 @@ import "react-calendar/dist/Calendar.css";
 import useDatosPollero from "../../storedata/pollero";
 import usePollaSettings from "../../storedata/settings";
 import _ from "lodash";
-import { Box, Spacer, Tag } from "@chakra-ui/react";
+import { Box, Button, Spacer, Tag, useDisclosure } from "@chakra-ui/react";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { PartidoDiario } from "../../components/polla/diario/partido";
 import { supabaseServerClient } from "@supabase/auth-helpers-nextjs";
+import { QuePasariaSiDiario } from "../../components/polla/diario/qpsdia";
 
 export default function PaginaPolla({ puntosporpartido }) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [value, setValueDate] = useState(new Date());
-  const { fechas, allPronos } = usePollaSettings((state) => state);
+  const { fechas, allPronos, posiciones } = usePollaSettings((state) => state);
   const { fechaspartidos, partidos, pronospollero, usuario } = useDatosPollero(
     (state) => state
   );
@@ -93,6 +95,16 @@ export default function PaginaPolla({ puntosporpartido }) {
             </Tag>
           ))}
       </Box>
+      <Button size="xs" colorScheme="pink" onClick={onOpen}>
+        ¿QPS de todo el día?
+      </Button>
+      <QuePasariaSiDiario
+        isOpen={isOpen}
+        onOpen={onOpen}
+        onClose={onClose}
+        posiciones={posiciones}
+        partidosHoy={partidosHoy}
+      />
       {partidosHoy &&
         partidosHoy.map((p) => (
           <>
