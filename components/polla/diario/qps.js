@@ -107,11 +107,11 @@ export const QuePasariaSi = ({
               {qps[0] ? (
                 <Box>
                   <HStack>
-                    <Badge w={150}>{partido.eqloc}</Badge>
+                    <Badge w={100}>{partido.eqloc}</Badge>
                     <NumberInput
                       min={0}
                       max={20}
-                      width="70px"
+                      width="120px"
                       value={qps[0].mmll}
                       onChange={(e) => {
                         cambiaForma(qps[0].ppp, "mmll", e);
@@ -127,7 +127,7 @@ export const QuePasariaSi = ({
                     <NumberInput
                       min={0}
                       max={20}
-                      width="70px"
+                      width="120px"
                       value={qps[0].mmvv}
                       onChange={(e) => {
                         cambiaForma(qps[0].ppp, "mmvv", e);
@@ -139,7 +139,7 @@ export const QuePasariaSi = ({
                         <NumberDecrementStepper />
                       </NumberInputStepper>
                     </NumberInput>
-                    <Badge w={150}>{partido.eqvis}</Badge>
+                    <Badge w={100}>{partido.eqvis}</Badge>
                   </HStack>
                   <Button size="lg" onClick={qps1} colorScheme="pink">
                     ¿Qué pasaría con este marcador?

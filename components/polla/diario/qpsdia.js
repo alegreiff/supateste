@@ -164,6 +164,13 @@ export const QuePasariaSiDiario = ({
       return ["Cúcuta", "Envigado"];
     }
   };
+  const resaltado = (partido) => {
+    if (partdia) {
+      const equipos = partdia.find((p) => p.id === partido);
+    } else {
+      return "";
+    }
+  };
 
   return (
     <>
@@ -183,11 +190,11 @@ export const QuePasariaSiDiario = ({
                     {qpsDiario.map((q, i) => (
                       <div key={i}>
                         <HStack>
-                          <Badge w={150}>{nombreEquipos(q.ppp)[0]}</Badge>
+                          <Badge w={100}>{nombreEquipos(q.ppp)[0]}</Badge>
                           <NumberInput
                             min={0}
                             max={20}
-                            width="70px"
+                            width="120px"
                             value={q.mmll}
                             onChange={(e) => {
                               cambiaForma(q.ppp, "mmll", e);
@@ -203,7 +210,7 @@ export const QuePasariaSiDiario = ({
                           <NumberInput
                             min={0}
                             max={20}
-                            width="70px"
+                            width="120px"
                             value={q.mmvv}
                             onChange={(e) => {
                               cambiaForma(q.ppp, "mmvv", e);
@@ -215,7 +222,7 @@ export const QuePasariaSiDiario = ({
                               <NumberDecrementStepper />
                             </NumberInputStepper>
                           </NumberInput>
-                          <Badge w={150}>{nombreEquipos(q.ppp)[1]}</Badge>
+                          <Badge w={100}>{nombreEquipos(q.ppp)[1]}</Badge>
                         </HStack>
                       </div>
                     ))}
