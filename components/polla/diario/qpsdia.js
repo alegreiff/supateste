@@ -70,13 +70,15 @@ export const QuePasariaSiDiario = ({
         let partidoProno = pronosPollero.find(
           (match) => match.partido === p.id
         );
-        qpsDiario.push({
-          ppp: p.id,
-          mmll: partidoProno.pron_loc,
-          mmvv: partidoProno.pron_vis,
-        });
+        if (partidoProno) {
+          qpsDiario.push({
+            ppp: p.id,
+            mmll: partidoProno.pron_loc,
+            mmvv: partidoProno.pron_vis,
+          });
+          setQpsDiario(qpsDiario);
+        }
       });
-      setQpsDiario(qpsDiario);
 
       setPartdia(nojugados);
     }

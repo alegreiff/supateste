@@ -43,7 +43,7 @@ export const QuePasariaSi = ({
   const [qps, setQps] = useState([]);
 
   useEffect(() => {
-    if (usuario) {
+    if (usuario && prono) {
       const userPronos = allPronos.filter(
         (ap) => ap.user_id === usuario.id && !ap.procesado
       );
