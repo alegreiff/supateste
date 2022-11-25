@@ -91,7 +91,7 @@ export default function PaginaPolla({ puntosporpartido }) {
                 setValueDate(addDays(new Date(dia.dia), 1));
               }}
             >
-              {format(addDays(new Date(dia.dia), 1), "dd MMM", {
+              {format(addDays(new Date(dia.dia), 1), "eee dd MMM", {
                 locale: es,
               })}
             </Tag>
