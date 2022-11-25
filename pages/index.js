@@ -49,12 +49,12 @@ export default function Home({
   tablapos,
 }) {
   //console.log("lespollereèsamiès", pollerosamigos);
-  console.log({ tablapos });
+  //console.log({ tablapos });
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const router = useRouter();
   const query = router.query;
-  console.log({ statspronos });
+  //console.log({ statspronos });
   const {
     usuario,
     setUsuario,
@@ -111,7 +111,7 @@ export default function Home({
         .from("pronos")
         .select("*");
 
-      console.log("PRONNO", pronosDB, error);
+      //console.log("PRONNO", pronosDB, error);
 
       setAllPronos(pronosDB);
     }
@@ -143,7 +143,7 @@ export default function Home({
         .select("*");
 
       setPartidos(db_partidos);
-      console.log("partita", db_partidos);
+      //console.log("partita", db_partidos);
     }
 
     //if (partidos.length === 0) {
@@ -154,7 +154,7 @@ export default function Home({
   useEffect(() => {
     const { data: authListener } = supabaseClient.auth.onAuthStateChange(
       (event, session) => {
-        console.log(event, session);
+        //console.log(event, session);
         if (session?.user) {
           setUsuario(session?.user);
           loadPerfil(session?.user.id);
@@ -173,7 +173,7 @@ export default function Home({
     const { data: usuariosDB, error } = await supabaseClient
       .from("usuariospolla")
       .select("*");
-    console.log("MAGIS", usuariosDB, error);
+    //console.log("MAGIS", usuariosDB, error);
     if (usuariosDB) {
       setPolleros(usuariosDB);
     }
@@ -206,7 +206,7 @@ export default function Home({
       .from("correosusuarios")
       .select("id")
       .eq("correo", email);
-    console.log(usuario, error);
+    //console.log(usuario, error);
     return usuario?.length;
   };
   const signInWithGitHub = () => {};
@@ -224,7 +224,7 @@ export default function Home({
         });
 
         if (error) throw error;
-        console.log("USER", user, "Session", session, "ERROR", error);
+        //console.log("USER", user, "Session", session, "ERROR", error);
         if (user) {
           console.info(user.identities);
         }
@@ -270,9 +270,9 @@ export default function Home({
       password,
     });
     if (user_signed) {
-      console.log("DESDE AUTH EL USER", user_signed);
+      //console.log("DESDE AUTH EL USER", user_signed);
       console.log(isLoading);
-      console.log(user);
+      //console.log(user);
     } else {
       console.log(error);
     }

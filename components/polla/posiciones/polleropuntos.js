@@ -15,7 +15,7 @@ import React, { useEffect, useState } from "react";
 import useDatosPollero from "../../../storedata/pollero";
 import usePollaSettings from "../../../storedata/settings";
 
-export const Polleropuntos = () => {
+export const Polleropuntos = ({ pollero = null }) => {
   const { posiciones } = usePollaSettings((state) => state);
   const { usuario } = useDatosPollero((state) => state);
   const [mipos, setMipos] = useState(null);
@@ -41,10 +41,15 @@ export const Polleropuntos = () => {
 
   useEffect(() => {
     if (posiciones) {
-      const mispuntos = posiciones.find((pos) => pos.userid === usuario?.id);
-      setMipos(mispuntos);
+      if (!pollero) {
+        const mispuntos = posiciones.find((pos) => pos.userid === usuario?.id);
+        setMipos(mispuntos);
+      } else {
+        const mispuntos = posiciones.find((pos) => pos.userid === pollero);
+        setMipos(mispuntos);
+      }
     }
-  }, [posiciones, usuario]);
+  }, [posiciones, usuario, pollero]);
 
   return (
     <>
@@ -54,10 +59,10 @@ export const Polleropuntos = () => {
           <Grid
             h="auto"
             templateRows="repeat(2, 1fr)"
-            templateColumns="repeat(5, 1fr)"
+            templateColumns={pollero ? "repeat(1, 1fr)" : "repeat(5, 1fr)"}
             gap={4}
           >
-            <GridItem rowSpan={2} colSpan={1}>
+            <GridItem rowSpan={2} colSpan={pollero ? 4 : 1}>
               <PuntoBadge caso="Posición" valor={mipos.pos} />
               <PuntoBadge caso="Puntos" valor={mipos.pts} />
             </GridItem>
@@ -71,7 +76,7 @@ export const Polleropuntos = () => {
               </SimpleGrid>
             </GridItem>
 
-            <GridItem colSpan={4}></GridItem>
+            {/* <GridItem colSpan={4}></GridItem> */}
           </Grid>
         </>
       ) : (
