@@ -5,7 +5,7 @@ import useDatosPollero from "../../storedata/pollero";
 import usePollaSettings from "../../storedata/settings";
 import _ from "lodash";
 import { Box, Button, Spacer, Tag, useDisclosure } from "@chakra-ui/react";
-import { format } from "date-fns";
+import { addDays, format } from "date-fns";
 import { es } from "date-fns/locale";
 import { PartidoDiario } from "../../components/polla/diario/partido";
 import { supabaseServerClient } from "@supabase/auth-helpers-nextjs";
@@ -79,7 +79,7 @@ export default function PaginaPolla({ puntosporpartido }) {
             <Tag
               colorScheme={
                 format(new Date(fechas.HOY), "eeeddMMM") ===
-                format(new Date(dia.mifecha), "eeeddMMM")
+                format(new Date(dia.dia), "eeeddMMM")
                   ? "pink"
                   : "facebook"
               }
@@ -88,10 +88,12 @@ export default function PaginaPolla({ puntosporpartido }) {
               p={2}
               key={i}
               onClick={() => {
-                setValueDate(new Date(dia.mifecha));
+                setValueDate(addDays(new Date(dia.dia), 1));
               }}
             >
-              {format(new Date(dia.mifecha), "eee dd MMM", { locale: es })}
+              {format(addDays(new Date(dia.dia), 1), "dd MMM", {
+                locale: es,
+              })}
             </Tag>
           ))}
       </Box>
