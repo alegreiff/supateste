@@ -205,7 +205,14 @@ export default function PaginaPosiciones() {
                 {curPoll ? (
                   <Card maxW="sm">
                     <CardBody>
-                      <Box>
+                      <Box
+                        style={{
+                          backgroundImage: 'url("/logo.png")',
+                          backgroundRepeat: "no-repeat",
+                          backgroundSize: "35%",
+                          backgroundPosition: "top right",
+                        }}
+                      >
                         <HStack>
                           <Avatar
                             margin="1"
