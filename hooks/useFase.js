@@ -1,6 +1,6 @@
 export default function useFase(fechas) {
   const comodinesGrupos = 2;
-  const comodinesOctavos = 3;
+  const comodinesOctavos = 4;
   const comodinesCuartos = 2;
   const comodinesSemifinales = 1;
   const comodinesFinales = 1;

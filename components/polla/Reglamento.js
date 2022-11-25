@@ -55,6 +55,38 @@ export const Reglamento = () => {
       ]}
     >
       <Box p={4}>
+        <Box p={5} style={{ fontSize: "1.5rem" }}>
+          <p>
+            El próximo <strong>VIERNES 02</strong> de diciembre termina la fase
+            de grupos cerca de las 4:00 pm. Y los octavos de final empiezan al
+            día siguiente a las 10:00 am.
+          </p>
+          <p>
+            <strong>El ÚNICO PLAZO</strong> para que todos carguemos nuestros 8
+            pronósticos para <strong>OCTAVOS</strong> de final, en donde
+            tendremos 4 comodines, será{" "}
+            <strong>
+              entre las 6:00 pm del viernes 02 de diciembre y las 9:00 am del
+              sábado 03 de diciembre.
+            </strong>{" "}
+          </p>
+          <p>Sin excepciones. </p>
+          <p>
+            <strong>
+              El sistema no acepta cargas de pronósticos después de la hora
+              señalada.
+            </strong>{" "}
+          </p>
+          <p>
+            Recuerden que como cada ronda los puntos aumentan las oportunidades
+            de ganar se mantienen.
+          </p>
+          <p>¡Un GranChepazo en octavos suma 20 puntos!</p>
+          <p>
+            Esperamos que estén atentos para cargar sus marcadores. Las llaves
+            de octavos de final las iremos conociendo la próxima semana.
+          </p>
+        </Box>
         <Center>
           <a
             target="_blank"
