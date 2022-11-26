@@ -82,6 +82,15 @@ export const Octavos = ({ posequipos }) => {
           templateColumns="repeat(5, 1fr)"
           gap={1}
         >
+          <GridItem colSpan={5}>
+            <p>
+              <strong>Octavos de final parciales</strong>
+            </p>
+            <Tag>
+              No está considerado en este cuadro el ítem de desempate Juego
+              limpio
+            </Tag>
+          </GridItem>
           <GridItem colSpan={2}>
             <Center>
               <HStack>
