@@ -1,5 +1,6 @@
 import {
   Table,
+  TableCaption,
   TableContainer,
   Tbody,
   Td,
@@ -13,19 +14,22 @@ export const OctavosGrupo = ({ equipos, grupo }) => {
   return (
     <>
       {equipos ? (
-        <TableContainer maxWidth="600px">
+        <TableContainer maxWidth="550px" mb={5}>
           <Table size="sm">
+            <TableCaption placement="top">
+              Grupo <strong>{grupo}</strong>
+            </TableCaption>
             <Thead>
               <Tr>
-                <Th>#</Th>
-                <Th>Equipo</Th>
+                <Th w={10}>#</Th>
+                <Th w={30}>Equipo</Th>
+                <Th>PTS</Th>
+                <Th>DG</Th>
                 <Th>PG</Th>
                 <Th>PP</Th>
                 <Th>PE</Th>
                 <Th>GF</Th>
                 <Th>GC</Th>
-                <Th>DG</Th>
-                <Th>PTS</Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -38,13 +42,15 @@ export const OctavosGrupo = ({ equipos, grupo }) => {
                   >
                     <Td>{i + 1}</Td>
                     <Td>{eq.nombre}</Td>
+                    <Td>
+                      <strong>{eq.pts}</strong>
+                    </Td>
+                    <Td>{eq.dif}</Td>
                     <Td>{eq.PG}</Td>
                     <Td>{eq.PP}</Td>
                     <Td>{eq.PE}</Td>
                     <Td>{eq.GF}</Td>
                     <Td>{eq.GC}</Td>
-                    <Td>{eq.dif}</Td>
-                    <Td>{eq.pts}</Td>
                   </Tr>
                 ))}
             </Tbody>
