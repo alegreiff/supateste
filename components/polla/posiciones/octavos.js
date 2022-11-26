@@ -4,6 +4,7 @@ import {
   Center,
   Grid,
   GridItem,
+  HStack,
   Tag,
   VStack,
 } from "@chakra-ui/react";
@@ -82,132 +83,153 @@ export const Octavos = ({ posequipos }) => {
           gap={1}
         >
           <GridItem colSpan={2}>
-            <Center mb={2}>
-              <Badge adge variant="outline" fontSize={25} colorScheme="green">
-                A1 vs 2B
-              </Badge>
+            <Center>
+              <HStack>
+                <Badge adge variant="outline" fontSize={25} colorScheme="green">
+                  A1 vs 2B
+                </Badge>
+
+                <VStack>
+                  <Tag size="lg" variant="solid" colorScheme="teal">
+                    {a1?.nombre}
+                  </Tag>
+                  <Tag size="lg" variant="solid" colorScheme="pink">
+                    {b2?.nombre}
+                  </Tag>
+                </VStack>
+              </HStack>
             </Center>
-            <VStack>
-              <Tag size="lg" variant="solid" colorScheme="teal">
-                {a1?.nombre}
-              </Tag>
-              <Tag size="lg" variant="solid" colorScheme="pink">
-                {b2?.nombre}
-              </Tag>
-            </VStack>
           </GridItem>
 
           <GridItem colSpan={1} />
           <GridItem colSpan={2}>
             <Center mb={2}>
-              <Badge variant="outline" fontSize={25} colorScheme="green">
-                1B vs 2A
-              </Badge>
+              <HStack>
+                <VStack>
+                  <Tag size="lg" variant="solid" colorScheme="teal">
+                    {b1?.nombre}
+                  </Tag>
+                  <Tag size="lg" variant="solid" colorScheme="pink">
+                    {a2?.nombre}
+                  </Tag>
+                </VStack>
+                <Badge variant="outline" fontSize={25} colorScheme="green">
+                  1B vs 2A
+                </Badge>
+              </HStack>
             </Center>
-            <VStack>
-              <Tag size="lg" variant="solid" colorScheme="teal">
-                {b1?.nombre}
-              </Tag>
-              <Tag size="lg" variant="solid" colorScheme="pink">
-                {a2?.nombre}
-              </Tag>
-            </VStack>
           </GridItem>
           <GridItem colSpan={2}>
-            <Center mb={2}>
-              <Badge variant="outline" fontSize={25} colorScheme="green">
-                1C vs 2D
-              </Badge>
+            <Center>
+              <HStack>
+                <Badge adge variant="outline" fontSize={25} colorScheme="green">
+                  C1 vs 2D
+                </Badge>
+
+                <VStack>
+                  <Tag size="lg" variant="solid" colorScheme="teal">
+                    {c1?.nombre}
+                  </Tag>
+                  <Tag size="lg" variant="solid" colorScheme="pink">
+                    {d2?.nombre}
+                  </Tag>
+                </VStack>
+              </HStack>
             </Center>
-            <VStack>
-              <Tag size="lg" variant="solid" colorScheme="teal">
-                {c1?.nombre}
-              </Tag>
-              <Tag size="lg" variant="solid" colorScheme="pink">
-                {d2?.nombre}
-              </Tag>
-            </VStack>
           </GridItem>
 
           <GridItem colSpan={1} />
           <GridItem colSpan={2}>
             <Center mb={2}>
-              <Badge variant="outline" fontSize={25} colorScheme="green">
-                1D vs 2C
-              </Badge>
+              <HStack>
+                <VStack>
+                  <Tag size="lg" variant="solid" colorScheme="teal">
+                    {d1?.nombre}
+                  </Tag>
+                  <Tag size="lg" variant="solid" colorScheme="pink">
+                    {c2?.nombre}
+                  </Tag>
+                </VStack>
+                <Badge variant="outline" fontSize={25} colorScheme="green">
+                  1D vs 2C
+                </Badge>
+              </HStack>
             </Center>
-            <VStack>
-              <Tag size="lg" variant="solid" colorScheme="teal">
-                {d1?.nombre}
-              </Tag>
-              <Tag size="lg" variant="solid" colorScheme="pink">
-                {c2?.nombre}
-              </Tag>
-            </VStack>
           </GridItem>
+          <GridItem colSpan={5}> </GridItem>
           <GridItem colSpan={2}>
-            <Center mb={2}>
-              <Badge variant="outline" fontSize={25} colorScheme="green">
-                E1 vs 2F
-              </Badge>
+            <Center>
+              <HStack>
+                <Badge adge variant="outline" fontSize={25} colorScheme="green">
+                  E1 vs 2F
+                </Badge>
+
+                <VStack>
+                  <Tag size="lg" variant="solid" colorScheme="teal">
+                    {e1?.nombre}
+                  </Tag>
+                  <Tag size="lg" variant="solid" colorScheme="pink">
+                    {f2?.nombre}
+                  </Tag>
+                </VStack>
+              </HStack>
             </Center>
-            <VStack>
-              <Tag size="lg" variant="solid" colorScheme="teal">
-                {e1?.nombre}
-              </Tag>
-              <Tag size="lg" variant="solid" colorScheme="pink">
-                {f2?.nombre}
-              </Tag>
-            </VStack>
           </GridItem>
 
           <GridItem colSpan={1} />
           <GridItem colSpan={2}>
             <Center mb={2}>
-              <Badge variant="outline" fontSize={25} colorScheme="green">
-                F1 vs 2E
-              </Badge>
+              <HStack>
+                <VStack>
+                  <Tag size="lg" variant="solid" colorScheme="teal">
+                    {f1?.nombre}
+                  </Tag>
+                  <Tag size="lg" variant="solid" colorScheme="pink">
+                    {e2?.nombre}
+                  </Tag>
+                </VStack>
+                <Badge variant="outline" fontSize={25} colorScheme="green">
+                  1F vs 2E
+                </Badge>
+              </HStack>
             </Center>
-            <VStack>
-              <Tag size="lg" variant="solid" colorScheme="teal">
-                {f1?.nombre}
-              </Tag>
-              <Tag size="lg" variant="solid" colorScheme="pink">
-                {e2?.nombre}
-              </Tag>
-            </VStack>
           </GridItem>
           <GridItem colSpan={2}>
-            <Center mb={2}>
-              <Badge variant="outline" fontSize={25} colorScheme="green">
-                G1 vs 2H
-              </Badge>
+            <Center>
+              <HStack>
+                <Badge adge variant="outline" fontSize={25} colorScheme="green">
+                  G1 vs 2H
+                </Badge>
+
+                <VStack>
+                  <Tag size="lg" variant="solid" colorScheme="teal">
+                    {g1?.nombre}
+                  </Tag>
+                  <Tag size="lg" variant="solid" colorScheme="pink">
+                    {h2?.nombre}
+                  </Tag>
+                </VStack>
+              </HStack>
             </Center>
-            <VStack>
-              <Tag size="lg" variant="solid" colorScheme="teal">
-                {g1?.nombre}
-              </Tag>
-              <Tag size="lg" variant="solid" colorScheme="pink">
-                {h2?.nombre}
-              </Tag>
-            </VStack>
           </GridItem>
 
           <GridItem colSpan={1} />
           <GridItem colSpan={2}>
             <Center mb={2}>
-              <Badge variant="outline" fontSize={25} colorScheme="green">
-                H1 vs 2G
-              </Badge>
+              <HStack>
+                <VStack>
+                  <Tag size="lg" variant="solid" colorScheme="teal">
+                    {h1?.nombre}
+                  </Tag>
+                  <Tag size="lg" variant="solid" colorScheme="pink">
+                    {g2?.nombre}
+                  </Tag>
+                </VStack>
+                <Badge variant="outline" fontSize={25} colorScheme="green">
+                  1H vs 2G
+                </Badge>
+              </HStack>
             </Center>
-            <VStack>
-              <Tag size="lg" variant="solid" colorScheme="teal">
-                {h1?.nombre}
-              </Tag>
-              <Tag size="lg" variant="solid" colorScheme="pink">
-                {g2?.nombre}
-              </Tag>
-            </VStack>
           </GridItem>
           <GridItem colSpan={4} bg="tomato" />
         </Grid>
