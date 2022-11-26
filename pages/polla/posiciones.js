@@ -41,15 +41,17 @@ import usePollaSettings from "../../storedata/settings";
 import { FaChessKing, FaRegGrinTongueWink } from "react-icons/fa";
 import { Card, CardBody, CardFooter } from "@chakra-ui/card";
 import { Polleropuntos } from "../../components/polla/posiciones/polleropuntos";
+import { supabaseServerClient } from "@supabase/auth-helpers-nextjs";
+import { Octavos } from "../../components/polla/posiciones/octavos";
 
-export default function PaginaPosiciones() {
+export default function PaginaPosiciones({ posequipos }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { posiciones } = usePollaSettings((state) => state);
   const { usuario, partidos, polleros, equipos } = useDatosPollero(
     (state) => state
   );
-  console.log({ equipos });
+  console.log({ posequipos });
   const [parts, setParts] = useState(0);
   const [curPoll, setCurPoll] = useState(null);
   useEffect(() => {
@@ -275,7 +277,7 @@ export default function PaginaPosiciones() {
             )}
           </TabPanel>
           <TabPanel>
-            <p>En camino</p>
+            <Octavos posequipos={posequipos} />
           </TabPanel>
           <TabPanel>
             <p>En camino</p>
@@ -284,6 +286,18 @@ export default function PaginaPosiciones() {
       </Tabs>
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  let { data: posequipos, error } = await supabaseServerClient(context)
+    .from("posiciones")
+    .select("*");
+
+  return {
+    props: {
+      posequipos,
+    },
+  };
 }
 
 /* 
