@@ -22,6 +22,7 @@ export const GrupoProno = ({
   pronoslistos,
 }) => {
   //console.log("PronosDBB", pronosdb);
+  console.log({ grupo });
   const { pronospollero } = useDatosPollero((state) => state);
 
   const { equipos } = useDatosPollero((state) => state);
@@ -30,14 +31,16 @@ export const GrupoProno = ({
   const [partidosPron, setPartidosPron] = useState(0);
   const [resulPron, setResulPron] = useState(null);
   const [comodinesActivos, setComodinesActivos] = useState(0);
-
+  console.log({ pronosdb });
   useEffect(() => {
     console.log("Kambio Lokka", comodinesActivos);
   }, [comodinesActivos]);
   useEffect(() => {
     const pronosGrupo = pronospollero.filter(
-      (pronos) => pronos.grupo === grupo && pronos.loc >= 0 && pronos.vis >= 0
+      (pronos) =>
+        parseInt(pronos.grupo) === grupo && pronos.loc >= 0 && pronos.vis >= 0
     );
+    console.log({ pronosGrupo });
     const storedComodines = pronosGrupo.filter((pp) => pp.com === true).length;
     setComodinesActivos(storedComodines);
 
@@ -125,6 +128,30 @@ export const GrupoProno = ({
                 </Button>
               ))}
           </Box> */}
+          <Box w={400}>
+            <p>
+              El pronóstico debe hacerse sobre el resultado final del partido
+              (bien sea de 90 o 120 minutos, en caso de que se requiera
+              alargue), y en ese sentido puede ser un empate. Los tiros penales
+              de desempate no hacen parte del pronóstico.
+            </p>
+            <br />
+            <p>Para mayor claridad, son dos los escenarios:</p>
+            <br />
+            <ul>
+              <ol>
+                Un partido puede terminar en los noventa minutos; el pronóstico
+                aplicará como ha ocurrido hasta ahora en la polla.
+              </ol>
+              <br />
+              <ol>
+                Si un partido termina empatado en sus 90 o los que sean,
+                requerirá alargue. El pronóstico aplicará sobre el marcador
+                final, tras los 120 (puede ser victoria de uno de los equipos, o
+                empate).
+              </ol>
+            </ul>
+          </Box>
         </SimpleGrid>
         {partidos.length === partidosPron && comodinesActivos === comodines && (
           <GuardarPronos grupo={grupo} pronosdb={pronosdb} />

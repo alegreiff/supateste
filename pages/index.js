@@ -441,7 +441,7 @@ export default function Home({
   return (
     <>
       <Polleropuntos />
-
+      V7.12
       <Box p={5}>
         <Button colorScheme="pink">
           <Link
@@ -452,7 +452,6 @@ export default function Home({
           </Link>
         </Button>
       </Box>
-
       <StatusPolleros />
       <Text textAlign="center" fontSize="30px" color="polla.catar">
         No es mi polla, no es tu polla. ¡Es Nuestra Polla!

@@ -24,7 +24,7 @@ export default function Partidos() {
 
   useEffect(() => {
     if (matches) {
-      const grupos = matches.filter((match) => match.id < 49);
+      const grupos = matches.filter((match) => match.id < 57);
       setDatos(grupos);
     }
   }, []);

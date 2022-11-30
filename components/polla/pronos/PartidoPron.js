@@ -27,6 +27,10 @@ export const PartidoPron = ({
   const [com, setCom] = useState(false);
   const [mod, setMod] = useState(true);
 
+  /* console.log("DESDE PARTIDO");
+  console.log({ estadoComodines });
+  console.log({ maxComodines }); */
+
   useEffect(() => {
     if (pronodb) {
       const loc = parseInt(pronodb.pron_loc);

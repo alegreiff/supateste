@@ -28,13 +28,23 @@ export const GuardarPronos = ({ grupo, pronosdb }) => {
   const [pronosUser, setPronosUser] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const router = useRouter();
+  const [nombre, setNombre] = useState("");
   //const [pronosDB, setPronosDB] = useState([]);
+  console.log({ pronospollero });
 
   //useEffect(() => {}, []);
 
   useEffect(() => {
+    if (grupo === 2) setNombre("Octavos de final");
+    if (grupo === 3) setNombre("Cuartos de final");
+    if (grupo === 4) setNombre("Semifinales");
+    if (grupo === 5) setNombre("Tercer puesto y final");
+    if (isNaN(grupo)) setNombre(`Grupo "${grupo}"`);
+  }, [grupo]);
+
+  useEffect(() => {
     const pronosGrupo = pronospollero.filter(
-      (pronos) => pronos.grupo === grupo
+      (pronos) => parseInt(pronos.grupo) === grupo
     );
     const pronos_to_save = [];
     pronosGrupo.forEach((prono) => {
@@ -130,7 +140,7 @@ export const GuardarPronos = ({ grupo, pronosdb }) => {
           <ModalCloseButton />
           <ModalBody pb={6}>
             <p>
-              <strong>{`Grupo ${grupo}`}</strong>: pronósticos nuevos o
+              <strong>{`FASE ${nombre}`}</strong>: pronósticos nuevos o
               cambiados: {pronosUser.length}
             </p>
 

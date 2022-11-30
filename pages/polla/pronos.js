@@ -22,6 +22,7 @@ export default function PronosPage({ user, data }) {
   const [partidos, setPartidos] = useState([]);
   const { allPronos } = usePollaSettings((state) => state);
   const [pronosDB, setPronosDB] = useState([]);
+  console.log({ pronosDB });
 
   useEffect(() => {
     const userPronos = allPronos.filter((ap) => ap.user_id === user.id);
@@ -53,7 +54,7 @@ export default function PronosPage({ user, data }) {
   };
 
   const pronosGrupo = (grupo) => {
-    const pronos = pronosDB.filter((prono) => prono.grupo === grupo);
+    const pronos = pronosDB.filter((prono) => parseInt(prono.grupo) === grupo);
     return pronos;
   };
 
@@ -65,11 +66,11 @@ export default function PronosPage({ user, data }) {
 
   return (
     <>
-      Descanso
-      {/* <h2>Página de pronósticos</h2>
+      <h2>Página de pronósticos</h2>
       {cargaPronos && fase === 1 && (
         <>
-          <Accordion allowToggle>
+          viejos grupos
+          {/* <Accordion allowToggle>
             <GrupoProno
               partidos={partidosGrupo("A")}
               pronosdb={pronosGrupo("A")}
@@ -110,17 +111,22 @@ export default function PronosPage({ user, data }) {
               pronosdb={pronosGrupo("H")}
               pronoslistos={pronosGrupo("H").length}
             />
-          </Accordion>
+          </Accordion> */}
         </>
       )}
       {cargaPronos && fase !== 1 && (
         <>
-          <Accordion defaultIndex={0}>
-            <GrupoProno partidos={partidosFase(fase)} />
-          </Accordion>
+          P A C I E N C I A
+          {/* <Accordion defaultIndex={0}>
+            <GrupoProno
+              partidos={partidosFase(fase)}
+              pronosdb={pronosGrupo(fase)}
+              pronoslistos={pronosGrupo(fase).length}
+            />
+          </Accordion> */}
         </>
       )}
-      {!cargaPronos && <Box>Reflexión</Box>} */}
+      {!cargaPronos && <Box>Reflexión</Box>}
     </>
   );
 }
