@@ -441,7 +441,7 @@ export default function Home({
   return (
     <>
       <Polleropuntos />
-      V7.12
+      V7.13
       <Box p={5}>
         <Button colorScheme="pink">
           <Link

@@ -117,13 +117,13 @@ export default function PronosPage({ user, data }) {
       {cargaPronos && fase !== 1 && (
         <>
           P A C I E N C I A
-          {/* <Accordion defaultIndex={0}>
+          <Accordion defaultIndex={0}>
             <GrupoProno
               partidos={partidosFase(fase)}
               pronosdb={pronosGrupo(fase)}
               pronoslistos={pronosGrupo(fase).length}
             />
-          </Accordion> */}
+          </Accordion>
         </>
       )}
       {!cargaPronos && <Box>Reflexión</Box>}
