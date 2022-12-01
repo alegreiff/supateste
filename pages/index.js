@@ -440,8 +440,18 @@ export default function Home({
 
   return (
     <>
+      <Button
+        size="lg"
+        fontSize={45}
+        colorScheme="pink"
+        p={5}
+        m={4}
+        disabled="true"
+      >
+        Marcadores de Octavos
+      </Button>
       <Polleropuntos />
-      V7.13
+      DIC01:17:47
       <Box p={5}>
         <Button colorScheme="pink">
           <Link
