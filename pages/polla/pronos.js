@@ -116,7 +116,11 @@ export default function PronosPage({ user, data }) {
       )}
       {cargaPronos && fase !== 1 && (
         <>
-          P A C I E N C I A
+          <Box bg="green.300" w={400} p={5}>
+            Los marcadores pueden ser cambiados tantas veces como el pollero
+            desee. Antes de las 08:59:59 am de mañana sábado 04 de diciembre.
+            Hora Colombia
+          </Box>
           <Accordion defaultIndex={0}>
             <GrupoProno
               partidos={partidosFase(fase)}
