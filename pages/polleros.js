@@ -224,7 +224,10 @@ export default function PollaPage() {
                         {pollero.pos}
                       </Tag>
                       <Center>
-                        {pollero.alias} <Spacer />{" "}
+                        <Box>
+                          <PolleroBadge pollero={pollero} />
+                        </Box>
+                        <h3>{pollero.alias}</h3>
                         <Tag
                           ml={4}
                           color="blackAlpha.900"

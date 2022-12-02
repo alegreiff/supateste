@@ -5,21 +5,21 @@ export const PolleroBadge = ({ pollero }) => {
   //console.log({ pollero });
   if (pollero?.alias) {
     return (
-      <Box padding={3} size="lg" key={pollero.id} bg="white">
-        <Badge padding="1" colorScheme="facebook">
+      <Box padding={1} size="sm" key={pollero.id} bg="white">
+        {/* <Badge padding="1" colorScheme="facebook">
           {pollero.alias}
-        </Badge>
+        </Badge> */}
         {/* {pollero.alias} - {pollero.hincha} */}
-        <Divider />
-        {pollero.isPagado && <Badge> $$ </Badge>}
-        {pollero.isPollero && <Badge> OK </Badge>}
+        {/* <Divider /> */}
+        {/*         {pollero.isPagado && <Badge> $$ </Badge>}
+        {pollero.isPollero && <Badge> OK </Badge>} */}
         {/* <Divider /> */}
         <Avatar
           margin="1"
           size="lg"
           src={`https://dsbiqexajjcyswddmxve.supabase.co/storage/v1/object/public/polleres/${pollero.id}/perfil.png`}
         />
-        <Badge> {pollero.pronos} </Badge>
+        {/* <Badge> {pollero.pronos} </Badge> */}
       </Box>
     );
   }
