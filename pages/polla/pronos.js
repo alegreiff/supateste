@@ -119,7 +119,11 @@ export default function PronosPage({ user, data }) {
           <Box bg="green.300" w={400} p={5}>
             Los marcadores pueden ser cambiados tantas veces como el pollero
             desee. Antes de las 08:59:59 am de mañana sábado 04 de diciembre.
-            Hora Colombia
+            Hora Colombia.{" "}
+            <strong>
+              El botón de GUARDAR aparecerá cuando tenga todos los marcadores y
+              los CUATRO comodines
+            </strong>
           </Box>
           <Accordion defaultIndex={0}>
             <GrupoProno
