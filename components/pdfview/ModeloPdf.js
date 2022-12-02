@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { Document, Page, StyleSheet, Text, View } from "@react-pdf/renderer";
 import {
@@ -20,14 +20,35 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
 });
+
 export const ModeloPDF = ({ dattos }) => {
-  console.log({ dattos });
+  const [fe, setFe] = useState(null);
+
+  useEffect(() => {
+    const fecha = () => {
+      var today = new Date();
+      var date =
+        today.getFullYear() +
+        "-" +
+        (today.getMonth() + 1) +
+        "-" +
+        today.getDate() +
+        " " +
+        today.getHours() +
+        ":" +
+        today.getMinutes();
+      setFe(date);
+    };
+    fecha();
+  }, []);
+
+  console.log({ fe });
   if (dattos) {
     return (
       <Document>
         <Page size="A4" style={styles.page}>
           <View style={styles.section}>
-            <Text>fecha</Text>
+            <Text>Fecha {fe} </Text>
 
             <Table data={dattos}>
               <TableHeader>

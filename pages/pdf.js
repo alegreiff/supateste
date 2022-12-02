@@ -9,14 +9,25 @@ export default function PagePdf() {
   const [pronn, setPronn] = useState(null);
   useEffect(() => {
     async function cargaAllGruposPronos() {
-      let { data: allpronos_grupos, error } = await supabaseClient
-        .from("allpronos_grupos")
+      let { data: allpronos_octavos, error } = await supabaseClient
+        .from("allpronos_octavos")
         .select("*");
-      setPronn(allpronos_grupos);
+      setPronn(allpronos_octavos);
     }
 
     cargaAllGruposPronos();
   }, []);
+
+  const fecha = () => {
+    var today = new Date();
+    var date =
+      today.getFullYear() +
+      "-" +
+      (today.getMonth() + 1) +
+      "-" +
+      today.getDate();
+    return date;
+  };
 
   return (
     <>
@@ -25,7 +36,7 @@ export default function PagePdf() {
       {pronn ? (
         <PDFDownloadLink
           document={<ModeloPDF dattos={pronn} />}
-          fileName="pollafasegrupos.pdf"
+          fileName="pollaoctavos.pdf"
         >
           <Button> Descargar </Button>
         </PDFDownloadLink>

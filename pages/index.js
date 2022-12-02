@@ -450,12 +450,11 @@ export default function Home({
         <Button
           leftIcon={<GiPodiumWinner />}
           size="md"
-          fontSize={45}
+          fontSize={30}
           colorScheme="pink"
           p={8}
           m={1}
           onClick={goToPronos}
-          disabled
         >
           Octavos de final
         </Button>
