@@ -1,4 +1,5 @@
 import {
+  Badge,
   Box,
   Button,
   Center,
@@ -447,20 +448,25 @@ export default function Home({
   return (
     <>
       <Center>
-        <Button
-          leftIcon={<GiPodiumWinner />}
-          size="md"
-          fontSize={30}
-          colorScheme="pink"
-          p={8}
-          m={1}
-          onClick={goToPronos}
-        >
-          Octavos de final
-        </Button>
+        <VStack>
+          <Badge fontSize={30} colorScheme="pink">
+            Octavos de final
+          </Badge>
+          <Button
+            leftIcon={<GiPodiumWinner />}
+            size="md"
+            fontSize={30}
+            colorScheme="pink"
+            p={8}
+            m={1}
+            onClick={goToPronos}
+          >
+            Ponga aqui sus marcadores
+          </Button>
+        </VStack>
       </Center>
       <Polleropuntos />
-      DIC02:12:49
+      DIC02:16:39
       <Box p={5}>
         <Button colorScheme="pink">
           <Link
