@@ -8,6 +8,7 @@ import {
   Box,
   Button,
   Center,
+  Heading,
   Icon,
   SimpleGrid,
   Spacer,
@@ -22,13 +23,16 @@ import useIsAdmin from "../utils/useIsAdmin";
 import _ from "lodash";
 
 import { GrMoney } from "react-icons/gr";
+import usePollaSettings from "../storedata/settings";
 export default function PollaPage() {
   const { usuario, polleros, setPolleros, updatePolleros, pollerosamigos } =
     useDatosPollero((state) => state);
+  const { posiciones } = usePollaSettings((state) => state);
   const [adminpolleros, setAdminpolleros] = useState(null);
 
   const [pollerosOk, setPollerosOk] = useState([]);
   const [pollerosPollos, setpollerosPollos] = useState([]);
+  const [sortPoll, setSortPoll] = useState(false);
 
   useEffect(() => {
     const tempo = _.groupBy(polleros, "amigo");
@@ -36,22 +40,38 @@ export default function PollaPage() {
     //console.log({ tempo });
     setpollerosPollos(tempo);
 
-    let pollerosBien = polleros.filter((poll) => poll.alias != null);
-    pollerosBien = pollerosBien.map((item) => {
-      return {
-        ...item,
-        alias: item.alias.toUpperCase(),
-      };
-    });
-    //pollerosBien = _.sortBy(pollerosBien, "pronos");
-    pollerosBien = _.sortBy(
-      pollerosBien,
-      ["isPagado", "pronos", "alias"],
-      ["asc", "asc", "desc"]
-    );
+    if (posiciones) {
+      console.log({ posiciones });
+      let pollerosBien = polleros.filter((poll) => poll.alias != null);
+      pollerosBien = pollerosBien.map((item) => {
+        item.alias = item.alias.toUpperCase();
+        item.pos = posiciones.find((u) => u.userid === item.id)?.pos;
+
+        //posiciones.find((u) => u.userid === item.id).pos,
+        return item;
+      });
+      //pollerosBien = _.sortBy(pollerosBien, "pronos");
+      pollerosBien = _.sortBy(
+        pollerosBien,
+        ["pos"],
+        ["asc"]
+        //["isPagado", "pronos", "alias"],["asc", "asc", "desc"]
+      );
+      setPollerosOk(pollerosBien);
+    }
     //console.log({ pollerosBien });
+  }, [polleros, posiciones]);
+
+  const cambiaOrden = () => {
+    setSortPoll(!sortPoll);
+    const pollerosBien = pollerosOk;
+    if (sortPoll) {
+      pollerosBien = _.sortBy(pollerosBien, ["alias"], ["desc"]);
+    } else {
+      pollerosBien = _.sortBy(pollerosBien, ["pos"], ["asc"]);
+    }
     setPollerosOk(pollerosBien);
-  }, [polleros]);
+  };
 
   const { isAdmin } = useIsAdmin();
 
@@ -78,7 +98,7 @@ export default function PollaPage() {
       setAdminpolleros(usuarios);
     }
 
-    async function add_prono() {
+    /*async function add_prono() {
       let { data, error } = await supabaseClient.rpc("add_prono", {
         comodin_input: false,
         partido_input: 3,
@@ -89,7 +109,7 @@ export default function PollaPage() {
 
       if (error) console.error(error);
       //else console.log(data);
-    }
+    }*/
     //add_prono();
 
     if (isAdmin) {
@@ -106,7 +126,20 @@ export default function PollaPage() {
   };
 
   const misPolleros = (id) => {
-    return polleros.filter((poll) => poll.amigo === id);
+    if (posiciones) {
+      let poll = pollerosOk.filter((poll) => poll.amigo === id);
+      poll = poll.map((p) => {
+        //p.alias = p.alias.toUpperCase();
+
+        return p;
+      });
+      //console.log({ poll });
+      //poll = _.orderBy(poll, ["alias"], "asc");
+
+      return poll;
+    } else {
+      return "";
+    }
   };
 
   const nombrePollero = (nombre) => {
@@ -127,12 +160,12 @@ export default function PollaPage() {
 
   return (
     <>
-      <SimpleGrid minChildWidth="200px" spacing={3}>
+      {/* <SimpleGrid minChildWidth="200px" spacing={3}>
         {pollerosOk &&
           pollerosOk.map((pollero) => (
             <Badge
               colorScheme={
-                pollero.pronos > 47
+                pollero.pronos > 7
                   ? "green"
                   : pollero.pronos > 0
                   ? "blue"
@@ -154,8 +187,64 @@ export default function PollaPage() {
               </Center>
             </Badge>
           ))}
-      </SimpleGrid>
-      <Accordion>
+      </SimpleGrid> */}
+      <Button onClick={cambiaOrden}>
+        {" "}
+        {sortPoll ? "Órden por posición" : "Órden alfabético"}
+      </Button>
+      <Box>
+        {pollerosamigos &&
+          pollerosamigos.map((amigo) => (
+            <div key={amigo.id}>
+              <Heading as="h1" size="xl" noOfLines={1}>
+                {nombrePollero(amigo.username)}
+              </Heading>
+
+              <SimpleGrid minChildWidth="220px" spacing={1}>
+                {misPolleros(amigo.username).map((pollero) => (
+                  <Box key={pollero.id}>
+                    <Badge
+                      width={220}
+                      colorScheme={
+                        pollero.pronos > 7
+                          ? "green"
+                          : pollero.pronos > 0
+                          ? "blue"
+                          : "gray"
+                      }
+                      p={2}
+                      key={pollero.id}
+                    >
+                      <Tag
+                        ml={4}
+                        color="blackAlpha.900"
+                        fontWeight="extrabold"
+                        size="lg"
+                      >
+                        {pollero.pos}
+                      </Tag>
+                      <Center>
+                        {pollero.alias} <Spacer />{" "}
+                        <Tag
+                          ml={4}
+                          color="blackAlpha.900"
+                          fontWeight="extrabold"
+                          size="lg"
+                        >
+                          {pollero.pronos}
+                        </Tag>
+                      </Center>
+                    </Badge>
+                  </Box>
+                ))}
+              </SimpleGrid>
+              <br />
+              <br />
+              <br />
+            </div>
+          ))}
+      </Box>
+      {/* <Accordion>
         {pollerosamigos &&
           pollerosamigos.map((amigo) => (
             <AccordionItem key={amigo.id}>
@@ -182,7 +271,7 @@ export default function PollaPage() {
               </AccordionPanel>
             </AccordionItem>
           ))}
-      </Accordion>
+      </Accordion> */}
     </>
   );
 }

@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Center,
   Flex,
   FormControl,
   FormHelperText,
@@ -22,6 +23,7 @@ import {
   useDisclosure,
   VStack,
 } from "@chakra-ui/react";
+import { GiPodiumWinner } from "react-icons/gi";
 import {
   supabaseClient,
   supabaseServerClient,
@@ -199,6 +201,10 @@ export default function Home({
       // provider can be 'github', 'google', 'gitlab', and more
       provider: "google",
     });
+  };
+
+  const goToPronos = () => {
+    router.push(`/polla/pronos`);
   };
 
   const checkEmail = async (email) => {
@@ -440,18 +446,22 @@ export default function Home({
 
   return (
     <>
-      <Button
-        size="lg"
-        fontSize={45}
-        colorScheme="pink"
-        p={5}
-        m={4}
-        disabled="true"
-      >
-        Marcadores de Octavos
-      </Button>
+      <Center>
+        <Button
+          leftIcon={<GiPodiumWinner />}
+          size="md"
+          fontSize={45}
+          colorScheme="pink"
+          p={8}
+          m={1}
+          onClick={goToPronos}
+          disabled
+        >
+          Octavos de final
+        </Button>
+      </Center>
       <Polleropuntos />
-      DIC01:17:47
+      DIC02:12:49
       <Box p={5}>
         <Button colorScheme="pink">
           <Link

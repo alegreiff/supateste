@@ -1,9 +1,11 @@
 import {
   Badge,
   Box,
+  Center,
   Checkbox,
   FormControl,
   HStack,
+  Image,
   NumberDecrementStepper,
   NumberIncrementStepper,
   NumberInput,
@@ -26,7 +28,7 @@ export const PartidoPron = ({
   const [msg, setMsg] = useState("");
   const [com, setCom] = useState(false);
   const [mod, setMod] = useState(true);
-
+  console.log({ partido });
   /* console.log("DESDE PARTIDO");
   console.log({ estadoComodines });
   console.log({ maxComodines }); */
@@ -98,10 +100,22 @@ export const PartidoPron = ({
 
   return (
     <>
-      <FormControl>
+      <FormControl mb={5}>
         <HStack>
-          <Box w={120}>
-            <Badge>{partido.eqloc}</Badge>
+          <Box>
+            <Center>
+              <Badge w={120}>{partido.eqloc}</Badge>
+              <Image
+                border={`3px solid`}
+                //borderColor={bordeImagen}
+                src={`/banderas/${partido.locid.toLowerCase()}.png`}
+                alt={partido.eqloc}
+                height={22}
+                width={22}
+                borderRadius="full"
+                mr={2}
+              />
+            </Center>
             <NumberInput
               min={0}
               max={20}
@@ -119,8 +133,20 @@ export const PartidoPron = ({
             </NumberInput>
           </Box>
 
-          <Box w={120}>
-            <Badge>{partido.eqvis}</Badge>
+          <Box>
+            <Center>
+              <Image
+                border={`3px solid`}
+                //borderColor={bordeImagen}
+                src={`/banderas/${partido.visid.toLowerCase()}.png`}
+                alt={partido.eqvis}
+                height={22}
+                width={22}
+                borderRadius="full"
+                mr={2}
+              />
+              <Badge w={120}>{partido.eqvis}</Badge>
+            </Center>
             <NumberInput
               min={0}
               max={20}
