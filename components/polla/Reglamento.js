@@ -55,7 +55,7 @@ export const Reglamento = () => {
       ]}
     >
       <Box p={4}>
-        <Box p={5} style={{ fontSize: "1.5rem" }}>
+        {/* <Box p={5} style={{ fontSize: "1.5rem" }}>
           <p>
             El próximo <strong>VIERNES 02</strong> de diciembre termina la fase
             de grupos cerca de las 4:00 pm. Y los octavos de final empiezan al
@@ -86,7 +86,7 @@ export const Reglamento = () => {
             Esperamos que estén atentos para cargar sus marcadores. Las llaves
             de octavos de final las iremos conociendo la próxima semana.
           </p>
-        </Box>
+        </Box> */}
         <Center>
           <a
             target="_blank"

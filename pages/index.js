@@ -447,7 +447,7 @@ export default function Home({
 
   return (
     <>
-      <Center>
+      {/* <Center>
         <VStack>
           <Badge fontSize={30} colorScheme="pink">
             Octavos de final
@@ -464,9 +464,9 @@ export default function Home({
             Ponga aqui sus marcadores
           </Button>
         </VStack>
-      </Center>
+      </Center> */}
       <Polleropuntos />
-      DIC02:16:39
+      V: 14285
       <Box p={5}>
         <Button colorScheme="pink">
           <Link
