@@ -477,6 +477,16 @@ export default function Home({
           </Link>
         </Button>
       </Box>
+      <Box p={5}>
+        <Button colorScheme="facebook">
+          <Link
+            href="https://www.nuestrapolla.com/octavostransparencianuestrapolla.pdf"
+            isExternal
+          >
+            PDF transparencia. Octavos de final
+          </Link>
+        </Button>
+      </Box>
       <StatusPolleros />
       <Text textAlign="center" fontSize="30px" color="polla.catar">
         No es mi polla, no es tu polla. ¡Es Nuestra Polla!
