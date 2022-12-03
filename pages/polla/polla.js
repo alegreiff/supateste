@@ -73,7 +73,7 @@ export default function PaginaPolla({ puntosporpartido }) {
   return (
     <>
       <h2>La polla diaria </h2> {/* {JSON.stringify(value)} */}
-      <Box marginBottom={5}>
+      {/* <Box marginBottom={5}>
         {fechaspartidos &&
           fechaspartidos.map((dia, i) => (
             <Tag
@@ -96,7 +96,7 @@ export default function PaginaPolla({ puntosporpartido }) {
               })}
             </Tag>
           ))}
-      </Box>
+      </Box> */}
       <Button size="xs" colorScheme="pink" onClick={onOpen}>
         ¿QPS de todo el día?
       </Button>
