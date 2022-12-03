@@ -54,7 +54,7 @@ export default function useMenuLateralPolla() {
     { name: "Partidos", icon: FiStar, ruta: "/partidos" },
 
     /* PDF TEMPORAL */
-    { name: "Test PDF", icon: FiStar, ruta: "/pdf" },
+    //{ name: "Test PDF", icon: FiStar, ruta: "/pdf" },
     /* FIN PDF Temporal */
 
     /* { name: "Pronos", icon: FiStar, ruta: "/polla/pronos" }, */
@@ -63,6 +63,7 @@ export default function useMenuLateralPolla() {
       icon: FiStar,
       ruta: "/perfil/5a47d784-6ea8-4864-9ecf-22b2f07a0e83",
     } */
+
     ,
   ];
 
