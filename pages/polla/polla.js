@@ -64,8 +64,10 @@ export default function PaginaPolla({ puntosporpartido }) {
     const stats = puntosporpartido.find((match) => match.partido === p);
 
     if (stats) {
+      console.log("SIIIIIII");
       return stats;
     } else {
+      console.log("NOOOOOOOOO");
       return null;
     }
   };

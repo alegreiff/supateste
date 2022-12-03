@@ -67,7 +67,6 @@ function CustomLabelSINO({ viewBox, value1, value2 }) {
 }
 
 export const PartidoDiario = ({ partido, prono, statsmatch }) => {
-  console.log({ statsmatch });
   const { statspronos } = useDatosPollero((state) => state);
   const [stats, setStats] = useState(null);
   const [pie, setPie] = useState(null);
@@ -119,7 +118,7 @@ export const PartidoDiario = ({ partido, prono, statsmatch }) => {
     setCdat(losdatos);
     setPie(ladata);
     setComData(comodinesData);
-  }, []);
+  }, [partido, statspronos]);
 
   const renderLabel = useCallback((piePiece) => {
     return piePiece.name + " ";
