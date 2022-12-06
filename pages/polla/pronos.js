@@ -121,8 +121,8 @@ export default function PronosPage({ user, data }) {
           </Box> */}
           <Box bg="green.300" w={400} p={5}>
             Los marcadores pueden ser cambiados tantas veces como el pollero
-            desee. Antes de las 08:59:59 am de mañana sábado 04 de diciembre.
-            Hora Colombia.{" "}
+            desee. Antes de las 07:59:59 am del viernes 09 de diciembre. Hora
+            Colombia.{" "}
             <strong>
               El botón de GUARDAR aparecerá cuando tenga todos los marcadores y
               los DOS comodines
