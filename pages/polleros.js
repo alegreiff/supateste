@@ -206,7 +206,7 @@ export default function PollaPage() {
                     <Badge
                       width={220}
                       colorScheme={
-                        pollero.pronos > 7
+                        pollero.pronos > 3
                           ? "green"
                           : pollero.pronos > 0
                           ? "blue"
