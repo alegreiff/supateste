@@ -51,7 +51,7 @@ export default function PaginaPosiciones({ posequipos }) {
   const { usuario, partidos, polleros, equipos } = useDatosPollero(
     (state) => state
   );
-  console.log({ posequipos });
+  console.log({ posiciones });
   const [parts, setParts] = useState(0);
   const [curPoll, setCurPoll] = useState(null);
   useEffect(() => {
@@ -183,6 +183,15 @@ export default function PaginaPosiciones({ posequipos }) {
                             ) : (
                               pos.alias
                             )}
+                            {pos.alias === "Don Toto" ? " 🏆" : ""}
+                            {pos.isAmigo ? " 🫂" : ""}
+                            {pos.pos === 1
+                              ? " 1"
+                              : pos.pos === 2
+                              ? " 2"
+                              : pos.pos === 3
+                              ? " 3"
+                              : ""}
                           </Td>
                           <Td>
                             <Text as="b">{pos.pts}</Text>

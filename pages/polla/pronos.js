@@ -116,10 +116,10 @@ export default function PronosPage({ user, data }) {
       )}
       {cargaPronos && fase !== 1 && (
         <>
-          {/* <Box bg="palegreen" p={5} m={5}>
-            Suerte
-          </Box> */}
-          <Box bg="green.300" w={400} p={5}>
+          <Box bg="palegreen" p={5} m={5}>
+            Suerte. Nos vemos en semis.
+          </Box>
+          {/* <Box bg="green.300" w={400} p={5}>
             Los marcadores pueden ser cambiados tantas veces como el pollero
             desee. Antes de las 07:59:59 am del viernes 09 de diciembre. Hora
             Colombia.{" "}
@@ -134,7 +134,7 @@ export default function PronosPage({ user, data }) {
               pronosdb={pronosGrupo(fase)}
               pronoslistos={pronosGrupo(fase).length}
             />
-          </Accordion>
+          </Accordion> */}
         </>
       )}
       {!cargaPronos && <Box>Reflexión</Box>}

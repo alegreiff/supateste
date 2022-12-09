@@ -9,10 +9,10 @@ export default function PagePdf() {
   const [pronn, setPronn] = useState(null);
   useEffect(() => {
     async function cargaAllGruposPronos() {
-      let { data: allpronos_octavos, error } = await supabaseClient
-        .from("allpronos_octavos")
+      let { data: allpronos_cuartos, error } = await supabaseClient
+        .from("allpronos_cuartos")
         .select("*");
-      setPronn(allpronos_octavos);
+      setPronn(allpronos_cuartos);
     }
 
     cargaAllGruposPronos();

@@ -447,7 +447,7 @@ export default function Home({
 
   return (
     <>
-      <Center>
+      {/* <Center>
         <VStack>
           <Badge fontSize={30} colorScheme="pink">
             Cuartos de final
@@ -464,7 +464,7 @@ export default function Home({
             Ponga aqui sus marcadores
           </Button>
         </VStack>
-      </Center>
+      </Center> */}
       <Polleropuntos />
       V: 14285
       <Box p={5}>
@@ -476,9 +476,7 @@ export default function Home({
             PDF transparencia. Fase de grupos
           </Link>
         </Button>
-      </Box>
-      <Box p={5}>
-        <Button colorScheme="facebook">
+        <Button colorScheme="facebook" ml={2}>
           <Link
             href="https://www.nuestrapolla.com/octavostransparencianuestrapolla.pdf"
             isExternal
@@ -486,6 +484,14 @@ export default function Home({
             PDF transparencia. Octavos de final
           </Link>
         </Button>
+        {/* <Button colorScheme="yellow" ml={2}>
+          <Link
+            href="https://www.nuestrapolla.com/octavostransparencianuestrapolla.pdf"
+            isExternal
+          >
+            PDF transparencia. Cuartos de final
+          </Link>
+        </Button> */}
       </Box>
       <StatusPolleros />
       <Text textAlign="center" fontSize="30px" color="polla.catar">

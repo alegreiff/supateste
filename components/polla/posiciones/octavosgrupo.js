@@ -14,7 +14,7 @@ export const OctavosGrupo = ({ equipos, grupo }) => {
   return (
     <>
       {equipos ? (
-        <TableContainer maxWidth="550px" mb={5}>
+        <TableContainer maxWidth="600px" mb={5}>
           <Table size="sm">
             <TableCaption placement="top">
               Grupo <strong>{grupo}</strong>
@@ -24,12 +24,15 @@ export const OctavosGrupo = ({ equipos, grupo }) => {
                 <Th w={10}>#</Th>
                 <Th w={30}>Equipo</Th>
                 <Th>PTS</Th>
-                <Th>DG</Th>
+                <Th>PJ</Th>
+
                 <Th>PG</Th>
-                <Th>PP</Th>
                 <Th>PE</Th>
+                <Th>PP</Th>
+
                 <Th>GF</Th>
                 <Th>GC</Th>
+                <Th>DG</Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -37,20 +40,29 @@ export const OctavosGrupo = ({ equipos, grupo }) => {
                 equipos.map((eq, i) => (
                   <Tr
                     key={eq.id}
-                    background={i < 2 ? "polla.clasificado" : "polla.eliminado"}
-                    fontWeight={i < 2 ? "bold" : "normal"}
+                    background={
+                      i < 8
+                        ? "polla.clasificado"
+                        : i < 16
+                        ? "lightcyan"
+                        : "polla.eliminado"
+                    }
+                    fontWeight={i < 8 ? "bold" : "normal"}
                   >
                     <Td>{i + 1}</Td>
                     <Td>{eq.nombre}</Td>
                     <Td>
                       <strong>{eq.pts}</strong>
                     </Td>
-                    <Td>{eq.dif}</Td>
+                    <Td>{eq.PG + eq.PE + eq.PP}</Td>
+
                     <Td>{eq.PG}</Td>
-                    <Td>{eq.PP}</Td>
                     <Td>{eq.PE}</Td>
+                    <Td>{eq.PP}</Td>
+
                     <Td>{eq.GF}</Td>
                     <Td>{eq.GC}</Td>
+                    <Td>{eq.dif}</Td>
                   </Tr>
                 ))}
             </Tbody>
