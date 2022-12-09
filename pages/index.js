@@ -484,14 +484,14 @@ export default function Home({
             PDF transparencia. Octavos de final
           </Link>
         </Button>
-        {/* <Button colorScheme="yellow" ml={2}>
+        <Button colorScheme="yellow" ml={2}>
           <Link
-            href="https://www.nuestrapolla.com/octavostransparencianuestrapolla.pdf"
+            href="https://www.nuestrapolla.com/cuartostransparencianuestrapolla.pdf"
             isExternal
           >
             PDF transparencia. Cuartos de final
           </Link>
-        </Button> */}
+        </Button>
       </Box>
       <StatusPolleros />
       <Text textAlign="center" fontSize="30px" color="polla.catar">
