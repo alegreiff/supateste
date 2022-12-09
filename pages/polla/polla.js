@@ -75,7 +75,7 @@ export default function PaginaPolla({ puntosporpartido }) {
   return (
     <>
       <h2>La polla diaria </h2>
-      {/*  {JSON.stringify(value)} */}
+      {/* {JSON.stringify(value)} */}
       <Box marginBottom={5}>
         {fechaspartidos &&
           fechaspartidos.map((dia, i) => (
