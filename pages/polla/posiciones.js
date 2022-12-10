@@ -153,7 +153,7 @@ export default function PaginaPosiciones({ posequipos }) {
                           <Td>
                             <Text as="b">{pos.pos}</Text>
                           </Td>
-                          <Td>{20 - (pos.bkc + pos.gch + pos.dbl)}</Td>
+                          <Td>{22 - (pos.bkc + pos.gch + pos.dbl)}</Td>
                           <Td>
                             <Button
                               onClick={() => {
