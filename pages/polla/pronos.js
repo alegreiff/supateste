@@ -125,7 +125,7 @@ export default function PronosPage({ user, data }) {
             Colombia.{" "}
             <strong>
               El botón de GUARDAR aparecerá cuando tenga todos los marcadores y
-              los DOS comodines
+              el SOLITARIO comodín
             </strong>
           </Box>
           <Accordion defaultIndex={0}>
