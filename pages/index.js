@@ -447,10 +447,10 @@ export default function Home({
 
   return (
     <>
-      {/* <Center>
+      <Center>
         <VStack>
           <Badge fontSize={30} colorScheme="pink">
-            Cuartos de final
+            Semifinales
           </Badge>
           <Button
             leftIcon={<GiPodiumWinner />}
@@ -464,7 +464,7 @@ export default function Home({
             Ponga aqui sus marcadores
           </Button>
         </VStack>
-      </Center> */}
+      </Center>
       <Polleropuntos />
       V: 14285
       <Box p={5}>
