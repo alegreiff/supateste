@@ -492,6 +492,14 @@ export default function Home({
             PDF transparencia. Cuartos de final
           </Link>
         </Button>
+        <Button colorScheme="cyan" ml={2}>
+          <Link
+            href="https://www.nuestrapolla.com/semistransparencianuestrapolla.pdf"
+            isExternal
+          >
+            PDF transparencia. Semifinales
+          </Link>
+        </Button>
       </Box>
       <StatusPolleros />
       <Text textAlign="center" fontSize="30px" color="polla.catar">
