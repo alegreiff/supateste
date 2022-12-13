@@ -494,7 +494,7 @@ export default function Home({
         </Button>
         <Button colorScheme="cyan" ml={2}>
           <Link
-            href="https://www.nuestrapolla.com/semistransparencianuestrapolla.pdf"
+            href="https://www.nuestrapolla.com/semis_polla_transparencia.pdf"
             isExternal
           >
             PDF transparencia. Semifinales
