@@ -229,9 +229,9 @@ export const Rivales = ({ partido, prono, statsmatch: stats }) => {
               </Center>
               <ResponsiveContainer width="100%" height={300}>
                 <BarChart
+                  data={datosJugado}
                   width={150}
                   height={40}
-                  data={datosJugado}
                   margin={{ top: 25, right: 0, left: 0, bottom: 25 }}
                 >
                   <Bar
@@ -241,7 +241,10 @@ export const Rivales = ({ partido, prono, statsmatch: stats }) => {
                     label={<CustomizedLabel />}
                   >
                     {datosJugado?.map((entry, index) => (
-                      <Cell key={index} fill={datosJugado[index].color} />
+                      <Cell
+                        key={`cell-${index}`}
+                        fill={datosJugado[index].color}
+                      />
                     ))}
                   </Bar>
                   <XAxis dataKey="name" fontWeight="bolder" />

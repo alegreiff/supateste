@@ -137,6 +137,7 @@ export default function PaginaPosiciones({ posequipos }) {
                         <Th>SIM</Th>
                         <Th>♾️</Th>
                         <Th fontSize={30}>👪</Th>
+                        <Th>Nulo</Th>
                       </Tr>
                     </Thead>
                     <Tbody>
@@ -153,7 +154,7 @@ export default function PaginaPosiciones({ posequipos }) {
                           <Td>
                             <Text as="b">{pos.pos}</Text>
                           </Td>
-                          <Td>{22 - (pos.bkc + pos.gch + pos.dbl)}</Td>
+                          <Td>{23 - (pos.bkc + pos.gch + pos.dbl)}</Td>
                           <Td>
                             <Button
                               onClick={() => {
@@ -202,6 +203,14 @@ export default function PaginaPosiciones({ posequipos }) {
                           <Td>{pos.sim}</Td>
                           <Td>{pos.blanco}</Td>
                           <Td>{nombrePollero(pos.amigo)}</Td>
+                          <Td>
+                            {parseInt(parts) -
+                              (parseInt(pos.gch) +
+                                parseInt(pos.dbl) +
+                                parseInt(pos.ch) +
+                                parseInt(pos.sim) +
+                                parseInt(pos.blanco))}
+                          </Td>
                         </Tr>
                       ))}
                     </Tbody>
