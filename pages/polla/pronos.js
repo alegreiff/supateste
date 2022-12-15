@@ -8,7 +8,7 @@ import usePollaSettings from "../../storedata/settings";
 import useFase from "../../hooks/useFase";
 import { useEffect, useState } from "react";
 import { GrupoProno } from "../../components/polla/pronos/GrupoProno";
-import { Accordion, Box } from "@chakra-ui/react";
+import { Accordion, Box, Spacer } from "@chakra-ui/react";
 
 export default function PronosPage({ user, data }) {
   const { partidos: basepartidos, clearPronos } = useDatosPollero(
@@ -116,17 +116,23 @@ export default function PronosPage({ user, data }) {
       )}
       {cargaPronos && fase !== 1 && (
         <>
-          <Box bg="palegreen" p={5} m={5}>
+          {/* <Box bg="palegreen" p={5} m={5}>
             Suerte. Nos vemos en los dos partidos finales.
-          </Box>
-          {/* <Box bg="green.300" w={400} p={5}>
+          </Box> */}
+          <Box bg="green.300" w={400} p={5}>
             Los marcadores pueden ser cambiados tantas veces como el pollero
-            desee. Antes de las 11:59:59 am del martes 13 de diciembre. Hora
+            desee antes de las 07:59:59 am del sábado 17 de diciembre, hora
             Colombia.{" "}
             <strong>
               El botón de GUARDAR aparecerá cuando tenga todos los marcadores y
               el SOLITARIO comodín
             </strong>
+            <p>
+              GranChepazo <strong>50 puntos</strong>
+            </p>
+            <p>
+              Chepazo <strong>Chepazo 25 puntos</strong>
+            </p>
           </Box>
           <Accordion defaultIndex={0}>
             <GrupoProno
@@ -134,7 +140,7 @@ export default function PronosPage({ user, data }) {
               pronosdb={pronosGrupo(fase)}
               pronoslistos={pronosGrupo(fase).length}
             />
-          </Accordion> */}
+          </Accordion>
         </>
       )}
       {!cargaPronos && <Box>Reflexión</Box>}

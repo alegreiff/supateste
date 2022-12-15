@@ -15,7 +15,7 @@ const usePollaSettings = create(
       fechas: {
         //HOY: new Date("2022-11-21 19:00"),
 
-        HOY: "2022-12-13 08:00:00+00",
+        HOY: "2022-12-16 08:00:00+00",
         //HOY: format(new Date(), "yyyy-MM-dd H':'mm':'ss'+00'"),
         //HOY: format(new Date(), "yyyy-MM-dd"),
         INICIO_GRUPOS: "2022-11-20 16:00:00+00",

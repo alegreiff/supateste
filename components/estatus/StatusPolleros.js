@@ -63,7 +63,7 @@ export const StatusPolleros = () => {
           ></DatoStats> */}
           <DatoStats
             dato={estatus?.pronostotales}
-            leyenda={"Partidos pronosticados para semifinales"}
+            leyenda={"Partidos pronosticados para tercer puesto y final"}
             color="polla.visitante"
           ></DatoStats>
         </SimpleGrid>
