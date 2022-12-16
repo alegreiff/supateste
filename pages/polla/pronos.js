@@ -131,7 +131,7 @@ export default function PronosPage({ user, data }) {
               GranChepazo <strong>50 puntos</strong>
             </p>
             <p>
-              Chepazo <strong>Chepazo 25 puntos</strong>
+              Chepazo <strong> 25 puntos</strong>
             </p>
           </Box>
           <Accordion defaultIndex={0}>
