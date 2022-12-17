@@ -119,7 +119,7 @@ export default function PronosPage({ user, data }) {
           {/* <Box bg="palegreen" p={5} m={5}>
             Suerte. Nos vemos en los dos partidos finales.
           </Box> */}
-          <Box bg="green.300" w={400} p={5}>
+          {/* <Box bg="green.300" w={400} p={5}>
             Los marcadores pueden ser cambiados tantas veces como el pollero
             desee antes de las 07:59:59 am del sábado 17 de diciembre, hora
             Colombia.{" "}
@@ -133,14 +133,14 @@ export default function PronosPage({ user, data }) {
             <p>
               Chepazo <strong> 25 puntos</strong>
             </p>
-          </Box>
-          <Accordion defaultIndex={0}>
+          </Box> */}
+          {/* <Accordion defaultIndex={0}>
             <GrupoProno
               partidos={partidosFase(fase)}
               pronosdb={pronosGrupo(fase)}
               pronoslistos={pronosGrupo(fase).length}
             />
-          </Accordion>
+          </Accordion> */}
         </>
       )}
       {!cargaPronos && <Box>Reflexión</Box>}

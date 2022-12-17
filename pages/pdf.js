@@ -10,7 +10,7 @@ export default function PagePdf() {
   useEffect(() => {
     async function cargaAllGruposPronos() {
       let { data: allpronos_cuartos, error } = await supabaseClient
-        .from("allpronos_semis")
+        .from("allpronos_finales")
         .select("*");
       setPronn(allpronos_cuartos);
     }

@@ -81,11 +81,11 @@ export default function useMenuLateralPolla() {
       icon: FiStar,
       ruta: `/perfil/${usuario.id}`,
     }); */
-    elmenu.push({
+    /* elmenu.push({
       name: "Poner marcadores",
       icon: FiStar,
       ruta: `/polla/pronos`,
-    });
+    }); */
     elmenu.push({
       name: "Polla diaria",
       icon: FiStar,
