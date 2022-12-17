@@ -500,6 +500,14 @@ export default function Home({
             PDF transparencia. Semifinales
           </Link>
         </Button>
+        <Button colorScheme="orange" ml={2}>
+          <Link
+            href="https://www.nuestrapolla.com/cierrepolla-seguridad.pdf"
+            isExternal
+          >
+            PDF transparencia. Final y tercer puesto
+          </Link>
+        </Button>
       </Box>
       <StatusPolleros />
       <Text textAlign="center" fontSize="30px" color="polla.catar">
