@@ -509,7 +509,74 @@ export default function Home({
           </Link>
         </Button>
       </Box>
-      <StatusPolleros />
+      <Box>
+        <Badge fontSize={22} colorScheme="red">
+          11.600.000
+        </Badge>
+
+        <Badge colorScheme="green" fontSize={30}>
+          <strong>Campeón</strong> Mario Caicedo 340 pts{" "}
+        </Badge>
+        <br />
+        <Badge fontSize={22} colorScheme="red">
+          4.640.000
+        </Badge>
+        <Badge colorScheme="green" fontSize={30}>
+          <strong>Segundo puesto</strong> Laudrup 310 pts{" "}
+        </Badge>
+        <br />
+        <Badge fontSize={22} colorScheme="red">
+          2.320.000
+        </Badge>
+        <Badge colorScheme="green" fontSize={30}>
+          <strong>Tercer puesto</strong> DJ repollo 307 pts{" "}
+        </Badge>
+        <br />
+        <Badge fontSize={22} colorScheme="red">
+          1.160.000
+        </Badge>
+        <Badge colorScheme="green" fontSize={30}>
+          <strong>Mejor Fase de grupos</strong> Don Toto{" "}
+        </Badge>
+        <br />
+        <br />
+        <Badge fontSize={22} colorScheme="red">
+          290.000
+        </Badge>
+        <br />
+        <Badge fontSize={22} colorScheme="purple">
+          Sebastian (Andrés Marcel)
+        </Badge>
+        <br />
+        <Badge fontSize={22} colorScheme="purple">
+          Dina Mita (Diego)
+        </Badge>
+        <br />
+        <Badge fontSize={22} colorScheme="purple">
+          La Peña (Esteban)
+        </Badge>
+        <br />
+        <Badge fontSize={22} colorScheme="purple">
+          Por si se puede (Jaime)
+        </Badge>
+        <br />
+        <Badge fontSize={22} colorScheme="purple">
+          Edward (Luis Carlos)
+        </Badge>
+        <br />
+        <Badge fontSize={22} colorScheme="purple">
+          Luchosal (Luis Fernando)
+        </Badge>
+        <br />
+        <Badge fontSize={22} colorScheme="purple">
+          Linita (Miller)
+        </Badge>
+        <br />
+        <Badge fontSize={22} colorScheme="purple">
+          LleroMFC (Ricardo)
+        </Badge>
+      </Box>
+      {/* <StatusPolleros /> */}
       <Text textAlign="center" fontSize="30px" color="polla.catar">
         No es mi polla, no es tu polla. ¡Es Nuestra Polla!
       </Text>
