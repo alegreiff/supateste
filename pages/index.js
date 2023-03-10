@@ -295,7 +295,7 @@ export default function Home({
         <Flex justify={"center"} bg="gray.50">
           <VStack width="900px">
             <Text padding="16" fontSize="30px" color="polla.catar">
-              No es mi polla, no es tu polla. ¡Es Nuestra Polla!
+              No es mi polla, no es tu polla. ¡Es Nuestra Polla! marzo
             </Text>
             <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
               <Stack align={"center"}>
